@@ -1,20 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { LangProvider } from "@/components/lang";
 import { Nav } from "@/components/nav";
 import { profile } from "@/content";
 import "./globals.css";
 
-const plex = IBM_Plex_Sans({
+// Genişlik ekseni olan grotesk: başlıklarda dar, metinde normal
+const archivo = Archivo({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex",
-});
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400"],
-  variable: "--font-plex-mono",
+  axes: ["wdth"],
+  variable: "--font-archivo",
 });
 
 export const metadata: Metadata = {
@@ -36,20 +32,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbfaf8" },
-    { media: "(prefers-color-scheme: dark)", color: "#121119" },
-  ],
+  themeColor: "#f7f7f7",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={`${plex.variable} ${plexMono.variable}`}>
-      <body className="flex min-h-svh flex-col font-sans leading-relaxed antialiased">
-        {/* JavaScript yoksa kaydırma animasyonları içeriği gizli bırakmasın */}
-        <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
+    <html lang="tr" className={archivo.variable}>
+      <body className="flex min-h-svh flex-col font-sans text-[1.0625rem] leading-relaxed antialiased">
         <LangProvider>
           <Nav />
           <main className="flex-1">{children}</main>

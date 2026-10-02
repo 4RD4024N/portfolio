@@ -1,199 +1,197 @@
 "use client";
 
 import Link from "next/link";
-import { Container } from "@/components/container";
+import { Container, grid } from "@/components/container";
+import { ArrowRight, ArrowUpRight } from "@/components/icons";
 import { useLang } from "@/components/lang";
 import { SectionTitle } from "@/components/page-header";
 import { ProjectList } from "@/components/project-card";
-import { Reveal } from "@/components/reveal";
-import { education, experience, neuvikon, profile, projects, skills, ui, type Job } from "@/content";
+import { RangeBar } from "@/components/range-bar";
+import { education, experience, neuvikon, profile, projects, ui } from "@/content";
+
+// Arka plandaki görünür ızgara çizgileri
+export function GridRules() {
+  return (
+    <div aria-hidden className={`pointer-events-none absolute inset-0 hidden ${grid} px-5 sm:px-8 lg:grid lg:px-12`}>
+      {Array.from({ length: 12 }).map((_, i) => (
+        <span
+          key={i}
+          className={`border-l border-rule/70 ${i < 4 ? "" : i < 6 ? "hidden md:block" : "hidden lg:block"}`}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function HomeView() {
   const { lang, t } = useLang();
   const featured = projects.filter((p) => p.featured);
   const neuSite = lang === "en" ? `${neuvikon.site}/en` : neuvikon.site;
-  const tech = skills.flatMap((s) => s.items);
+  const [first, ...rest] = profile.name.split(" ");
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative -mt-24 overflow-hidden pt-24">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div className="blob left-[8%] top-[10%] size-72 bg-violet" style={{ animation: "drift-1 16s ease-in-out infinite" }} />
-          <div className="blob right-[6%] top-[4%] size-64 bg-coral" style={{ animation: "drift-2 19s ease-in-out infinite" }} />
-          <div className="blob left-[40%] top-[45%] size-56 bg-mint" style={{ animation: "drift-3 22s ease-in-out infinite" }} />
-        </div>
+      {/* İlk ekran: isim + yelpaze */}
+      <section className="relative">
+        <Container className="relative">
+          <GridRules />
+          <div className={`relative ${grid} gap-y-8 pt-10 pb-8 sm:pt-16 lg:min-h-[calc(100svh-4.25rem-clamp(10rem,22vh,14rem))] lg:content-end lg:pt-12 lg:pb-8`}>
+            {/* Kap: ismin boyutu bu 8 sütunluk genişlikten hesaplanır */}
+            <div className="col-span-4 @container md:col-span-6 lg:col-span-8 lg:self-end">
+              <h1 className="display display-name">
+                <span className="block overflow-hidden pb-[0.04em]">
+                  <span className="line-up" style={{ animationDelay: "60ms" }}>
+                    {first}
+                  </span>
+                </span>
+                <span className="block overflow-hidden pb-[0.04em]">
+                  <span className="line-up text-red" style={{ animationDelay: "160ms" }}>
+                    {rest.join(" ")}
+                  </span>
+                </span>
+              </h1>
+            </div>
 
-        <Container className="relative pt-12 pb-16 sm:pt-20 sm:pb-24">
-          <p className="rise inline-flex items-center gap-2 rounded-full border border-line bg-surface/70 px-3 py-1 text-sm text-muted backdrop-blur">
-            <span className="pulse size-2 rounded-full bg-mint" />
-            {t(ui.available).replace(/\.$/, "")}
-          </p>
-
-          <h1 className="mt-6 text-[2.75rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl" aria-label={profile.name}>
-            {profile.name.split("").map((ch, i) => (
-              <span key={i} aria-hidden className="rise inline-block" style={{ animationDelay: `${120 + i * 35}ms` }}>
-                {ch === " " ? " " : ch}
-              </span>
-            ))}
-          </h1>
-
-          <p className="rise mt-3 text-lg text-muted" style={{ animationDelay: "500ms" }}>
-            {t(profile.role)} · {t(profile.location)}
-          </p>
-
-          <div className="rise mt-8 max-w-2xl space-y-4 text-[1.0625rem]" style={{ animationDelay: "620ms" }}>
-            <p>{t(profile.intro)}</p>
-            <p>
-              {t(ui.nowPrefix)}
-              <a href={neuSite} target="_blank" rel="noreferrer" className="link font-medium text-coral">
-                Neuvikon
-              </a>
-              {t(ui.nowSuffix)}
-            </p>
+            <div className="relative col-span-4 flex flex-col justify-end gap-6 bg-paper md:col-span-4 lg:col-span-4 lg:-ml-3 lg:self-end lg:py-3 lg:pl-3">
+              <div>
+                <p className="condensed text-2xl font-bold leading-tight tracking-tight">{t(profile.role)}</p>
+                <p className="mt-1 font-semibold text-muted">{t(profile.location)}</p>
+              </div>
+              <p className="flex items-center gap-2.5 text-[0.95rem] font-semibold">
+                <span className="relative flex size-2.5">
+                  <span className="absolute inset-0 animate-ping bg-green opacity-60" />
+                  <span className="relative size-2.5 bg-green" />
+                </span>
+                {t(ui.available).replace(/\.$/, "")}
+              </p>
+              <div className="flex flex-col gap-3">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="group flex items-center justify-between gap-4 bg-red px-4 py-3.5 font-semibold text-white transition-colors hover:bg-ink"
+                >
+                  <span className="truncate">{profile.email}</span>
+                  <ArrowRight className="size-5 shrink-0 transition-transform duration-500 ease-out-expo group-hover:translate-x-1" />
+                </a>
+                <p className="flex gap-5 text-[0.95rem] font-semibold">
+                  {profile.socials.map((s) => (
+                    <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="link inline-flex items-center gap-1">
+                      {s.label} <ArrowUpRight />
+                    </a>
+                  ))}
+                  {profile.cv && (
+                    <a href={profile.cv} className="link">
+                      {t(ui.cv)}
+                    </a>
+                  )}
+                </p>
+              </div>
+            </div>
           </div>
-
-          <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "740ms" }}>
-            <Link
-              href="/projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-fg px-5 py-2.5 text-sm font-medium text-bg transition-transform duration-200 hover:-translate-y-0.5"
-            >
-              {t(ui.nav.projects)}
-              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-            </Link>
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex items-center rounded-full border border-line bg-surface/70 px-5 py-2.5 text-sm font-medium backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-violet hover:text-violet"
-            >
-              {profile.email}
-            </a>
-            {profile.socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="link px-2 text-sm font-medium">
-                {s.label}
-              </a>
-            ))}
-            {profile.cv && (
-              <a href={profile.cv} className="link px-2 text-sm font-medium">
-                {t(ui.cv)}
-              </a>
-            )}
-          </div>
+          <RangeBar />
         </Container>
       </section>
 
-      {/* Kayan teknoloji şeridi */}
-      <div className="marquee-wrap fade-edges overflow-hidden border-y border-line py-3">
-        <div className="marquee flex w-max gap-8 font-mono text-sm text-muted">
-          {[...tech, ...tech].map((s, i) => (
-            <span key={i} className="flex items-center gap-8 whitespace-nowrap">
-              {s}
-              <span className={["text-violet", "text-coral", "text-mint", "text-amber"][i % 4]}>✦</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
+      {/* Tanıtım */}
       <Container>
-        <section className="pt-16">
-          <Reveal>
-            <SectionTitle>{t(ui.selected)}</SectionTitle>
-          </Reveal>
-          <ProjectList projects={featured} />
-          <Reveal>
-            <Link href="/projects" className="group mt-4 inline-flex items-center gap-1.5 font-medium text-violet">
-              <span className="link">
-                {t(ui.allProjects)} ({projects.length})
-              </span>
-              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-            </Link>
-          </Reveal>
-        </section>
-
-        <section className="pt-16">
-          <Reveal>
-            <SectionTitle dot="bg-coral">{t(ui.experienceTitle)}</SectionTitle>
-          </Reveal>
-          <ul>
-            {experience.map((e, i) => (
-              <Entry
-                key={e.org + e.period.en}
-                title={t(e.role)}
-                href="/experience"
-                sub={e.org}
-                date={t(e.period)}
-                dot={jobDot[e.type]}
-                delay={i * 50}
-              />
-            ))}
-            {education.map((e) => (
-              <Entry key={e.school} title={e.school} sub={t(e.degree)} date={t(e.period)} dot="bg-amber" delay={250} />
-            ))}
-          </ul>
-        </section>
-
-        {/* İletişim kutusu */}
-        <Reveal className="pt-16">
-          <div className="relative overflow-hidden rounded-3xl border border-line bg-surface p-8 sm:p-10">
-            <div aria-hidden className="blob -right-10 -top-16 size-56 bg-violet" style={{ animation: "drift-2 18s ease-in-out infinite" }} />
-            <div aria-hidden className="blob -bottom-20 left-10 size-48 bg-coral" style={{ animation: "drift-1 20s ease-in-out infinite" }} />
-            <div className="relative">
-              <h2 className="text-2xl font-semibold tracking-tight">{t(ui.contactTitle)}</h2>
-              <p className="mt-2 max-w-md text-muted">{t(ui.contactText)}</p>
-              <a
-                href={`mailto:${profile.email}`}
-                className="group mt-6 inline-flex items-center gap-2 rounded-full bg-violet px-5 py-2.5 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 dark:text-bg"
-              >
-                {profile.email}
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+        <div className={`${grid} gap-y-6 pt-16 sm:pt-24`}>
+          <p className="condensed col-span-4 text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2] font-semibold tracking-tight md:col-span-6 lg:col-span-9">
+            {t(profile.intro)}{" "}
+            <span className="text-muted">
+              {t(ui.nowPrefix)}
+              <a href={neuSite} target="_blank" rel="noreferrer" className="link text-ink">
+                Neuvikon
               </a>
-            </div>
-          </div>
-        </Reveal>
+              {t(ui.nowSuffix)}
+            </span>
+          </p>
+        </div>
       </Container>
+
+      {/* Seçili projeler */}
+      <Container className="pt-16 sm:pt-24">
+        <SectionTitle
+          aside={
+            <Link href="/projects" className="link inline-flex shrink-0 items-center gap-1.5 text-[0.95rem] font-semibold">
+              {t(ui.allProjects)} ({projects.length}) <ArrowRight className="size-4" />
+            </Link>
+          }
+        >
+          {t(ui.selected)}
+        </SectionTitle>
+        <ProjectList projects={featured} />
+      </Container>
+
+      {/* Deneyim ve eğitim */}
+      <Container className="pt-16 sm:pt-24">
+        <SectionTitle
+          aside={
+            <Link href="/experience" className="link inline-flex shrink-0 items-center gap-1.5 text-[0.95rem] font-semibold">
+              {t(ui.details)} <ArrowRight className="size-4" />
+            </Link>
+          }
+        >
+          {t(ui.experienceTitle)}
+        </SectionTitle>
+        <ul>
+          {experience.map((e) => (
+            <Entry key={e.org + e.period.en} href="/experience" date={t(e.period)} title={t(e.role)} sub={e.org} />
+          ))}
+          {education.map((e) => (
+            <Entry key={e.school} date={t(e.period)} title={e.school} sub={t(e.degree)} />
+          ))}
+        </ul>
+      </Container>
+
+      <ContactClose />
     </>
   );
 }
 
-// İş türüne göre nokta rengi: iş mor, gönüllü mercan, staj mint
-export const jobDot: Record<Job["type"], string> = { work: "bg-violet", volunteer: "bg-coral", intern: "bg-mint" };
-
-// Deneyim ve eğitim satırı
-export function Entry({
-  title,
-  sub,
-  date,
-  href,
-  dot = "bg-violet",
-  delay = 0,
-}: {
-  title: string;
-  sub: string;
-  date: string;
-  href?: string;
-  dot?: string;
-  delay?: number;
-}) {
-  const body = (
+// Deneyim ve eğitim satırı: solda tarih, ortada görev, sağda kurum
+export function Entry({ date, title, sub, href }: { date: string; title: string; sub: string; href?: string }) {
+  const inner = (
     <>
-      <span className={`mt-2 size-2 shrink-0 rounded-full ${dot} transition-transform duration-300 group-hover:scale-150`} />
-      <div className="flex min-w-0 flex-1 flex-col gap-x-6 sm:flex-row sm:items-baseline sm:justify-between">
-        <div>
-          <span className="font-semibold transition-colors group-hover:text-accent">{title}</span>
-          <span className="text-muted"> · {sub}</span>
-        </div>
-        <span className="shrink-0 font-mono text-sm text-muted">{date}</span>
-      </div>
+      <span className="tnum row-muted col-span-4 text-sm font-semibold text-muted md:col-span-2 lg:col-span-3">{date}</span>
+      <span className="condensed col-span-4 text-lg font-bold leading-tight tracking-tight md:col-span-2 lg:col-span-4">
+        {title}
+      </span>
+      <span className="row-muted col-span-4 font-semibold text-muted md:col-span-2 lg:col-span-5">{sub}</span>
     </>
   );
+  const cls = `${grid} items-baseline gap-y-0.5 py-4`;
   return (
-    <Reveal as="li" delay={delay}>
+    <li className="cat-neutral border-b border-rule">
       {href ? (
-        <Link href={href} className="group -mx-3 flex gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-surface">
-          {body}
+        <Link href={href} className={`row-wipe ${cls}`}>
+          {inner}
         </Link>
       ) : (
-        <div className="-mx-3 flex gap-3 px-3 py-3">{body}</div>
+        <div className={cls}>{inner}</div>
       )}
-    </Reveal>
+    </li>
+  );
+}
+
+// Sayfaların sonundaki kırmızı iletişim alanı
+export function ContactClose() {
+  const { t } = useLang();
+  return (
+    <Container className="pt-20 sm:pt-28">
+      <section className="cat-red bg-red text-white">
+        <div className={`${grid} gap-y-6 p-6 sm:p-10 lg:p-12`}>
+          <h2 className="display col-span-4 text-[clamp(3rem,8vw,6rem)] md:col-span-6 lg:col-span-7">{t(ui.contactTitle)}</h2>
+          <div className="col-span-4 flex flex-col justify-end gap-5 md:col-span-6 lg:col-span-5">
+            <p className="max-w-[40ch] text-white/90">{t(ui.contactText)}</p>
+            <a
+              href={`mailto:${profile.email}`}
+              className="group flex items-center justify-between gap-4 border-t-2 border-white pt-4 text-[clamp(1.15rem,2.2vw,1.6rem)] font-bold"
+            >
+              <span className="whitespace-nowrap">{profile.email}</span>
+              <ArrowRight className="size-6 shrink-0 transition-transform duration-500 ease-out-expo group-hover:translate-x-1.5" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </Container>
   );
 }

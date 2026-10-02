@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Container } from "@/components/container";
+import { Container, grid } from "@/components/container";
+import { ArrowRight, ArrowUpRight } from "@/components/icons";
 import { useLang } from "@/components/lang";
 import { PageHeader } from "@/components/page-header";
-import { Reveal } from "@/components/reveal";
 import { profile, ui } from "@/content";
 
 export function ContactView() {
@@ -20,65 +20,52 @@ export function ContactView() {
   };
 
   return (
-    <Container>
-      <PageHeader title={t(ui.contactTitle)} text={t(ui.contactText)} dot="bg-amber" />
+    <>
+      <PageHeader title={t(ui.contactTitle)} text={t(ui.contactText)} />
 
-      <Reveal>
-        <div className="relative overflow-hidden rounded-3xl border border-line bg-surface p-6 sm:p-8">
-          <div aria-hidden className="blob -right-12 -top-16 size-56 bg-amber" style={{ animation: "drift-2 17s ease-in-out infinite" }} />
-          <div aria-hidden className="blob -bottom-20 left-1/3 size-48 bg-violet" style={{ animation: "drift-1 21s ease-in-out infinite" }} />
-          <div className="relative">
-            <p className="text-sm text-muted">{t(ui.email)}</p>
+      <Container className="pt-10 sm:pt-14">
+        {/* E-posta: sayfanın tek kırmızı alanı */}
+        <section className="wipe-in @container bg-red text-white" style={{ animationDelay: "200ms" }}>
+          <div className={`${grid} gap-y-6 p-6 sm:p-10 lg:p-12`}>
+            <p className="col-span-4 font-semibold text-white/85 md:col-span-6 lg:col-span-12">{t(ui.email)}</p>
             <a
               href={`mailto:${profile.email}`}
-              className="mt-2 block break-all text-2xl font-semibold tracking-tight transition-colors hover:text-violet sm:text-3xl"
+              className="group display col-span-4 flex items-end justify-between gap-4 text-[min(7.4cqi,5rem)] whitespace-nowrap md:col-span-6 lg:col-span-12"
             >
-              {profile.email}
+              <span>{profile.email}</span>
+              <ArrowRight className="mb-[0.1em] size-[0.7em] shrink-0 transition-transform duration-500 ease-out-expo group-hover:translate-x-2" />
             </a>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href={`mailto:${profile.email}`}
-                className="group inline-flex items-center gap-2 rounded-full bg-fg px-5 py-2.5 text-sm font-medium text-bg transition-transform duration-200 hover:-translate-y-0.5"
-              >
-                {t(ui.contactTitle)}
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
+            <div className="col-span-4 md:col-span-6 lg:col-span-12">
               <button
                 onClick={copy}
-                className={`rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
-                  copied ? "border-mint bg-mint/10 text-mint" : "border-line hover:border-fg"
-                }`}
+                className="bg-white px-4 py-2.5 font-semibold text-red transition-colors hover:bg-ink hover:text-white"
               >
-                {copied ? `✓ ${t(ui.copied)}` : t(ui.copy)}
+                {copied ? t(ui.copied) : t(ui.copy)}
               </button>
             </div>
           </div>
-        </div>
-      </Reveal>
+        </section>
 
-      <dl className="mt-8">
-        {profile.socials.map((s, i) => (
-          <Reveal key={s.label} delay={80 + i * 60}>
-            <Row label={s.label}>
-              <a href={s.href} target="_blank" rel="noreferrer" className="link font-medium">
-                {decodeURIComponent(s.href).replace(/^https?:\/\/(www\.)?/, "")} ↗
+        <dl className="pt-10">
+          {profile.socials.map((s) => (
+            <Row key={s.label} label={s.label}>
+              <a href={s.href} target="_blank" rel="noreferrer" className="link inline-flex items-center gap-1.5 break-all">
+                {decodeURIComponent(s.href).replace(/^https?:\/\/(www\.)?/, "")} <ArrowUpRight />
               </a>
             </Row>
-          </Reveal>
-        ))}
-        <Reveal delay={200}>
+          ))}
           <Row label={t(ui.location)}>{t(profile.location)}</Row>
-        </Reveal>
-      </dl>
-    </Container>
+        </dl>
+      </Container>
+    </>
   );
 }
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="grid gap-x-6 border-b border-line py-3.5 sm:grid-cols-[8rem_1fr]">
-      <dt className="text-muted">{label}</dt>
-      <dd>{children}</dd>
+    <div className={`${grid} gap-y-1 border-b border-rule py-4`}>
+      <dt className="col-span-4 font-semibold text-muted md:col-span-2 lg:col-span-3">{label}</dt>
+      <dd className="condensed col-span-4 text-lg font-bold tracking-tight md:col-span-4 lg:col-span-9">{children}</dd>
     </div>
   );
 }

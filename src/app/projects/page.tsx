@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ProjectsView } from "@/components/views/projects";
 import { ui } from "@/content";
 
@@ -8,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ProjectsView />;
+  // Filtre adres satırındaki ?c= değerinden okunuyor
+  return (
+    <Suspense>
+      <ProjectsView />
+    </Suspense>
+  );
 }

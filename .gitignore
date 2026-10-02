@@ -5,3 +5,11 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
+
+# impeccable çalışma dosyaları (ekran görüntüleri, karar sayfası, yerel ayar)
+.impeccable/review/
+.impeccable/questions/
+.impeccable/config.local.json
+.impeccable/decision-*.json
+.impeccable/brief-*.md
+.impeccable/*.png

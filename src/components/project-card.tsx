@@ -1,53 +1,49 @@
 "use client";
 
 import Link from "next/link";
+import { grid } from "@/components/container";
+import { ArrowRight } from "@/components/icons";
 import { useLang } from "@/components/lang";
-import { Reveal } from "@/components/reveal";
-import { ui, type Project } from "@/content";
+import { categories, ui, type Project } from "@/content";
 
-// Proje adından iki harflik kısaltma: "Advisory System" → "AS"
-export function initials(title: string) {
-  const words = title.replace(/[^\p{L}\p{N} ]/gu, " ").split(/\s+/).filter(Boolean);
-  return (words.length > 1 ? words[0][0] + words[1][0] : title.slice(0, 2)).toUpperCase();
-}
-
-export function ProjectRow({ project: p, showYear = true, index = 0 }: { project: Project; showYear?: boolean; index?: number }) {
+// Proje dizinindeki tek satır: üzerine gelince kategori rengi soldan dolar
+export function ProjectRow({ project: p, showYear = true }: { project: Project; showYear?: boolean }) {
   const { t } = useLang();
   const notes = [p.org?.name, p.private ? t(ui.privateRepo) : null, p.wip ? t(ui.wip) : null].filter(Boolean);
 
   return (
-    <Reveal as="li" delay={Math.min(index, 6) * 70} className={`cat-${p.category}`}>
-      <Link
-        href={`/projects/${p.slug}`}
-        className="group relative -mx-3 flex gap-4 rounded-2xl px-3 py-4 transition-colors duration-300 hover:bg-[color-mix(in_oklab,var(--c)_8%,transparent)] sm:-mx-4 sm:gap-5 sm:px-4"
-      >
-        <span className="tile mt-0.5 grid size-11 shrink-0 place-items-center rounded-xl font-mono text-sm font-medium transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
-          {initials(p.title)}
+    <li className={`cat-${p.category} border-b border-rule`}>
+      <Link href={`/projects/${p.slug}`} className={`row-wipe group ${grid} gap-y-1 px-0 py-5 outline-offset-0 sm:py-6`}>
+        <span className="tnum row-muted col-span-1 hidden pt-1 text-sm font-semibold text-muted lg:block">
+          {showYear ? p.year : ""}
         </span>
-        <div className="min-w-0 flex-1">
-          <h3 className="flex flex-wrap items-baseline gap-x-2 font-semibold">
-            <span className="transition-colors duration-200 group-hover:text-[var(--c)]">{p.title}</span>
-            {showYear && <span className="font-mono text-xs font-normal text-muted">{p.year}</span>}
-          </h3>
-          <p className="mt-1 text-muted">{t(p.summary)}</p>
-          <p className="mt-2 text-sm text-muted/90">
-            {p.stack.join(" · ")}
-            {notes.length > 0 && <span className="font-medium text-[var(--c)]"> · {notes.join(" · ")}</span>}
-          </p>
+        <div className="col-span-4 flex items-start gap-3 md:col-span-3 lg:col-span-4">
+          <span className="mt-[0.45rem] size-3 shrink-0 bg-[var(--c)] transition-colors group-hover:bg-[var(--on)]" />
+          <div className="min-w-0">
+            <h3 className="condensed text-xl font-bold leading-tight tracking-tight sm:text-2xl">{p.title}</h3>
+            <p className="row-muted mt-1 text-sm font-semibold text-muted">
+              {t(categories[p.category])}
+              {showYear && <span className="tnum lg:hidden"> · {p.year}</span>}
+              {notes.length > 0 && <span> · {notes.join(" · ")}</span>}
+            </p>
+          </div>
         </div>
-        <span className="mt-3 hidden text-lg text-[var(--c)] opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 sm:block">
-          →
-        </span>
+        <p className="row-muted col-span-4 pl-6 text-[0.98rem] leading-snug text-muted md:col-span-3 md:pl-0 lg:col-span-5">
+          {t(p.summary)}
+        </p>
+        <div className="col-span-4 hidden items-start justify-end md:col-span-6 lg:col-span-2 lg:flex">
+          <ArrowRight className="size-6 -translate-x-2 opacity-0 transition-all duration-500 ease-out-expo group-hover:translate-x-0 group-hover:opacity-100" />
+        </div>
       </Link>
-    </Reveal>
+    </li>
   );
 }
 
 export function ProjectList({ projects, showYear = true }: { projects: Project[]; showYear?: boolean }) {
   return (
-    <ul className="space-y-1">
-      {projects.map((p, i) => (
-        <ProjectRow key={p.slug} project={p} showYear={showYear} index={i} />
+    <ul>
+      {projects.map((p) => (
+        <ProjectRow key={p.slug} project={p} showYear={showYear} />
       ))}
     </ul>
   );
