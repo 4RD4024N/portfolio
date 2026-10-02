@@ -1,20 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import { Container } from "@/components/container";
-import { ArrowLeft } from "@/components/icons";
+import { Container } from "@/components/chrome";
 import { useLang } from "@/components/lang";
+import { ArrowLink } from "@/components/parts";
 import { ui } from "@/content";
 
 export default function NotFound() {
   const { t } = useLang();
   return (
-    <Container className="pt-16 sm:pt-24">
-      <p className="title tnum text-[clamp(5rem,18vw,11rem)] text-vermilion-ink">404</p>
-      <h1 className="title mt-4 max-w-[24ch] text-3xl">{t(ui.notFound)}</h1>
-      <Link href="/" className="link mt-8 inline-flex items-center gap-1.5 font-semibold">
-        <ArrowLeft className="size-4" /> {t(ui.goHome)}
-      </Link>
+    <Container className="flex min-h-[70svh] flex-col items-center justify-center py-24 text-center">
+      <p className="display text-[clamp(5rem,18vw,6rem)] text-muted tnum">404</p>
+      <h1 className="headline mt-6 text-[clamp(1.75rem,4vw,2.6rem)]">{t(ui.notFound)}</h1>
+      <ArrowLink href="/" className="mt-8">
+        {t(ui.goHome)}
+      </ArrowLink>
     </Container>
   );
 }

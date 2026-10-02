@@ -1,18 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { Container, grid } from "@/components/container";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "@/components/icons";
+import { Container } from "@/components/chrome";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "@/components/icons";
 import { useLang } from "@/components/lang";
-import { MassChip } from "@/components/model";
 import { neuHref } from "@/components/neu-project-card";
-import { ageOf } from "@/components/project-card";
-import { ContactClose } from "@/components/views/home";
-import { categories, projects, ui } from "@/content";
+import { catCls, CategoryTag, Closing, Status } from "@/components/parts";
+import { ProjectVisual } from "@/components/visuals";
+import { projects, ui } from "@/content";
 
 export function ProjectDetailView({ slug }: { slug: string }) {
   const { lang, t } = useLang();
-  const i = projects.findIndex((p) => p.slug === slug);
+  const i = projects.findIndex((x) => x.slug === slug);
   const p = projects[i];
   const prev = projects[(i - 1 + projects.length) % projects.length];
   const next = projects[(i + 1) % projects.length];
@@ -24,103 +23,75 @@ export function ProjectDetailView({ slug }: { slug: string }) {
     ...(p.related ?? []),
   ].filter(Boolean) as { label: string; href: string }[];
 
-  const facts = [
-    [t(ui.year), p.year],
-    [t(ui.category), t(categories[p.category])],
-    ...(p.private ? [[t(ui.source), t(ui.privateRepo)]] : []),
-    ...(p.wip ? [[t(ui.status), t(ui.wip)]] : []),
-  ];
-
-  // Kütlenin boyutu projeden gelir: teknoloji sayısı yükseklik, özellik sayısı genişlik
-  const h = Math.min(6, 2 + p.stack.length * 0.6);
-  const w = Math.min(5, 2 + p.highlights.en.length * 0.5);
-
   return (
-    <article className={`cat-${p.category}`} data-age={ageOf(p.year)}>
-      <Container className="pt-8 sm:pt-12">
-        <Link href="/projects" className="link label inline-flex items-center gap-1.5 text-[0.82rem]">
-          <ArrowLeft className="size-4" /> {t(ui.nav.projects)}
+    <article className={catCls(p.category)}>
+      <Container className="pt-12 text-center sm:pt-20">
+        <Link href="/projects" className="group inline-flex items-center gap-1.5 text-[0.95rem] font-medium text-muted hover:text-ink">
+          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" /> {t(ui.nav.projects)}
         </Link>
-
-        <header className={`${grid} mt-6 gap-y-8`}>
-          <div className="col-span-4 md:col-span-6 lg:col-span-7">
-            <h1 className="title text-[clamp(2.75rem,6.5vw,5.25rem)]">{p.title}</h1>
-            <p className="mt-5 max-w-[50ch] text-[1.15rem] leading-relaxed">{t(p.summary)}</p>
-            {links.length > 0 && (
-              <div className="mt-6 flex flex-wrap gap-2">
-                {links.map((l, k) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`lift group inline-flex items-center gap-2 rounded-[3px] px-4 py-2.5 font-semibold whitespace-nowrap shadow-[var(--shadow-board)] ${
-                      k === 0 ? "bg-ink text-board" : "bg-board"
-                    }`}
-                  >
-                    {l.label}
-                    <ArrowUpRight />
-                  </a>
-                ))}
-              </div>
-            )}
+        <div className="rise mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+          <CategoryTag p={p} />
+          <span className="text-[0.92rem] text-muted tnum">{p.year}</span>
+          <Status p={p} t={t} />
+        </div>
+        <h1 className="display rise mt-4 text-[clamp(3rem,8vw,6rem)]" style={{ "--d": "80ms" } as React.CSSProperties}>
+          {p.title}
+        </h1>
+        <p className="headline rise mx-auto mt-6 max-w-[30ch] text-[clamp(1.35rem,2.6vw,1.9rem)] text-muted" style={{ "--d": "160ms" } as React.CSSProperties}>
+          {t(p.summary)}
+        </p>
+        {links.length > 0 && (
+          <div className="rise mt-8 flex flex-wrap justify-center gap-3" style={{ "--d": "240ms" } as React.CSSProperties}>
+            {links.map((l, n) => (
+              <a
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noreferrer"
+                className={`inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-medium transition-opacity hover:opacity-85 ${n === 0 ? "bg-accent text-on-accent" : "bg-surface"}`}
+              >
+                {l.label}
+                <ArrowUpRight className="size-3.5" />
+              </a>
+            ))}
           </div>
+        )}
+      </Container>
 
-          {/* Görünüşler A, B, C: projenin kütlesi plan, cephe ve eksonometride */}
-          <figure className="board col-span-4 p-4 md:col-span-6 lg:col-span-5">
-            <div className="grid grid-cols-3 gap-3 text-muted">
-              <View letter="A" name={t(ui.viewPlan)}>
-                <rect x="20" y="30" width={w * 12} height="40" className="fill-[var(--c)]" />
-              </View>
-              <View letter="B" name={t(ui.viewElevation)}>
-                <line x1="8" y1="90" x2="92" y2="90" stroke="currentColor" />
-                <rect x="20" y={90 - h * 12} width={w * 12} height={h * 12} className="fill-[var(--c)]" />
-              </View>
-              <View letter="C" name={t(ui.viewAxo)}>
-                <g transform="translate(50 90)">
-                  <path d={`M0 0 L${-w * 6} ${-w * 3.4} L${-w * 6} ${-w * 3.4 - h * 7} L0 ${-h * 7} Z`} className="fill-[color-mix(in_oklab,var(--c),black_22%)]" />
-                  <path d={`M0 0 L${w * 6} ${-w * 3.4} L${w * 6} ${-w * 3.4 - h * 7} L0 ${-h * 7} Z`} className="fill-[color-mix(in_oklab,var(--c),black_38%)]" />
-                  <path d={`M0 ${-h * 7} L${-w * 6} ${-w * 3.4 - h * 7} L0 ${-w * 6.8 - h * 7} L${w * 6} ${-w * 3.4 - h * 7} Z`} className="fill-[var(--c)]" />
-                </g>
-              </View>
-            </div>
-            <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-rule pt-4 text-sm">
-              {facts.map(([k, v]) => (
-                <div key={k}>
-                  <dt className="label text-[0.72rem] text-muted">{k}</dt>
-                  <dd className="tnum font-semibold">{v}</dd>
-                </div>
+      <Container className="mt-14 sm:mt-20">
+        <div className="rise mx-auto max-w-[60rem] overflow-hidden rounded-[2rem] bg-surface p-5 sm:p-10" style={{ "--d": "300ms" } as React.CSSProperties}>
+          <ProjectVisual project={p} lang={lang} className="h-auto w-full" />
+        </div>
+      </Container>
+
+      <Container className="mt-20 sm:mt-28">
+        <div className="mx-auto grid max-w-[60rem] gap-14 md:grid-cols-2 md:gap-16">
+          <section>
+            <h2 className="headline text-[1.75rem]">{t(ui.overview)}</h2>
+            <p className="mt-4 leading-relaxed text-muted">{t(p.overview)}</p>
+            <h2 className="headline mt-12 text-[1.75rem]">{t(ui.stack)}</h2>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {p.stack.map((s) => (
+                <li key={s} className="rounded-full bg-surface px-3.5 py-1.5 text-[0.92rem]">
+                  {s}
+                </li>
               ))}
-            </dl>
-          </figure>
-        </header>
+            </ul>
+          </section>
+          <section>
+            <h2 className="headline text-[1.75rem]">{t(ui.highlights)}</h2>
+            <ul className="mt-4 space-y-3.5">
+              {p.highlights[lang].map((h) => (
+                <li key={h} className="flex gap-3 leading-relaxed text-muted">
+                  <Check className="mt-1 size-4 shrink-0 text-[var(--c)]" />
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
 
-        <Block title={t(ui.overview)}>
-          <p className="max-w-[68ch]">{t(p.overview)}</p>
-        </Block>
-
-        <Block title={t(ui.highlights)}>
-          <ul className="max-w-[68ch] space-y-2.5">
-            {p.highlights[lang].map((h) => (
-              <li key={h} className="flex gap-3">
-                <span className="acrylic mt-[0.5rem] size-2.5 shrink-0 rounded-[1px]" />
-                <span>{h}</span>
-              </li>
-            ))}
-          </ul>
-        </Block>
-
-        <Block title={t(ui.stack)}>
-          <ul className="flex flex-wrap gap-2">
-            {p.stack.map((s) => (
-              <li key={s} className="board px-2.5 py-1 text-sm font-medium">
-                {s}
-              </li>
-            ))}
-          </ul>
-        </Block>
-
-        <nav className="mt-16 grid grid-cols-2 gap-3 sm:mt-24">
+        <nav className="mx-auto mt-24 grid max-w-[60rem] grid-cols-2 gap-3 border-t border-line pt-8">
           {[
             { q: prev, label: t(ui.prev), dir: "prev" },
             { q: next, label: t(ui.next), dir: "next" },
@@ -128,47 +99,21 @@ export function ProjectDetailView({ slug }: { slug: string }) {
             <Link
               key={dir}
               href={`/projects/${q.slug}`}
-              data-age={ageOf(q.year)}
-              className={`cat-${q.category} board lift group p-4 sm:p-6 ${dir === "next" ? "text-right" : ""}`}
+              aria-label={`${label}: ${q.title}`}
+              className={`group flex min-w-0 flex-col gap-1 rounded-2xl p-3 transition-colors hover:bg-surface sm:p-5 ${dir === "next" ? "items-end text-right" : ""}`}
             >
-              <span className={`flex items-center gap-2.5 ${dir === "next" ? "flex-row-reverse" : ""}`} aria-label={`${label}: ${q.title}`}>
-                {dir === "prev" ? (
-                  <ArrowLeft className="size-5 shrink-0 text-muted transition-transform group-hover:-translate-x-1" />
-                ) : (
-                  <ArrowRight className="size-5 shrink-0 text-muted transition-transform group-hover:translate-x-1" />
-                )}
-                <MassChip className="size-5" />
-                <span className="title text-lg sm:text-2xl">{q.title}</span>
+              <span className="flex items-center gap-1.5 text-[0.88rem] text-muted">
+                {dir === "prev" && <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" />}
+                {label}
+                {dir === "next" && <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />}
               </span>
+              <span className="headline max-w-full text-[1.15rem] break-words sm:text-[1.4rem]">{q.title}</span>
             </Link>
           ))}
         </nav>
       </Container>
 
-      <ContactClose />
+      <Closing />
     </article>
-  );
-}
-
-function View({ letter, name, children }: { letter: string; name: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <svg viewBox="0 0 100 100" className="aspect-square w-full rounded-[2px] bg-table/60" aria-hidden>
-        {children}
-      </svg>
-      <p className="label mt-2 flex items-center gap-1.5 text-[0.7rem]">
-        <span className="grid size-5 place-items-center rounded-full border border-current text-[0.7rem]">{letter}</span>
-        {name}
-      </p>
-    </div>
-  );
-}
-
-function Block({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className={`${grid} mt-12 gap-y-3 sm:mt-16`}>
-      <h2 className="title col-span-4 text-xl md:col-span-2 lg:col-span-3">{title}</h2>
-      <div className="col-span-4 md:col-span-4 lg:col-span-8">{children}</div>
-    </section>
   );
 }

@@ -1,73 +1,75 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Container } from "@/components/container";
+import { Container } from "@/components/chrome";
 import { useLang } from "@/components/lang";
-import { PageHeader } from "@/components/page-header";
-import { MassChip } from "@/components/model";
-import { ProjectList } from "@/components/project-card";
-import { ContactClose } from "@/components/views/home";
+import { catCls, CategoryTag, Closing, PageHero, Status } from "@/components/parts";
+import { ProjectVisual } from "@/components/visuals";
 import { categories, projects, ui, type Category } from "@/content";
 
 const isCategory = (v: string | null): v is Category => !!v && v in categories;
 
 export function ProjectsView() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const router = useRouter();
   const params = useSearchParams();
   const c = params.get("c");
   const filter: Category | "all" = isCategory(c) ? c : "all";
 
-  const setFilter = (key: Category | "all") =>
-    router.replace(key === "all" ? "/projects" : `/projects?c=${key}`, { scroll: false });
-
+  const setFilter = (key: Category | "all") => router.replace(key === "all" ? "/projects" : `/projects?c=${key}`, { scroll: false });
   const list = filter === "all" ? projects : projects.filter((p) => p.category === filter);
-  const years = [...new Set(list.map((p) => p.year))].sort().reverse();
   const options: [Category | "all", string, number][] = [
     ["all", t(ui.all), projects.length],
-    ...(Object.keys(categories) as Category[]).map(
-      (k) => [k, t(categories[k]), projects.filter((p) => p.category === k).length] as [Category, string, number],
-    ),
+    ...(Object.keys(categories) as Category[]).map((k) => [k, t(categories[k]), projects.filter((p) => p.category === k).length] as [Category, string, number]),
   ];
 
   return (
     <>
-      <PageHeader title={t(ui.nav.projects)} text={t(ui.projectsIntro)} />
+      <PageHero title={t(ui.nav.projects)} text={t(ui.projectsIntro)} />
 
       <Container>
-        {/* Filtre: maket anahtarı gibi; seçili olan masadan kalkar */}
-        <div role="group" aria-label={t(ui.all)} className="flex flex-wrap gap-2">
+        <div role="group" aria-label={t(ui.category)} className="flex flex-wrap gap-2">
           {options.map(([key, label, count]) => {
-            const active = filter === key;
+            const on = filter === key;
             return (
               <button
                 key={key}
                 onClick={() => setFilter(key)}
-                aria-pressed={active}
-                className={`${key === "all" ? "cat-red" : `cat-${key}`} board lift flex items-center gap-2.5 px-3 py-2 text-left ${
-                  active ? "-translate-y-[3px] shadow-[var(--shadow-lift)] ring-2 ring-[var(--c)]" : ""
+                aria-pressed={on}
+                className={`${key === "all" ? "" : catCls(key)} flex items-center gap-2 rounded-full px-4 py-2 text-[0.92rem] font-medium transition-colors ${
+                  on ? "bg-ink text-bg" : "bg-surface text-muted hover:text-ink"
                 }`}
               >
-                <MassChip className="size-5" />
-                <span className="label text-[0.8rem]">{label}</span>
-                <span className="tnum text-sm text-muted">{count}</span>
+                {key !== "all" && <span className="size-2 rounded-full bg-[var(--c)]" aria-hidden />}
+                {label}
+                <span className="tnum opacity-70">{count}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Yıllar: her yıl ayrı bir pano */}
-        <div key={filter} className="mt-8 space-y-6">
-          {years.map((y) => (
-            <section key={y} className="board px-4 pt-4 sm:px-6 sm:pt-5">
-              <h2 className="title tnum border-b border-rule pb-3 text-2xl">{y}</h2>
-              <ProjectList projects={list.filter((p) => p.year === y)} showYear={false} />
-            </section>
+        <ul key={filter} className="mt-12 grid gap-x-10 gap-y-16 md:grid-cols-2">
+          {list.map((p, i) => (
+            <li key={p.slug} className={`${catCls(p.category)} rise`} style={{ "--d": `${Math.min(i, 6) * 60}ms` } as React.CSSProperties}>
+              <Link href={`/projects/${p.slug}`} className="group block">
+                <div className="overflow-hidden rounded-[1.5rem] bg-surface p-4 transition-transform duration-500 ease-out-expo group-hover:scale-[1.015] sm:p-6">
+                  <ProjectVisual project={p} lang={lang} className="h-auto w-full" />
+                </div>
+                <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1">
+                  <CategoryTag p={p} />
+                  <span className="text-[0.92rem] text-muted tnum">{p.year}</span>
+                  <Status p={p} t={t} />
+                </div>
+                <h2 className="headline mt-2 text-[1.75rem] transition-colors group-hover:text-accent">{p.title}</h2>
+                <p className="mt-2 leading-relaxed text-muted">{t(p.summary)}</p>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </Container>
 
-      <ContactClose />
+      <Closing />
     </>
   );
 }

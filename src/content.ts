@@ -774,34 +774,6 @@ export const projects: Project[] = [
     stack: ["Java", "Spring Boot", "Spring Data JPA", "Maven", "Thymeleaf"],
     github: "https://github.com/4RD4024N/Arda-veris",
   },
-  {
-    slug: "java-social-app",
-    title: "LinkedIn-style Desktop App",
-    year: "2023",
-    category: "desktop",
-    summary: {
-      tr: "Java Swing ile LinkedIn benzeri masaüstü uygulaması: profil, arkadaş arama ve maaş verileriyle iş arama.",
-      en: "LinkedIn-style desktop app in Java Swing: profiles, friend search and job search with salary data.",
-    },
-    overview: {
-      tr: "Java Swing ile yazılmış, LinkedIn'den esinlenen bir masaüstü uygulaması. Kullanıcı profili ve profil fotoğrafı, CSV veri setinden arkadaş arama ve şirket/maaş verileriyle iş ilanı arama özellikleri var.",
-      en: "A desktop app inspired by LinkedIn, written in Java Swing. It has user profiles with profile photos, friend search over a CSV dataset and job search with company and salary data.",
-    },
-    highlights: {
-      tr: [
-        "Giriş ekranı ve kullanıcı profili, dosya seçiciyle profil fotoğrafı",
-        "CSV veri setinden arkadaş arama",
-        "Şirket ve maaş verileriyle iş ilanı arama",
-      ],
-      en: [
-        "Login screen and user profile, profile photo via file chooser",
-        "Friend search over a CSV dataset",
-        "Job search with company and salary data",
-      ],
-    },
-    stack: ["Java", "Swing", "CSV"],
-    github: "https://github.com/4RD4024N/basic_java_GUI",
-  },
 ];
 
 // Arayüz yazıları
@@ -855,11 +827,7 @@ export const ui = {
   projectWork: { tr: "Proje yönetimi", en: "Project work" },
   projectWorkSub: { tr: "SEGG International · IFC finansmanlı projeler", en: "SEGG International · IFC-financed projects" },
   gamesSub: { tr: "Muavin Sim · Neuvikon Games oyunları", en: "Muavin Sim · Neuvikon Games titles" },
-  details: { tr: "Ayrıntılar", en: "Details" },
   menu: { tr: "Menü", en: "Menu" },
-  viewPlan: { tr: "Plan", en: "Plan" },
-  viewElevation: { tr: "Cephe", en: "Elevation" },
-  viewAxo: { tr: "Eksonometri", en: "Axonometric" },
   toDark: { tr: "Koyu temaya geç", en: "Switch to dark theme" },
   toLight: { tr: "Açık temaya geç", en: "Switch to light theme" },
   year: { tr: "Yıl", en: "Year" },
@@ -887,5 +855,21 @@ export const ui = {
   elsewhere: { tr: "Diğer", en: "Elsewhere" },
   location: { tr: "Konum", en: "Location" },
   notFound: { tr: "Aradığın sayfa bulunamadı.", en: "This page doesn't exist." },
+  // Kabuk
+  skip: { tr: "İçeriğe geç", en: "Skip to content" },
+  language: { tr: "Dil", en: "Language" },
+  sendEmail: { tr: "E-posta gönder", en: "Send email" },
+  seeProjects: { tr: "Projeleri gör", en: "See projects" },
+  allExperience: { tr: "Tüm deneyim ve Neuvikon", en: "Full experience and Neuvikon" },
+  moreProjects: { tr: "Diğer projeler", en: "More projects" },
+  details: { tr: "Ayrıntılar", en: "Details" },
+  statement: {
+    tr: "Web uygulamaları ve API'ler kuruyorum. Kameradan el hareketi okuyorum. Müziği görüntüye çeviriyorum. Masaüstü araçları ve oyunlar yazıyorum.",
+    en: "I build web apps and APIs. I read hand gestures from a webcam. I turn music into visuals. I write desktop tools and games.",
+  },
+  missingFile: {
+    tr: "Bu dosya çalışma alanında yok. Taşınmış ya da hiç var olmamış olabilir.",
+    en: "This file isn't in the workspace. It may have moved, or never existed.",
+  },
   goHome: { tr: "Ana sayfaya dön", en: "Back to home" },
 } satisfies Record<string, T | Record<string, T>>;

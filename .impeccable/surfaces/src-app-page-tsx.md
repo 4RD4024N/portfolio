@@ -7,26 +7,53 @@ related_targets: ["src/app/projects/page.tsx","src/app/projects/[slug]/page.tsx"
 
 # Surface: whole site (home, projects, project detail, experience, about, contact)
 
-Scope: replacement visual world for ardaozan.dev, replacing the Swiss poster world. Visitor mode: Experience. Audience, constraints and content live in PRODUCT.md. Light and dark themes are a user commitment (dark: the same model on a dim studio table).
+Scope: replacement visual world for ardaozan.dev. Previous attempts were rejected for these reasons:
+- code editor: too technical;
+- origami: too ornamental;
+- canon: rejected before review.
 
-Job: within one viewport a recruiter or tech lead sees who Arda is and how his work is distributed across disciplines, then opens a discipline, a project, the experience, or his email.
+Visitor mode: Experience. Audience, constraints and content live in PRODUCT.md. Light and dark themes are a user commitment.
 
-Memorable moment: an architectural study model of his career, seen from above at an angle: one white massing block per discipline, each block as tall as the work inside it, on a base with a basswood name plaque.
+Job: in one viewport a recruiter knows who Arda is. As they scroll, his range plays out like a product launch, and email is always one click away.
 
-Unresolved: no project photos exist; models, plaques and type carry everything.
+Memorable moment:
+- A sentence about what he builds lights up word by word as you scroll.
+- Each featured project then gets its own full-screen scene with a live, code-drawn visual of what the project does.
 
 ## Direction contract
 
-THESIS: The site is an architecture studio's study model of a career. Work is shown as massing: volumes you can read by height and colour at a glance. It refuses the developer-portfolio default of a headline over a grid of equal cards, and the previous Swiss poster.
+THESIS:
+- The site is a product-launch page where the product is Arda's range: scenes, not cards.
+- Each project is demonstrated by a live visual of its mechanism.
+- It refuses metaphor costumes (no editor, origami or charts) and the card grid.
 
-OWN-WORLD: A pale grey studio table as the ground. White foamboard for every surface, with real faces in three tones and offset, soft shadows where objects stand on the table. Basswood tan for plaques and bases. Coloured acrylic only on discipline volumes: ultramarine for web, chrome yellow for vision, green for desktop, ink for games, basswood for experience-only areas. Vermilion for Arda and contact. Barlow, a DIN-like architectural lettering family: semi-condensed caps for plaques and labels, regular for text. A drawn work scale and north arrow on the plaque; volumes are lettered on their own top faces (leader lines dropped after the finish review, since top-face lettering already ties each volume to its name).
+OWN-WORLD:
+- Near-white ground, or true black in dark, with graphite ink.
+- Huge, tight Geist display type.
+- Discipline colours do real jobs in the visuals: blue web, violet vision, amber desktop, green games.
+- Visuals are crisp vector and canvas drawings of the actual mechanism (schedule grid, audio spectrum, hand landmarks, encrypted voice stream).
+- A translucent top bar is the only chrome. No shadows except the bar's hairline. No gradient text.
 
-STORY: The visitor reads his range as a model, believes he builds across disciplines with care, then opens a block or emails him.
+STORY:
+- First, they learn who he is.
+- Then, word by word, what he builds.
+- Then they watch four projects work, scan his experience and the rest of his projects, and email him at the close.
 
-FIRST VIEWPORT: The axonometric model fills the left two thirds of the viewport. Six volumes stand on a foamboard base: web, vision, desktop, games, cloud and project work, each as tall as its count, each with a top-face label. At the empty front-right corner of the base, a basswood plaque reads name, role and city, with the work scale and north arrow (moved from bottom left after the finish review so it never covers a volume). The right third holds the intro, the open-to-work status and the vermilion email action.
+FIRST VIEWPORT:
+- Centred: the name at display scale (about 6rem), the role and city, and a one-line headline.
+- Two actions: a solid "Send email" button and a "See projects" link.
+- The top bar holds the name, the pages, language and theme.
+- Below the fold the word-reveal statement begins.
 
-FORM: Architectural model table, number 6 on the ordered list, assigned by the roll and chosen by the user. Seed key 0d605e1d.
+FORM: Cinematic product-launch scroll, candidate 1 on my ordered list, picked by the user over the assigned museum exhibition. Seed key 56bb7cce (re-roll 3).
 
-SIGNATURE: The model itself. Volumes extrude from the base on load. Hover or focus lifts a volume a few millimetres and lights its plaque. Each volume links to its discipline. On phones the model scales down above a plaque list. Raises: the newest work is the most saturated; heights are true to the counts, readable against the scale bar; project pages present views A, B and C. Motion grammar: vertical extrusion and lift with an exponential ease-out; content visible by default; nothing moves under reduced motion.
+SIGNATURE:
+- Scroll-linked word reveal.
+- Sticky project scenes whose visuals scale in and animate:
+  - spectrum bars driven by a synthetic beat;
+  - a hand skeleton morphing between gestures;
+  - schedule blocks resolving a conflict;
+  - packets crossing an encrypted link.
+- Reduced motion shows everything static and complete.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

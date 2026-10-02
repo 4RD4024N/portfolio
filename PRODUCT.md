@@ -28,7 +28,7 @@ A broad engineer rather than a single-lane specialist. No one identity dominates
 ## Capabilities and Constraints
 
 - Next.js 16 (App Router, static), Tailwind CSS 4, TypeScript. Client-side TR/EN toggle remembered per browser.
-- Routes: `/`, `/projects`, `/projects/[slug]` (15 projects), `/experience`, `/about`, `/contact`, plus a 404.
+- Routes: `/`, `/projects`, `/projects/[slug]` (14 projects), `/experience`, `/about`, `/contact`, plus a 404.
 - Projects carry year, category (Web & Backend, Vision & AI, Desktop & Automation, Game), stack, overview, highlights, and optional GitHub / demo / org links. Some are private repos or in progress and must say so.
 - Experience: SEGG International (Project Assistant, Aug 2026 – present, remote from Ankara; Engineer Intern, Jun 2025 – Jun 2026, remote from Ankara on projects in Lviv), Neuvikon (co-founder, volunteer, 2026 – present), Ave Bilişim (Frontend Developer Intern, Jul 2024), LimonCloud (Cloud Engineer Intern, Aug 2023).
 - Education: Başkent University, B.Sc. Computer Engineering, 2021 – 2026. Languages: Turkish (native), English (B2).
