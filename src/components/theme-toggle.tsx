@@ -31,7 +31,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="group grid size-7 place-items-center text-ink transition-colors hover:text-red-ink"
+      className="group grid size-7 place-items-center text-ink transition-colors hover:text-vermilion-ink"
     >
       <svg viewBox="0 0 16 16" className="size-4 transition-transform duration-500 ease-out-expo group-hover:rotate-180" aria-hidden>
         <rect x="1.5" y="1.5" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.5" />

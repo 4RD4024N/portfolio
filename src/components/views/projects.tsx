@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Container } from "@/components/container";
 import { useLang } from "@/components/lang";
 import { PageHeader } from "@/components/page-header";
+import { MassChip } from "@/components/model";
 import { ProjectList } from "@/components/project-card";
 import { ContactClose } from "@/components/views/home";
 import { categories, projects, ui, type Category } from "@/content";
@@ -34,8 +35,8 @@ export function ProjectsView() {
       <PageHeader title={t(ui.nav.projects)} text={t(ui.projectsIntro)} />
 
       <Container>
-        {/* Filtre: seçili kategori kendi renk alanını giyer */}
-        <div role="group" aria-label={t(ui.all)} className="grid grid-cols-2 gap-px border border-ink bg-ink sm:grid-cols-3 lg:grid-cols-5">
+        {/* Filtre: maket anahtarı gibi; seçili olan masadan kalkar */}
+        <div role="group" aria-label={t(ui.all)} className="flex flex-wrap gap-2">
           {options.map(([key, label, count]) => {
             const active = filter === key;
             return (
@@ -43,22 +44,23 @@ export function ProjectsView() {
                 key={key}
                 onClick={() => setFilter(key)}
                 aria-pressed={active}
-                className={`${key === "all" ? "cat-red" : `cat-${key}`} flex items-baseline justify-between gap-4 px-4 py-3 text-left text-[0.95rem] font-semibold transition-colors ${
-                  active ? "bg-[var(--c)] text-[var(--on)]" : "bg-paper text-ink hover:bg-field"
+                className={`${key === "all" ? "cat-red" : `cat-${key}`} board lift flex items-center gap-2.5 px-3 py-2 text-left ${
+                  active ? "-translate-y-[3px] shadow-[var(--shadow-lift)] ring-2 ring-[var(--c)]" : ""
                 }`}
               >
-                {label}
-                <span className="tnum text-sm opacity-70">{count}</span>
+                <MassChip className="size-5" />
+                <span className="label text-[0.8rem]">{label}</span>
+                <span className="tnum text-sm text-muted">{count}</span>
               </button>
             );
           })}
         </div>
 
-        {/* key: filtre değişince satırlar yeniden silinerek gelsin */}
-        <div key={filter}>
-          {years.map((y, i) => (
-            <section key={y} className="wipe-in" style={{ animationDelay: `${i * 80}ms` }}>
-              <h2 className="tnum condensed border-b border-rule pt-10 pb-2 text-3xl font-extrabold tracking-tight">{y}</h2>
+        {/* Yıllar: her yıl ayrı bir pano */}
+        <div key={filter} className="mt-8 space-y-6">
+          {years.map((y) => (
+            <section key={y} className="board px-4 pt-4 sm:px-6 sm:pt-5">
+              <h2 className="title tnum border-b border-rule pb-3 text-2xl">{y}</h2>
               <ProjectList projects={list.filter((p) => p.year === y)} showYear={false} />
             </section>
           ))}

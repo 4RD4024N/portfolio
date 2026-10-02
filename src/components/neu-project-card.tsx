@@ -17,18 +17,24 @@ export function NeuProjectRow({ project: p }: { project: NeuProject }) {
   const live = p.status === "live";
 
   return (
-    <li className={`cat-neutral relative border-b border-rule`}>
-      <div className={`row-wipe group ${grid} gap-y-2 py-4`}>
+    <li className="relative border-b border-rule last:border-b-0">
+      <div className={`group ${grid} gap-y-2 py-4`}>
         <div className="col-span-4 flex items-center gap-4 md:col-span-3 lg:col-span-4">
           {p.image ? (
-            <Image src={p.image} alt="" width={48} height={48} className="size-12 shrink-0" />
+            <Image
+              src={p.image}
+              alt=""
+              width={48}
+              height={48}
+              className="size-12 shrink-0 rounded-[8px] shadow-[var(--shadow-board)] transition-transform duration-500 ease-out-expo group-hover:-translate-y-1"
+            />
           ) : (
-            <span className="grid size-12 shrink-0 place-items-center bg-ink text-sm font-bold text-paper">
+            <span className="title grid size-12 shrink-0 place-items-center rounded-[8px] bg-ink text-sm text-board">
               {p.name.slice(0, 2).toUpperCase()}
             </span>
           )}
           <div className="min-w-0">
-            <h4 className="condensed text-xl leading-tight font-bold tracking-tight">
+            <h4 className="title text-xl transition-colors group-hover:text-vermilion-ink">
               <a
                 href={neuHref(p.href, lang)}
                 target={internal ? undefined : "_blank"}
@@ -38,14 +44,14 @@ export function NeuProjectRow({ project: p }: { project: NeuProject }) {
                 {p.name}
               </a>
             </h4>
-            <p className="flex items-center gap-1.5 text-sm font-semibold">
-              <span className={`size-2 ${live ? "bg-green" : "bg-yellow"}`} />
+            <p className="flex items-center gap-1.5 text-sm text-muted">
+              <span className={`size-2 rounded-full ${live ? "bg-green" : "bg-yellow"}`} />
               {live ? t(ui.live) : t(ui.inDev)}
             </p>
           </div>
         </div>
-        <p className="row-muted col-span-4 leading-snug text-muted md:col-span-3 lg:col-span-5">{t(p.description)}</p>
-        <p className="row-muted relative z-10 col-span-4 flex flex-wrap items-start gap-x-3 gap-y-1 text-sm font-semibold text-muted md:col-span-6 lg:col-span-3 lg:justify-end lg:text-right">
+        <p className="col-span-4 leading-snug text-muted md:col-span-3 lg:col-span-5">{t(p.description)}</p>
+        <p className="relative z-10 col-span-4 flex flex-wrap items-start gap-x-3 gap-y-1 text-sm text-muted md:col-span-6 lg:col-span-3 lg:justify-end lg:text-right">
           <span>{p.tags.join(", ")}</span>
           {p.links?.map((l) => (
             <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="link inline-flex items-center gap-1 text-ink">

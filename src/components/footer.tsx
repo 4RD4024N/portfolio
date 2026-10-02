@@ -3,9 +3,9 @@ import { profile } from "@/content";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-ink sm:mt-32">
-      <Container className="py-6">
-        <p className="tnum text-sm font-semibold">
+    <footer className="mt-24 sm:mt-32">
+      <Container className="pb-8">
+        <p className="tnum label border-t border-rule pt-5 text-xs text-muted">
           © {new Date().getFullYear()} {profile.name}
         </p>
       </Container>

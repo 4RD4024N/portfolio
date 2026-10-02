@@ -7,26 +7,26 @@ related_targets: ["src/app/projects/page.tsx","src/app/projects/[slug]/page.tsx"
 
 # Surface: whole site (home, projects, project detail, experience, about, contact)
 
-Scope: replacement visual world for ardaozan.dev. Visitor mode: Experience. Audience, constraints and content live in PRODUCT.md.
+Scope: replacement visual world for ardaozan.dev, replacing the Swiss poster world. Visitor mode: Experience. Audience, constraints and content live in PRODUCT.md. Light and dark themes are a user commitment (dark: the same model on a dim studio table).
 
-Job: within one viewport a recruiter or tech lead understands who Arda is and how wide his range runs, then reaches a project, the experience timeline, or his email.
+Job: within one viewport a recruiter or tech lead sees who Arda is and how his work is distributed across disciplines, then opens a discipline, a project, the experience, or his email.
 
-Memorable moment: the range bar under the name, a row of colour fields locked to the grid, one per discipline, that opens along the grid when touched.
+Memorable moment: an architectural study model of his career, seen from above at an angle: one white massing block per discipline, each block as tall as the work inside it, on a base with a basswood name plaque.
 
-Unresolved: no project screenshots exist yet; fields carry type and counts, not imagery.
+Unresolved: no project photos exist; models, plaques and type carry everything.
 
 ## Direction contract
 
-THESIS: A Swiss International Style poster that is also the site's index. The modular grid is visible and structural; type and flat colour fields do every job. It refuses the dev-portfolio default of a name over a row of equal project cards, and the blob-and-glow dark theme.
+THESIS: The site is an architecture studio's study model of a career. Work is shown as massing: volumes you can read by height and colour at a glance. It refuses the developer-portfolio default of a headline over a grid of equal cards, and the previous Swiss poster.
 
-OWN-WORLD: Neutral white ground with near-black ink, or the same poster on black stock in dark mode (paper and ink swap, poster colours unchanged); hairline grid rules. Archivo, a grotesk with a width axis: condensed heavy for display, normal width for text, tabular figures for dates. Flat fields with no radius, no shadow, no gradient, each colour owned by one role: signal red for Arda and every contact action, ultramarine for web and backend, chrome yellow for vision and AI, green for desktop and automation, ink-black for games, a neutral grey field for areas proven by work experience rather than projects (cloud, project work). Arrows drawn as SVG.
+OWN-WORLD: A pale grey studio table as the ground. White foamboard for every surface, with real faces in three tones and offset, soft shadows where objects stand on the table. Basswood tan for plaques and bases. Coloured acrylic only on discipline volumes: ultramarine for web, chrome yellow for vision, green for desktop, ink for games, basswood for experience-only areas. Vermilion for Arda and contact. Barlow, a DIN-like architectural lettering family: semi-condensed caps for plaques and labels, regular for text. A drawn work scale and north arrow on the plaque; volumes are lettered on their own top faces (leader lines dropped after the finish review, since top-face lettering already ties each volume to its name).
 
-STORY: The visitor sees his name and his range together, believes he is a broad, careful engineer, and either opens a discipline or emails him.
+STORY: The visitor reads his range as a model, believes he builds across disciplines with care, then opens a block or emails him.
 
-FIRST VIEWPORT: A 12-column grid with its rules showing. The name in two heavy condensed lines fills the hero height between the header and the range bar, inside the left 8 columns. (Amended after the finish review, by the user's choice: at condensed width, a two-line name that fits the first viewport cannot fill all 8 columns; the user chose focal mass over full span, rather than a one-line name or a wider face.) The right 4 columns hold role, location, live open-to-work status and the red email action. The range bar spans the full width at the bottom: six fields at modular spans, each with its label and its own count.
+FIRST VIEWPORT: The axonometric model fills the left two thirds of the viewport. Six volumes stand on a foamboard base: web, vision, desktop, games, cloud and project work, each as tall as its count, each with a top-face label. At the empty front-right corner of the base, a basswood plaque reads name, role and city, with the work scale and north arrow (moved from bottom left after the finish review so it never covers a volume). The right third holds the intro, the open-to-work status and the vermilion email action.
 
-FORM: Swiss International Typographic Style, number 2 on the ordered list, chosen by the user from the safer register. Seed key 0d605e1d.
+FORM: Architectural model table, number 6 on the ordered list, assigned by the roll and chosen by the user. Seed key 0d605e1d.
 
-SIGNATURE: The range bar. Hover or focus opens a field along the grid, its neighbours yield, and its description appears; on phones the fields stack and each one is a link. Motion grammar: straight wipes along the grid axes with an exponential ease-out, content visible by default, nothing at all under reduced motion.
+SIGNATURE: The model itself. Volumes extrude from the base on load. Hover or focus lifts a volume a few millimetres and lights its plaque. Each volume links to its discipline. On phones the model scales down above a plaque list. Raises: the newest work is the most saturated; heights are true to the counts, readable against the scale bar; project pages present views A, B and C. Motion grammar: vertical extrusion and lift with an exponential ease-out; content visible by default; nothing moves under reduced motion.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

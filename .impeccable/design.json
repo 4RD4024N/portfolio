@@ -1,418 +1,653 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-02T20:07:29.466872+00:00",
+  "generatedAt": "2026-10-02T21:00:14.109Z",
   "title": "Design System: Arda Özan",
   "extensions": {
     "colorMeta": {
-      "paper": {
+      "table": {
         "role": "neutral",
-        "displayName": "Paper",
-        "canonical": "#f7f7f7",
+        "displayName": "Studio Table",
+        "canonical": "oklch(89.1% 0.007 97.4)",
         "tonalRamp": [
-          "oklch(15% 0 0)",
-          "oklch(27% 0 0)",
-          "oklch(39% 0 0)",
-          "oklch(51% 0 0)",
-          "oklch(63% 0 0)",
-          "oklch(75% 0 0)",
-          "oklch(87% 0 0)",
-          "oklch(97.5% 0 0)"
+          "oklch(15% 0.007 97.4)",
+          "oklch(26% 0.007 97.4)",
+          "oklch(38% 0.007 97.4)",
+          "oklch(50% 0.007 97.4)",
+          "oklch(62% 0.007 97.4)",
+          "oklch(73% 0.007 97.4)",
+          "oklch(84% 0.007 97.4)",
+          "oklch(95% 0.007 97.4)"
+        ]
+      },
+      "board": {
+        "role": "neutral",
+        "displayName": "Foamboard",
+        "canonical": "oklch(98.2% 0.003 106.4)",
+        "tonalRamp": [
+          "oklch(15% 0.003 106.4)",
+          "oklch(26% 0.003 106.4)",
+          "oklch(38% 0.003 106.4)",
+          "oklch(50% 0.003 106.4)",
+          "oklch(62% 0.003 106.4)",
+          "oklch(73% 0.003 106.4)",
+          "oklch(84% 0.003 106.4)",
+          "oklch(95% 0.003 106.4)"
+        ]
+      },
+      "foam": {
+        "role": "neutral",
+        "displayName": "Model Foam",
+        "canonical": "oklch(98.2% 0.003 106.4)",
+        "tonalRamp": [
+          "oklch(15% 0.003 106.4)",
+          "oklch(26% 0.003 106.4)",
+          "oklch(38% 0.003 106.4)",
+          "oklch(50% 0.003 106.4)",
+          "oklch(62% 0.003 106.4)",
+          "oklch(73% 0.003 106.4)",
+          "oklch(84% 0.003 106.4)",
+          "oklch(95% 0.003 106.4)"
         ]
       },
       "ink": {
         "role": "neutral",
-        "displayName": "Ink",
-        "canonical": "#111111",
+        "displayName": "Drafting Ink",
+        "canonical": "oklch(22.2% 0.002 106.6)",
         "tonalRamp": [
-          "oklch(18% 0 0)",
-          "oklch(28% 0 0)",
-          "oklch(40% 0 0)",
-          "oklch(52% 0 0)",
-          "oklch(64% 0 0)",
-          "oklch(76% 0 0)",
-          "oklch(88% 0 0)",
-          "oklch(95% 0 0)"
+          "oklch(15% 0.002 106.6)",
+          "oklch(26% 0.002 106.6)",
+          "oklch(38% 0.002 106.6)",
+          "oklch(50% 0.002 106.6)",
+          "oklch(62% 0.002 106.6)",
+          "oklch(73% 0.002 106.6)",
+          "oklch(84% 0.002 106.6)",
+          "oklch(95% 0.002 106.6)"
         ]
       },
       "muted": {
         "role": "neutral",
-        "displayName": "Muted Stone",
-        "canonical": "#5b5b57",
+        "displayName": "Pencil Grey",
+        "canonical": "oklch(47.3% 0.008 106.7)",
         "tonalRamp": [
-          "oklch(15% 0.005 105)",
-          "oklch(27% 0.005 105)",
-          "oklch(45% 0.006 105)",
-          "oklch(55% 0.006 105)",
-          "oklch(65% 0.006 105)",
-          "oklch(75% 0.006 105)",
-          "oklch(85% 0.006 105)",
-          "oklch(95% 0.006 105)"
+          "oklch(15% 0.008 106.7)",
+          "oklch(26% 0.008 106.7)",
+          "oklch(38% 0.008 106.7)",
+          "oklch(50% 0.008 106.7)",
+          "oklch(62% 0.008 106.7)",
+          "oklch(73% 0.008 106.7)",
+          "oklch(84% 0.008 106.7)",
+          "oklch(95% 0.008 106.7)"
         ]
       },
       "rule": {
         "role": "neutral",
-        "displayName": "Hairline Rule",
-        "canonical": "#d4d4ce",
+        "displayName": "Score Line",
+        "canonical": "oklch(86.3% 0.008 98.9)",
         "tonalRamp": [
-          "oklch(15% 0.008 105)",
-          "oklch(27% 0.008 105)",
-          "oklch(39% 0.008 105)",
-          "oklch(51% 0.008 105)",
-          "oklch(63% 0.008 105)",
-          "oklch(75% 0.008 105)",
-          "oklch(86% 0.008 105)",
-          "oklch(95% 0.008 105)"
+          "oklch(15% 0.008 98.9)",
+          "oklch(26% 0.008 98.9)",
+          "oklch(38% 0.008 98.9)",
+          "oklch(50% 0.008 98.9)",
+          "oklch(62% 0.008 98.9)",
+          "oklch(73% 0.008 98.9)",
+          "oklch(84% 0.008 98.9)",
+          "oklch(95% 0.008 98.9)"
         ]
       },
-      "field": {
-        "role": "neutral",
-        "displayName": "Field Grey",
-        "canonical": "#e4e4de",
+      "wood": {
+        "role": "secondary",
+        "displayName": "Basswood",
+        "canonical": "oklch(74.7% 0.075 73.1)",
         "tonalRamp": [
-          "oklch(15% 0.008 105)",
-          "oklch(27% 0.008 105)",
-          "oklch(39% 0.008 105)",
-          "oklch(51% 0.008 105)",
-          "oklch(63% 0.008 105)",
-          "oklch(75% 0.008 105)",
-          "oklch(91% 0.008 105)",
-          "oklch(96% 0.008 105)"
+          "oklch(15% 0.075 73.1)",
+          "oklch(26% 0.075 73.1)",
+          "oklch(38% 0.075 73.1)",
+          "oklch(50% 0.075 73.1)",
+          "oklch(62% 0.075 73.1)",
+          "oklch(73% 0.075 73.1)",
+          "oklch(84% 0.075 73.1)",
+          "oklch(95% 0.075 73.1)"
         ]
       },
-      "signal-red": {
+      "wood-ink": {
+        "role": "secondary",
+        "displayName": "Engraved Basswood Ink",
+        "canonical": "oklch(33.1% 0.045 67.8)",
+        "tonalRamp": [
+          "oklch(15% 0.045 67.8)",
+          "oklch(26% 0.045 67.8)",
+          "oklch(38% 0.045 67.8)",
+          "oklch(50% 0.045 67.8)",
+          "oklch(62% 0.045 67.8)",
+          "oklch(73% 0.045 67.8)",
+          "oklch(84% 0.045 67.8)",
+          "oklch(95% 0.045 67.8)"
+        ]
+      },
+      "vermilion": {
         "role": "primary",
-        "displayName": "Signal Red",
-        "canonical": "#cf2a1a",
+        "displayName": "Studio Vermilion",
+        "canonical": "oklch(58.0% 0.188 32.2)",
         "tonalRamp": [
-          "oklch(25% 0.1 32)",
-          "oklch(35% 0.14 32)",
-          "oklch(45% 0.18 32)",
-          "oklch(55.5% 0.2 32)",
-          "oklch(65% 0.17 32)",
-          "oklch(75% 0.12 32)",
-          "oklch(85% 0.07 32)",
-          "oklch(95% 0.025 32)"
+          "oklch(15% 0.093 32.2)",
+          "oklch(26% 0.123 32.2)",
+          "oklch(38% 0.155 32.2)",
+          "oklch(50% 0.187 32.2)",
+          "oklch(62% 0.181 32.2)",
+          "oklch(73% 0.152 32.2)",
+          "oklch(84% 0.123 32.2)",
+          "oklch(95% 0.093 32.2)"
         ]
       },
-      "ultramarine": {
-        "role": "secondary",
-        "displayName": "Ultramarine (Web & Backend)",
-        "canonical": "#1f45d6",
-        "tonalRamp": [
-          "oklch(22% 0.1 266)",
-          "oklch(32% 0.16 266)",
-          "oklch(42% 0.2 266)",
-          "oklch(48% 0.22 266)",
-          "oklch(60% 0.17 266)",
-          "oklch(72% 0.11 266)",
-          "oklch(84% 0.06 266)",
-          "oklch(95% 0.02 266)"
-        ]
-      },
-      "chrome-yellow": {
-        "role": "secondary",
-        "displayName": "Chrome Yellow (Vision & AI)",
-        "canonical": "#f2b705",
-        "tonalRamp": [
-          "oklch(30% 0.06 82)",
-          "oklch(42% 0.09 82)",
-          "oklch(54% 0.12 82)",
-          "oklch(66% 0.15 82)",
-          "oklch(80% 0.165 82)",
-          "oklch(86% 0.13 82)",
-          "oklch(91% 0.08 82)",
-          "oklch(96% 0.035 82)"
-        ]
-      },
-      "press-green": {
-        "role": "secondary",
-        "displayName": "Press Green (Desktop & Automation)",
-        "canonical": "#0f7a50",
-        "tonalRamp": [
-          "oklch(22% 0.05 160)",
-          "oklch(32% 0.08 160)",
-          "oklch(41% 0.1 160)",
-          "oklch(51% 0.11 160)",
-          "oklch(63% 0.1 160)",
-          "oklch(75% 0.08 160)",
-          "oklch(86% 0.05 160)",
-          "oklch(95% 0.02 160)"
-        ]
-      },
-      "on-field-white": {
-        "role": "neutral",
-        "displayName": "On-Field White",
-        "canonical": "#ffffff",
-        "tonalRamp": [
-          "oklch(15% 0 0)",
-          "oklch(27% 0 0)",
-          "oklch(39% 0 0)",
-          "oklch(51% 0 0)",
-          "oklch(63% 0 0)",
-          "oklch(75% 0 0)",
-          "oklch(87% 0 0)",
-          "oklch(100% 0 0)"
-        ]
-      },
-      "red-ink": {
+      "vermilion-ink": {
         "role": "primary",
-        "displayName": "Red Ink",
-        "canonical": "#cf2a1a"
+        "displayName": "Vermilion Ink",
+        "canonical": "oklch(54.1% 0.177 32.4)",
+        "tonalRamp": [
+          "oklch(15% 0.093 32.4)",
+          "oklch(26% 0.123 32.4)",
+          "oklch(38% 0.155 32.4)",
+          "oklch(50% 0.177 32.4)",
+          "oklch(62% 0.177 32.4)",
+          "oklch(73% 0.152 32.4)",
+          "oklch(84% 0.123 32.4)",
+          "oklch(95% 0.093 32.4)"
+        ]
       },
-      "fixed-black": {
-        "role": "neutral",
-        "displayName": "Fixed Black",
-        "canonical": "#111111"
+      "blue": {
+        "role": "secondary",
+        "displayName": "Ultramarine Acrylic",
+        "canonical": "oklch(52.3% 0.191 263.6)",
+        "tonalRamp": [
+          "oklch(15% 0.093 263.6)",
+          "oklch(26% 0.123 263.6)",
+          "oklch(38% 0.155 263.6)",
+          "oklch(50% 0.187 263.6)",
+          "oklch(62% 0.181 263.6)",
+          "oklch(73% 0.152 263.6)",
+          "oklch(84% 0.123 263.6)",
+          "oklch(95% 0.093 263.6)"
+        ]
       },
-      "paper-dark": {
+      "yellow": {
+        "role": "secondary",
+        "displayName": "Chrome Yellow Acrylic",
+        "canonical": "oklch(79.2% 0.157 85.6)",
+        "tonalRamp": [
+          "oklch(15% 0.093 85.6)",
+          "oklch(26% 0.123 85.6)",
+          "oklch(38% 0.155 85.6)",
+          "oklch(50% 0.157 85.6)",
+          "oklch(62% 0.157 85.6)",
+          "oklch(73% 0.152 85.6)",
+          "oklch(84% 0.123 85.6)",
+          "oklch(95% 0.093 85.6)"
+        ]
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Model Green Acrylic",
+        "canonical": "oklch(56.7% 0.115 156.0)",
+        "tonalRamp": [
+          "oklch(15% 0.093 156.0)",
+          "oklch(26% 0.115 156.0)",
+          "oklch(38% 0.115 156.0)",
+          "oklch(50% 0.115 156.0)",
+          "oklch(62% 0.115 156.0)",
+          "oklch(73% 0.115 156.0)",
+          "oklch(84% 0.115 156.0)",
+          "oklch(95% 0.093 156.0)"
+        ]
+      },
+      "black": {
+        "role": "secondary",
+        "displayName": "Ink Acrylic",
+        "canonical": "oklch(20.0% 0.000 89.9)",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(26% 0.000 89.9)",
+          "oklch(38% 0.000 89.9)",
+          "oklch(50% 0.000 89.9)",
+          "oklch(62% 0.000 89.9)",
+          "oklch(73% 0.000 89.9)",
+          "oklch(84% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "on-acrylic": {
         "role": "neutral",
-        "displayName": "Paper (dark)",
-        "canonical": "#121212"
+        "displayName": "Lettering on Acrylic"
+      },
+      "table-dark": {
+        "role": "neutral",
+        "displayName": "Dim Studio Table",
+        "theme": "dark"
+      },
+      "board-dark": {
+        "role": "neutral",
+        "displayName": "Foamboard, dim",
+        "theme": "dark"
+      },
+      "foam-dark": {
+        "role": "neutral",
+        "displayName": "Model Foam, dim",
+        "theme": "dark"
       },
       "ink-dark": {
         "role": "neutral",
-        "displayName": "Ink (dark)",
-        "canonical": "#f0f0ec"
+        "displayName": "Drafting Ink, dark theme",
+        "theme": "dark"
       },
       "muted-dark": {
         "role": "neutral",
-        "displayName": "Muted (dark)",
-        "canonical": "#a3a39c"
+        "displayName": "Pencil Grey, dark theme",
+        "theme": "dark"
       },
       "rule-dark": {
         "role": "neutral",
-        "displayName": "Rule (dark)",
-        "canonical": "#34342f"
+        "displayName": "Score Line, dark theme",
+        "theme": "dark"
       },
-      "field-dark": {
-        "role": "neutral",
-        "displayName": "Field Grey (dark)",
-        "canonical": "#262624"
+      "wood-dark": {
+        "role": "secondary",
+        "displayName": "Basswood, dim",
+        "theme": "dark"
       },
-      "red-ink-dark": {
+      "wood-ink-dark": {
+        "role": "secondary",
+        "displayName": "Engraved Basswood Ink, dim",
+        "theme": "dark"
+      },
+      "vermilion-ink-dark": {
         "role": "primary",
-        "displayName": "Red Ink (dark)",
-        "canonical": "#f05a43"
+        "displayName": "Vermilion Ink, dark theme",
+        "theme": "dark"
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Page titles, project poster titles, contact block title; line-up reveal in an overflow mask."
+        "purpose": "Page headers."
       },
-      "display-name": {
-        "displayName": "Display Name",
-        "purpose": "Home name only: two condensed lines (first name ink, surname signal red) filling the hero height."
+      "display-project": {
+        "displayName": "Display, project",
+        "purpose": "Project detail title."
+      },
+      "display-contact": {
+        "displayName": "Display, contact slab",
+        "purpose": "Closing contact slab heading."
+      },
+      "display-email": {
+        "displayName": "Display, email",
+        "purpose": "Email on the contact page slab, sized to the slab container."
+      },
+      "display-numeral": {
+        "displayName": "Display numeral",
+        "purpose": "404 numeral in vermilion ink."
+      },
+      "plaque-name": {
+        "displayName": "Plaque Name",
+        "purpose": "Arda's name on the model plaque, in model units."
       },
       "lede": {
         "displayName": "Lede",
-        "purpose": "One condensed intro statement per page, up to 9 columns."
+        "purpose": "First-viewport introduction beside the model."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section titles, always on a full-width 1px ink rule (1.5rem on phones, 1.875rem from sm)."
+        "purpose": "Section titles from 640px."
+      },
+      "headline-sm": {
+        "displayName": "Headline, small",
+        "purpose": "Section titles on phones; year headings."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Row titles for projects, roles and studio apps (1.125-1.5rem by context)."
+        "purpose": "Project row titles from 640px."
+      },
+      "title-sm": {
+        "displayName": "Title, small",
+        "purpose": "Project and Neuvikon rows, detail block titles."
+      },
+      "title-xs": {
+        "displayName": "Title, extra small",
+        "purpose": "Experience entries, prev/next on phones."
+      },
+      "body-lead": {
+        "displayName": "Body lead",
+        "purpose": "About page lead paragraph."
+      },
+      "body-large": {
+        "displayName": "Body large",
+        "purpose": "Project summary and Neuvikon description."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Running text; 68ch cap on detail pages."
+        "purpose": "All reading text."
+      },
+      "body-intro": {
+        "displayName": "Body intro",
+        "purpose": "Home 'now at' paragraph."
+      },
+      "body-link": {
+        "displayName": "Body link",
+        "purpose": "Inline links, socials, status line."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Meta lines, dates, counts, stack chips."
+      },
+      "label-nav": {
+        "displayName": "Label, nav",
+        "purpose": "Primary navigation and back link."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Dates, counts, years and category names; tabular figures, sentence case."
+        "purpose": "Filter chips and model key."
+      },
+      "label-term": {
+        "displayName": "Label, term",
+        "purpose": "Definition-list terms on About and Contact."
+      },
+      "label-xs": {
+        "displayName": "Label, extra small",
+        "purpose": "Language chips and footer."
+      },
+      "label-fact": {
+        "displayName": "Label, fact",
+        "purpose": "Project fact terms under the drawings."
+      },
+      "label-caption": {
+        "displayName": "Label, caption",
+        "purpose": "A/B/C drawing captions."
+      },
+      "label-tag": {
+        "displayName": "Label, tag",
+        "purpose": "Plaque tags for internship and volunteer roles."
+      },
+      "label-plaque": {
+        "displayName": "Label, plaque",
+        "purpose": "Role/city or hovered-volume line on the model plaque."
+      },
+      "label-scale": {
+        "displayName": "Label, scale",
+        "purpose": "Work scale numerals."
+      },
+      "label-face": {
+        "displayName": "Label, volume face",
+        "purpose": "Discipline names lettered on volume top faces; legible from 1024px. Below that the model key carries the names."
       }
     },
-    "shadows": [],
+    "shadows": [
+      {
+        "name": "shadow-board",
+        "value": "0 1px 0 rgb(0 0 0 / 0.04), 0 14px 28px -16px rgb(40 36 30 / 0.35)",
+        "purpose": "Standing Board: every board, plaque, chip, button, slab and the nav at rest (light)."
+      },
+      {
+        "name": "shadow-board-dark",
+        "value": "0 1px 0 rgb(255 255 255 / 0.03), 0 16px 30px -16px rgb(0 0 0 / 0.7)",
+        "purpose": "Standing Board on the dim table."
+      },
+      {
+        "name": "shadow-lift",
+        "value": "0 1px 0 rgb(0 0 0 / 0.04), 0 22px 36px -18px rgb(40 36 30 / 0.45)",
+        "purpose": "Lifted Board: hover/focus on liftable objects and the selected filter chip (light)."
+      },
+      {
+        "name": "shadow-lift-dark",
+        "value": "0 1px 0 rgb(255 255 255 / 0.04), 0 24px 40px -18px rgb(0 0 0 / 0.8)",
+        "purpose": "Lifted Board on the dim table."
+      },
+      {
+        "name": "plaque-edge",
+        "value": "inset 0 0 0 1px color-mix(in oklab, var(--wood), black 20%), var(--shadow-board)",
+        "purpose": "Cut edge of every basswood plaque."
+      },
+      {
+        "name": "model-base",
+        "value": "calc(var(--u) * 0.5) calc(var(--u) * 0.6) calc(var(--u) * 0.8) rgb(40 36 30 / 0.28)",
+        "purpose": "The model base's single soft shadow on the table, in model units."
+      }
+    ],
     "motion": [
       {
         "name": "ease-out-expo",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "The single easing for every wipe, reveal and arrow nudge."
+        "purpose": "The only easing: extrusion, lift, arrow slides, nav bar."
       },
       {
-        "name": "wipe-in",
-        "value": "clip-path inset(0 100% 0 0) to inset(0), 0.9s ease-out-expo",
-        "purpose": "Entry of fields and list sections along the x axis; staggered 80-90ms."
+        "name": "extrude",
+        "value": "1.1s ease-out-expo, delay 250ms + 110ms per volume",
+        "purpose": "Volumes grow from the base on load."
       },
       {
-        "name": "line-up",
-        "value": "translateY(105%) to none, 0.9s ease-out-expo",
-        "purpose": "Display lines rising inside an overflow mask."
+        "name": "volume-rise",
+        "value": "0.5s ease-out-expo, 0.35 model units",
+        "purpose": "Hover/focus raises a volume."
       },
       {
-        "name": "row-wipe",
-        "value": "clip-path 0.55s ease-out-expo",
-        "purpose": "Category field fills a row from the left on hover and focus."
+        "name": "lift",
+        "value": "0.45s ease-out-expo, translateY(-3px)",
+        "purpose": "Hover/focus lift for boards, plaques and buttons."
       },
       {
-        "name": "link-underline",
-        "value": "background-size 0.45s ease-out-expo",
-        "purpose": "Red 2px underline wipes across inline links on hover."
-      },
-      {
-        "name": "range-open",
-        "value": "flex-grow 1 to 2.3, 0.7s ease-out-expo",
-        "purpose": "Range bar field opens along the grid on hover and focus (desktop)."
+        "name": "arrow-slide",
+        "value": "500ms ease-out-expo, 4-8px",
+        "purpose": "Arrows and the nav bar scale-in."
       },
       {
         "name": "reduced-motion",
         "value": "animation: none; transition: none",
-        "purpose": "All motion removed under prefers-reduced-motion; content is visible by default."
+        "purpose": "Everything static under prefers-reduced-motion."
       }
     ],
     "breakpoints": [
+      {
+        "name": "key-2col",
+        "value": "480px"
+      },
       {
         "name": "sm",
         "value": "640px"
       },
       {
         "name": "md",
-        "value": "768px (6-column grid)"
+        "value": "768px"
       },
       {
         "name": "lg",
-        "value": "1024px (12-column grid, range bar becomes a single row)"
+        "value": "1024px"
       },
       {
-        "name": "root-17",
-        "value": "1600px (root font 17px)"
+        "name": "root-17px",
+        "value": "1600px"
       },
       {
-        "name": "root-18",
-        "value": "2200px (root font 18px)"
+        "name": "root-18px",
+        "value": "2200px"
       }
-    ]
+    ],
+    "materials": {
+      "modelUnit": {
+        "belowLg": "clamp(15px, 6.1vw, 27px)",
+        "lg": "min(3.55vw, 6.4svh, 66px)"
+      },
+      "volumeHeightPerWork": "0.55u",
+      "modelBaseTransform": "rotateX(58deg) rotateZ(-38deg)",
+      "faceShades": {
+        "west": "black 12%",
+        "front": "black 22%",
+        "back": "black 30%",
+        "east": "black 36%",
+        "baseFront": "black 18%",
+        "baseSide": "black 30%"
+      },
+      "recencySaturation": {
+        "0": 1,
+        "1": 0.72,
+        "2": 0.5,
+        "3": 0.34
+      },
+      "disciplines": {
+        "web": {
+          "acrylic": "blue",
+          "lettering": "#ffffff"
+        },
+        "vision": {
+          "acrylic": "yellow",
+          "lettering": "black"
+        },
+        "desktop": {
+          "acrylic": "green",
+          "lettering": "#ffffff"
+        },
+        "game": {
+          "acrylic": "black",
+          "lettering": "#ffffff"
+        },
+        "wood": {
+          "acrylic": "wood",
+          "lettering": "wood-ink"
+        },
+        "red": {
+          "acrylic": "vermilion",
+          "lettering": "#ffffff"
+        }
+      }
+    }
   },
   "components": [
     {
-      "name": "Contact Button",
+      "name": "Contact Action",
       "kind": "button",
       "refersTo": "button-contact",
-      "description": "The red email action; signal red is reserved for Arda and contact.",
-      "html": "<a class=\"ds-btn-contact\" href=\"#\"><span>arda.ozan.dev@gmail.com</span><svg viewBox=\"0 0 20 20\" fill=\"none\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path d=\"M3 10h13M11 4.5l5.5 5.5-5.5 5.5\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"square\"/></svg></a>",
-      "css": ".ds-btn-contact { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 360px; background: var(--red, #cf2a1a); color: #fff; padding: 14px 16px; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 600; text-decoration: none; border-radius: 0; transition: background-color 0.15s; } .ds-btn-contact svg { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-contact:hover { background: var(--ink, #111111); } .ds-btn-contact:hover svg { transform: translateX(4px); } .ds-btn-contact:focus-visible { outline: 2px solid var(--red, #cf2a1a); outline-offset: 3px; }"
+      "description": "Vermilion email action; the way to reach Arda.",
+      "html": "<a class=\"ds-btn-contact\" href=\"#\"><span>arda@example.dev</span><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-contact{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:360px;padding:14px 16px;border-radius:3px;background:var(--vermilion,#d23f26);color:#fff;font-family:'Barlow',Arial,sans-serif;font-weight:600;font-size:1.0625rem;text-decoration:none;box-shadow:var(--shadow-board,0 1px 0 rgb(0 0 0 / .04),0 14px 28px -16px rgb(40 36 30 / .35));transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}.ds-btn-contact svg{transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-btn-contact:hover,.ds-btn-contact:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow-lift,0 1px 0 rgb(0 0 0 / .04),0 22px 36px -18px rgb(40 36 30 / .45))}.ds-btn-contact:hover svg{transform:translateX(4px)}.ds-btn-contact:focus-visible{outline:2px solid var(--vermilion,#d23f26);outline-offset:3px}"
     },
     {
-      "name": "Link Button Group",
+      "name": "Project Links",
       "kind": "button",
-      "refersTo": "button-link-primary",
-      "description": "Project external links: first in ink, the rest in field grey, joined by 1px gaps.",
-      "html": "<div class=\"ds-linkgroup\"><a class=\"ds-btn-ink\" href=\"#\">Source code &#8599;</a><a class=\"ds-btn-field\" href=\"#\">Live demo &#8599;</a></div>",
-      "css": ".ds-linkgroup { display: flex; flex-wrap: wrap; gap: 1px; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-btn-ink, .ds-btn-field { padding: 12px 16px; font-weight: 600; text-decoration: none; border-radius: 0; transition: background-color 0.15s, color 0.15s; } .ds-btn-ink { background: var(--ink, #111111); color: var(--paper, #f7f7f7); } .ds-btn-ink:hover { background: var(--red, #cf2a1a); } .ds-btn-field { background: var(--field, #e4e4de); color: var(--ink, #111111); } .ds-btn-field:hover { background: var(--ink, #111111); color: var(--paper, #f7f7f7); } .ds-btn-ink:focus-visible, .ds-btn-field:focus-visible { outline: 2px solid var(--red, #cf2a1a); outline-offset: 3px; }"
-    },
-    {
-      "name": "Inline Link",
-      "kind": "custom",
-      "refersTo": "link",
-      "description": "Ink hairline underline; a red 2px underline wipes across on hover.",
-      "html": "<p class=\"ds-p\">Currently building at <a class=\"ds-link\" href=\"#\">Neuvikon</a>.</p>",
-      "css": ".ds-p { font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; color: var(--ink, #111111); } .ds-link { color: inherit; text-decoration: none; background-image: linear-gradient(var(--red, #cf2a1a), var(--red, #cf2a1a)), linear-gradient(var(--ink, #111111), var(--ink, #111111)); background-size: 0% 2px, 100% 1px; background-position: 0 100%, 0 100%; background-repeat: no-repeat; padding-bottom: 2px; transition: background-size 0.45s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s; } .ds-link:hover { color: var(--red, #cf2a1a); background-size: 100% 2px, 100% 1px; } .ds-link:focus-visible { outline: 2px solid var(--red, #cf2a1a); outline-offset: 3px; }"
+      "refersTo": "button-ink",
+      "description": "Outbound links on a project page: the first in ink, the rest in foamboard.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\">GitHub <svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M5 11l6-6M6 5h5v5\"/></svg></a><a class=\"ds-btn-ink ds-btn-board\" href=\"#\">Demo <svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M5 11l6-6M6 5h5v5\"/></svg></a>",
+      "css": ".ds-btn-ink{display:inline-flex;align-items:center;gap:8px;margin-right:8px;padding:10px 16px;border-radius:3px;background:var(--ink,#1b1b1a);color:var(--board,#f9f9f7);font-family:'Barlow',Arial,sans-serif;font-weight:600;text-decoration:none;box-shadow:var(--shadow-board,0 1px 0 rgb(0 0 0 / .04),0 14px 28px -16px rgb(40 36 30 / .35));transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}.ds-btn-board{background:var(--board,#f9f9f7);color:var(--ink,#1b1b1a)}.ds-btn-ink:hover,.ds-btn-ink:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow-lift,0 1px 0 rgb(0 0 0 / .04),0 22px 36px -18px rgb(40 36 30 / .45))}.ds-btn-ink:focus-visible{outline:2px solid var(--vermilion,#d23f26);outline-offset:3px}"
     },
     {
       "name": "Navigation",
       "kind": "nav",
-      "refersTo": "nav",
-      "description": "Sticky paper header with ink base rule, red brand square, muted links with a red square for the active page, ink-tile language toggle.",
-      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\"><span class=\"ds-sq\"></span>Arda Özan</a><nav class=\"ds-nav-links\"><a href=\"#\" aria-current=\"page\"><span class=\"ds-dot\"></span>Projects</a><a href=\"#\"><span class=\"ds-dot\"></span>Experience</a><a href=\"#\"><span class=\"ds-dot\"></span>About</a></nav><div class=\"ds-lang\"><button aria-pressed=\"true\">TR</button><button aria-pressed=\"false\">EN</button></div></header>",
-      "css": ".ds-nav { display: flex; align-items: center; gap: 24px; padding: 16px 24px; background: var(--paper, #f7f7f7); border-bottom: 1px solid var(--ink, #111111); font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.025em; font-variation-settings: 'wdth' 80; color: var(--ink, #111111); text-decoration: none; } .ds-sq { width: 12px; height: 12px; background: var(--red, #cf2a1a); } .ds-nav-links { display: flex; gap: 4px; margin-left: auto; font-size: 0.95rem; font-weight: 600; } .ds-nav-links a { display: flex; align-items: center; gap: 6px; padding: 4px; color: var(--muted, #5b5b57); text-decoration: none; transition: color 0.15s; } .ds-nav-links a:hover, .ds-nav-links a[aria-current] { color: var(--ink, #111111); } .ds-dot { width: 6px; height: 6px; background: var(--red, #cf2a1a); transform: scale(0); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-links a[aria-current] .ds-dot { transform: scale(1); } .ds-lang button { border: 0; border-radius: 0; padding: 4px 6px; font: 600 0.875rem Archivo, sans-serif; background: transparent; color: var(--muted, #5b5b57); cursor: pointer; } .ds-lang button[aria-pressed=true] { background: var(--ink, #111111); color: var(--paper, #f7f7f7); } .ds-nav a:focus-visible, .ds-lang button:focus-visible { outline: 2px solid var(--red, #cf2a1a); outline-offset: 3px; }"
+      "refersTo": "nav-bar",
+      "description": "Sticky foamboard bar with a basswood name plaque and caps links; a vermilion bar marks the active page.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-plaque\" href=\"#\">ARDA ÖZAN</a><nav><a class=\"ds-nav-link ds-active\" href=\"#\">Projects</a><a class=\"ds-nav-link\" href=\"#\">Experience</a><a class=\"ds-nav-link\" href=\"#\">About</a><a class=\"ds-nav-link\" href=\"#\">Contact</a></nav><span class=\"ds-lang\"><button class=\"ds-lang-on\">tr</button><button>en</button></span></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px;background:color-mix(in oklab,var(--board,#f9f9f7) 90%,transparent);backdrop-filter:blur(4px);box-shadow:var(--shadow-board,0 1px 0 rgb(0 0 0 / .04),0 14px 28px -16px rgb(40 36 30 / .35))}.ds-nav-plaque{padding:4px 10px;border-radius:2px;background:linear-gradient(180deg,color-mix(in oklab,var(--wood,#caa678),white 8%),var(--wood,#caa678));color:var(--wood-ink,#45311b);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--wood,#caa678),black 20%);font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.025em;text-decoration:none}.ds-nav nav{display:flex;gap:4px}.ds-nav-link{position:relative;padding:6px;font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#5c5c57);text-decoration:none;transition:color .2s}.ds-nav-link:hover,.ds-active{color:var(--ink,#1b1b1a)}.ds-nav-link::after{content:'';position:absolute;left:6px;right:6px;bottom:-2px;height:3px;border-radius:9999px;background:var(--vermilion,#d23f26);transform:scaleX(0);transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-active::after{transform:scaleX(1)}.ds-nav-link:focus-visible{outline:2px solid var(--vermilion,#d23f26);outline-offset:3px}.ds-lang button{border:0;background:none;padding:4px 6px;border-radius:2px;font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#5c5c57);cursor:pointer}.ds-lang button:hover{color:var(--ink,#1b1b1a)}.ds-lang .ds-lang-on{background:var(--ink,#1b1b1a);color:var(--board,#f9f9f7)}"
     },
     {
-      "name": "Filter Cells",
+      "name": "Filter Chip",
       "kind": "chip",
-      "refersTo": "filter-cell",
-      "description": "Paper cells with 1px ink gaps; the active cell takes its category's field and text pairing.",
-      "html": "<div class=\"ds-filter\"><button class=\"ds-cell\">All <span>15</span></button><button class=\"ds-cell ds-cell-web\" aria-pressed=\"true\">Web &amp; Backend <span>6</span></button><button class=\"ds-cell\">Vision &amp; AI <span>4</span></button></div>",
-      "css": ".ds-filter { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--ink, #111111); border: 1px solid var(--ink, #111111); font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-cell { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 16px; border: 0; border-radius: 0; background: var(--paper, #f7f7f7); color: var(--ink, #111111); font-size: 0.95rem; font-weight: 600; text-align: left; cursor: pointer; transition: background-color 0.15s; } .ds-cell span { font-size: 0.875rem; opacity: 0.7; font-variant-numeric: tabular-nums; } .ds-cell:hover { background: var(--field, #e4e4de); } .ds-cell-web[aria-pressed=true] { background: var(--blue, #1f45d6); color: #fff; } .ds-cell:focus-visible { outline: 2px solid var(--red, #cf2a1a); outline-offset: 3px; }"
+      "refersTo": "filter-chip",
+      "description": "Model-key filter: mass chip, caps label, count; the selected chip stays lifted with a ring in its acrylic.",
+      "html": "<button class=\"ds-chip ds-on\" style=\"--c:#2c5fd6\"><svg viewBox=\"0 0 20 20\" width=\"20\" height=\"20\"><path d=\"M2 6.5L10 2l8 4.5L10 11z\" fill=\"var(--c)\"/><path d=\"M2 6.5L10 11v7L2 13.5z\" fill=\"color-mix(in oklab,var(--c),black 12%)\"/><path d=\"M18 6.5L10 11v7l8-4.5z\" fill=\"color-mix(in oklab,var(--c),black 36%)\"/></svg><span class=\"ds-chip-l\">Web &amp; Backend</span><span class=\"ds-chip-n\">7</span></button><button class=\"ds-chip\" style=\"--c:#e8b21c\"><svg viewBox=\"0 0 20 20\" width=\"20\" height=\"20\"><path d=\"M2 6.5L10 2l8 4.5L10 11z\" fill=\"var(--c)\"/><path d=\"M2 6.5L10 11v7L2 13.5z\" fill=\"color-mix(in oklab,var(--c),black 12%)\"/><path d=\"M18 6.5L10 11v7l8-4.5z\" fill=\"color-mix(in oklab,var(--c),black 36%)\"/></svg><span class=\"ds-chip-l\">Vision &amp; AI</span><span class=\"ds-chip-n\">4</span></button>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;gap:10px;margin:0 8px 8px 0;padding:8px 12px;border:0;border-radius:3px;background:var(--board,#f9f9f7);color:var(--ink,#1b1b1a);box-shadow:var(--shadow-board,0 1px 0 rgb(0 0 0 / .04),0 14px 28px -16px rgb(40 36 30 / .35));cursor:pointer;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}.ds-chip-l{font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}.ds-chip-n{font-family:'Barlow',Arial,sans-serif;font-size:.875rem;color:var(--muted,#5c5c57);font-variant-numeric:tabular-nums}.ds-chip:hover,.ds-chip:focus-visible,.ds-on{transform:translateY(-3px);box-shadow:var(--shadow-lift,0 1px 0 rgb(0 0 0 / .04),0 22px 36px -18px rgb(40 36 30 / .45))}.ds-on{box-shadow:0 0 0 2px var(--c),var(--shadow-lift,0 1px 0 rgb(0 0 0 / .04),0 22px 36px -18px rgb(40 36 30 / .45))}.ds-chip:focus-visible{outline:2px solid var(--vermilion,#d23f26);outline-offset:3px}"
     },
     {
-      "name": "Project Row",
+      "name": "Project Rows on a Board",
       "kind": "card",
-      "refersTo": "project-row",
-      "description": "Ruled index row on the grid; the category field wipes in from the left on hover.",
-      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row-year\">2026</span><span class=\"ds-row-title\"><i class=\"ds-row-mark\"></i><span><b>Advisory System</b><small>Web &amp; Backend</small></span></span><span class=\"ds-row-desc\">Full-stack advising system with role-based auth and conflict-checked course registration.</span></a>",
-      "css": ".ds-row { --c: var(--blue, #1f45d6); --on: #fff; position: relative; isolation: isolate; display: grid; grid-template-columns: 1fr 4fr 5fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--rule, #d4d4ce); color: var(--ink, #111111); text-decoration: none; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-row::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--c); clip-path: inset(0 100% 0 0); transition: clip-path 0.55s cubic-bezier(0.16, 1, 0.3, 1); } .ds-row:hover::before, .ds-row:focus-visible::before { clip-path: inset(0 0 0 0); } .ds-row:hover, .ds-row:focus-visible { color: var(--on); } .ds-row-year, .ds-row-desc, .ds-row small { color: var(--muted, #5b5b57); transition: color 0.2s; } .ds-row:hover .ds-row-year, .ds-row:hover .ds-row-desc, .ds-row:hover small { color: rgba(255,255,255,0.78); } .ds-row-year { font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums; padding-top: 4px; } .ds-row-title { display: flex; gap: 12px; align-items: flex-start; } .ds-row-mark { width: 12px; height: 12px; margin-top: 7px; background: var(--c); flex-shrink: 0; } .ds-row:hover .ds-row-mark { background: var(--on); } .ds-row b { display: block; font-size: 1.5rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.025em; font-variation-settings: 'wdth' 80; } .ds-row small { display: block; margin-top: 4px; font-size: 0.875rem; font-weight: 600; } .ds-row-desc { font-size: 0.98rem; line-height: 1.375; } .ds-row:focus-visible { outline: none; }"
+      "refersTo": "board-panel",
+      "description": "Lists are rows on a foamboard board divided by score lines; the mass chip carries the discipline, and older work is less saturated.",
+      "html": "<ul class=\"ds-board\"><li class=\"ds-row\"><a href=\"#\" style=\"--c:#2c5fd6\"><span class=\"ds-year\">2026</span><svg viewBox=\"0 0 20 20\" width=\"20\" height=\"20\"><path d=\"M2 6.5L10 2l8 4.5L10 11z\" fill=\"var(--c)\"/><path d=\"M2 6.5L10 11v7L2 13.5z\" fill=\"color-mix(in oklab,var(--c),black 12%)\"/><path d=\"M18 6.5L10 11v7l8-4.5z\" fill=\"color-mix(in oklab,var(--c),black 36%)\"/></svg><span><span class=\"ds-title\">Project title</span><span class=\"ds-meta\">Web &amp; Backend</span></span><span class=\"ds-sum\">One-line summary of what was built and why.</span></a></li><li class=\"ds-row\"><a href=\"#\" style=\"--c:#277a4d\"><span class=\"ds-year\">2025</span><span class=\"ds-aged\"><svg viewBox=\"0 0 20 20\" width=\"20\" height=\"20\"><path d=\"M2 6.5L10 2l8 4.5L10 11z\" fill=\"var(--c)\"/><path d=\"M2 6.5L10 11v7L2 13.5z\" fill=\"color-mix(in oklab,var(--c),black 12%)\"/><path d=\"M18 6.5L10 11v7l8-4.5z\" fill=\"color-mix(in oklab,var(--c),black 36%)\"/></svg></span><span><span class=\"ds-title\">Older project</span><span class=\"ds-meta\">Desktop &amp; Automation</span></span><span class=\"ds-sum\">Older work reads less saturated.</span></a></li></ul>",
+      "css": ".ds-board{list-style:none;margin:0;padding:0 24px;border-radius:3px;background:var(--board,#f9f9f7);box-shadow:var(--shadow-board,0 1px 0 rgb(0 0 0 / .04),0 14px 28px -16px rgb(40 36 30 / .35));font-family:'Barlow',Arial,sans-serif;color:var(--ink,#1b1b1a)}.ds-row{border-bottom:1px solid var(--rule,#d3d2cc)}.ds-row:last-child{border-bottom:0}.ds-row a{display:grid;grid-template-columns:48px 24px 1fr 1.3fr;gap:14px;align-items:start;padding:22px 0;color:inherit;text-decoration:none}.ds-year{font-size:.875rem;color:var(--muted,#5c5c57);font-variant-numeric:tabular-nums;padding-top:4px}.ds-aged{filter:saturate(.72)}.ds-row svg{width:24px;height:24px;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-row a:hover svg{transform:translateY(-4px)}.ds-title{display:block;font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:700;font-size:1.4rem;line-height:1.02;letter-spacing:-.01em;transition:color .2s}.ds-row a:hover .ds-title{color:var(--vermilion-ink,#c03820)}.ds-meta{display:block;margin-top:4px;font-size:.875rem;color:var(--muted,#5c5c57)}.ds-sum{color:var(--muted,#5c5c57);line-height:1.375}.ds-row a:focus-visible{outline:2px solid var(--vermilion,#d23f26);outline-offset:3px}"
     },
     {
-      "name": "Range Bar",
+      "name": "Basswood Name Plaque",
       "kind": "custom",
-      "refersTo": "range-bar",
-      "description": "Signature: one colour field per discipline with label, arrow and count; the hovered field opens along the grid and its neighbours yield.",
-      "html": "<ul class=\"ds-range\"><li class=\"ds-f\" style=\"--c:#1f45d6;--on:#fff\"><a href=\"#\"><span class=\"ds-f-top\"><b>Web &amp; Backend</b><svg viewBox=\"0 0 20 20\" fill=\"none\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path d=\"M3 10h13M11 4.5l5.5 5.5-5.5 5.5\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"square\"/></svg></span><span class=\"ds-f-n\">6 projects</span><span class=\"ds-f-d\">Advisory System, Secure Voice App</span></a></li><li class=\"ds-f\" style=\"--c:#f2b705;--on:#111111\"><a href=\"#\"><span class=\"ds-f-top\"><b>Vision &amp; AI</b></span><span class=\"ds-f-n\">4 projects</span><span class=\"ds-f-d\">AI Music Visualizer</span></a></li><li class=\"ds-f\" style=\"--c:#0f7a50;--on:#fff\"><a href=\"#\"><span class=\"ds-f-top\"><b>Desktop &amp; Automation</b></span><span class=\"ds-f-n\">4 projects</span><span class=\"ds-f-d\">Hand Gesture Media Controller</span></a></li><li class=\"ds-f\" style=\"--c:#e4e4de;--on:#111111\"><a href=\"#\"><span class=\"ds-f-top\"><b>Cloud</b></span><span class=\"ds-f-n\">1 internship</span><span class=\"ds-f-d\">LimonCloud</span></a></li></ul>",
-      "css": ".ds-range { display: flex; gap: 1px; height: 12rem; margin: 0; padding: 0; list-style: none; background: var(--ink, #111111); font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-f { flex: 1 1 0; min-width: 0; transition: flex-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1); } .ds-f:hover, .ds-f:focus-within { flex-grow: 2.3; } .ds-f a { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; height: 100%; padding: 20px; box-sizing: border-box; background: var(--c); color: var(--on); text-decoration: none; } .ds-f a:focus-visible { outline: 2px solid var(--on); outline-offset: -3px; } .ds-f-top { display: flex; justify-content: space-between; gap: 12px; } .ds-f-top b { font-size: 1.6rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.025em; font-variation-settings: 'wdth' 80; } .ds-f-top svg { flex-shrink: 0; margin-top: 4px; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-f:hover svg { transform: translateX(4px); } .ds-f-n { margin-top: auto; font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-f-d { font-size: 0.875rem; line-height: 1.375; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s; } .ds-f:hover .ds-f-d, .ds-f:focus-within .ds-f-d { max-height: 4rem; opacity: 0.9; }"
+      "refersTo": "plaque",
+      "description": "Engraved name plaque with the role line, the work scale and the north arrow.",
+      "html": "<div class=\"ds-plaque\"><div class=\"ds-plaque-name\">ARDA ÖZAN</div><div class=\"ds-plaque-sub\">Software Engineer · Istanbul</div><div class=\"ds-plaque-foot\"><div class=\"ds-scale\"><div class=\"ds-scale-bar\"></div><div class=\"ds-scale-n\"><span>0</span><span>1</span><span>2</span><span></span><span>4</span><span></span><span>6</span></div></div><svg viewBox=\"0 0 32 32\" width=\"30\" height=\"30\" fill=\"none\"><circle cx=\"16\" cy=\"16\" r=\"13\" stroke=\"currentColor\" stroke-width=\"1.2\"/><path d=\"M16 5l5 15-5-3-5 3z\" fill=\"currentColor\"/><path d=\"M13.5 26.5v-5l5 5v-5\" stroke=\"currentColor\" stroke-width=\"1.2\"/></svg></div></div>",
+      "css": ".ds-plaque{display:inline-block;min-width:300px;padding:12px 16px;border-radius:2px;background:linear-gradient(180deg,color-mix(in oklab,var(--wood,#caa678),white 8%),var(--wood,#caa678));color:var(--wood-ink,#45311b);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--wood,#caa678),black 20%),var(--shadow-board,0 1px 0 rgb(0 0 0 / .04),0 14px 28px -16px rgb(40 36 30 / .35))}.ds-plaque-name{font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:700;font-size:1.9rem;line-height:1.02;letter-spacing:-.01em}.ds-plaque-sub,.ds-scale{font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase}.ds-plaque-sub{margin-top:4px;font-size:.8rem;opacity:.8}.ds-plaque-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-top:8px}.ds-scale{font-size:10px;width:140px}.ds-scale-bar{height:8px;border-bottom:1px solid currentColor;background:linear-gradient(currentColor,currentColor) 0 0/1px 100% no-repeat,linear-gradient(currentColor,currentColor) 16.66% 0/1px 100% no-repeat,linear-gradient(currentColor,currentColor) 33.33% 0/1px 100% no-repeat,linear-gradient(currentColor,currentColor) 66.66% 0/1px 100% no-repeat,linear-gradient(currentColor,currentColor) 100% 0/1px 100% no-repeat}.ds-scale-n{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}"
     },
     {
-      "name": "Contact Block",
-      "kind": "custom",
-      "refersTo": "contact-close",
-      "description": "Signal-red field that closes every page: display title left, email under a 2px white rule right.",
-      "html": "<section class=\"ds-close\"><h2>Contact</h2><div><p>Write about a role or a project. I usually reply within a day or two.</p><a href=\"#\">arda.ozan.dev@gmail.com <span aria-hidden=\"true\">&#8594;</span></a></div></section>",
-      "css": ".ds-close { display: grid; grid-template-columns: 7fr 5fr; gap: 24px; padding: 48px; background: var(--red, #cf2a1a); color: #fff; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; } .ds-close h2 { margin: 0; font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 0.92; letter-spacing: -0.035em; font-variation-settings: 'wdth' 72; } .ds-close div { display: flex; flex-direction: column; justify-content: flex-end; gap: 20px; } .ds-close p { margin: 0; max-width: 40ch; color: rgba(255,255,255,0.9); } .ds-close a { display: flex; justify-content: space-between; border-top: 2px solid #fff; padding-top: 16px; color: #fff; font-size: clamp(1.15rem, 2.2vw, 1.6rem); font-weight: 700; text-decoration: none; } .ds-close a span { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-close a:hover span { transform: translateX(6px); } .ds-close a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+      "name": "Contact Slab",
+      "kind": "card",
+      "refersTo": "contact-slab",
+      "description": "Closing vermilion slab with heading and email.",
+      "html": "<section class=\"ds-slab\"><h2>Get in touch</h2><div><p>Open to full-time roles and freelance work.</p><a href=\"#\">arda@example.dev <svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></a></div></section>",
+      "css": ".ds-slab{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:48px;border-radius:3px;background:var(--vermilion,#d23f26);color:#fff;box-shadow:var(--shadow-board,0 1px 0 rgb(0 0 0 / .04),0 14px 28px -16px rgb(40 36 30 / .35));font-family:'Barlow',Arial,sans-serif}.ds-slab h2{margin:0;font-family:'Barlow Semi Condensed','Barlow',Arial,sans-serif;font-weight:700;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.02;letter-spacing:-.01em}.ds-slab div{display:flex;flex-direction:column;justify-content:flex-end;gap:20px}.ds-slab p{margin:0;color:rgb(255 255 255 / .9)}.ds-slab a{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgb(255 255 255 / .6);color:#fff;font-weight:600;font-size:clamp(1.1rem,2vw,1.5rem);text-decoration:none}.ds-slab a svg{transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-slab a:hover svg{transform:translateX(6px)}.ds-slab a:focus-visible{outline:2px solid #fff;outline-offset:3px}"
     }
   ],
   "narrative": {
-    "northStar": "The Poster That Is the Index",
-    "overview": "A Swiss International Typographic Style poster that also works as the site's index. A visible modular grid (12 columns on desktop, 6 on tablet, 4 on phones) organises every page, and its hairline rules show behind the home hero and as ruler ticks under page headers. Type and flat colour fields do all the work: one grotesk (Archivo) at two widths, ink on a neutral ground (light by default, dark on request), and a small set of saturated fields, each owning exactly one meaning.\n\nThe tone is calm, exact and adult. The user turned down results that felt \"too toy-like\", so the system gets its energy from scale contrast and colour mass, not from playful shapes, rounding or ornament. The site ships a light and a dark theme. It follows the visitor's system setting until they pick one with the theme toggle, and the choice is remembered. In dark mode paper and ink swap places; the poster colours stay exactly the same, so the system reads as the same poster printed on black stock.\n\nMotion follows one grammar: straight wipes along the grid axes with an exponential ease-out. Content is visible by default, and nothing animates under reduced motion.",
+    "northStar": "The Study Model on the Studio Table",
+    "overview": "The site is an architecture studio's study model of a career. A pale grey studio table is the ground; every surface on it is a cut piece of white foamboard standing on the table with a soft, offset shadow; the name, the role and the small status tags are lettered on basswood plaques; coloured acrylic appears only where a discipline is meant. The signature object is an axonometric model built in CSS 3D: one volume per discipline, each exactly as tall as the work inside it, standing on a foam base with a basswood name plaque, a drawn work scale and a north arrow. Everything else in the system is the rest of the studio: boards to pin lists on, plaques for names, a key of acrylic chips.\n\nThe register is calm and precise, not playful. Materials are matte, colours are flat faces lit from one side, motion is a slow exponential ease-out that extrudes and lifts by millimetres. The user rejected a \"too toy-like\" result: this is a presentation model on a professional table, not a set of building blocks. Two themes ship. Light is the daylit studio. Dark is the same model on a dim studio table: the table and boards go charcoal, the foam base dims to a mid grey that still reads lighter than the table, and the acrylic keeps its colour. The theme follows the system setting until the visitor uses the toggle, and the choice is remembered. All copy is bilingual (TR/EN), so every label must survive Turkish lengths.",
     "keyCharacteristics": [
-      "Visible modular grid: hairline column rules and ruler ticks are structural, not decoration.",
-      "One family, two widths: heavy condensed Archivo for display, normal width for reading.",
-      "Flat colour fields with square corners, no shadow and no gradient; each colour owns one role.",
-      "Rows, not cards: content sits in full-width ruled rows that fill with their category colour on hover.",
-      "Wipes along x or y with `cubic-bezier(0.16, 1, 0.3, 1)`; nothing bounces, fades in from blur or scales."
+      "A studio-table ground with foamboard boards standing on it under soft offset shadows.",
+      "Basswood plaques with engraved-ink lettering for names, statuses and the model key.",
+      "Discipline acrylic: one colour per discipline, used on volumes, mass chips and filter rings only.",
+      "Vermilion for Arda, contact actions and the interaction marks.",
+      "Barlow lettering: semi-condensed caps for plaques and labels, regular Barlow for reading text.",
+      "Depth by real faces (a colour darkened in steps) and lift on hover, never by glossy effects."
     ],
     "rules": [
       {
-        "name": "The One Role Rule",
-        "body": "Each saturated colour means one thing on every page. A category colour shows up only where that category is meant: its range field, its row's hover fill, its square marker, its project poster header.",
+        "name": "The Acrylic Means Discipline Rule",
+        "body": "Blue, yellow, green, ink-black and basswood-as-volume are a key, not a palette. They appear only bound to a discipline (through the category classes that set the acrylic and its lettering colour): on model volumes, mass chips, filter rings, highlight bullets and the A/B/C drawings. Never use them as decoration or section colour.",
         "section": "colors"
       },
       {
-        "name": "The Text-On Pairing Rule",
-        "body": "Each field carries its own text colour as a pair: white on red, ultramarine and green; paper on ink; ink on grey; fixed black on yellow. Never set white or a theme-inverting colour on chrome yellow.",
+        "name": "The Vermilion Is Arda Rule",
+        "body": "Vermilion marks the person and the way to reach him: email actions, contact slabs, and the interaction marks (focus outline, text selection, active nav bar). One vermilion slab per page at most, plus the closing contact slab.",
         "section": "colors"
       },
       {
-        "name": "The Same Poster Rule",
-        "body": "Dark mode swaps only the neutrals (paper, ink, muted, rule, field, red ink). The four poster colours and their text pairings never change between themes.",
+        "name": "The Fading Acrylic Rule",
+        "body": "Newer work is more saturated. Project markers carry an age from 0 to 3 that sets saturation to 1, 0.72, 0.5 and 0.34. Do not encode recency any other way.",
         "section": "colors"
       },
       {
-        "name": "The Two Widths Rule",
-        "body": "Condensed width belongs to headings and row titles. Body and labels stay at normal width. No other family is introduced.",
+        "name": "The Plaque Lettering Rule",
+        "body": "Caps are for things a model maker would engrave: names, labels, keys, scales. Paragraphs, summaries and links stay in sentence-case regular Barlow.",
         "section": "typography"
       },
       {
-        "name": "The Tabular Dates Rule",
-        "body": "Every year, period and count uses tabular figures so that columns of dates align on the grid.",
+        "name": "The Counted Figures Rule",
+        "body": "Years, counts, dates and scale numbers use tabular figures.",
         "section": "typography"
       },
       {
-        "name": "The Grid Shows Rule",
-        "body": "The grid stays legible: background column rules on the hero, ruler ticks under page headers, and 1px ink gaps between colour fields. Content aligns to columns, never to arbitrary offsets.",
+        "name": "The True Height Rule",
+        "body": "Model heights are honest: one piece of work is 0.55 model units of height, and the work scale on the plaque is drawn from the same unit. Never exaggerate a volume for effect.",
         "section": "layout"
       },
       {
-        "name": "The Flat Field Rule",
-        "body": "No box-shadow, no gradient fills, no blur and no translucent glass. A surface is either paper or a solid field.",
+        "name": "The One Unit Rule",
+        "body": "The model, its lettering and its plaque share one unit (clamp(15px, 6.1vw, 27px); from 1024px min(3.55vw, 6.4svh, 66px)). Size anything attached to the model in that unit.",
+        "section": "layout"
+      },
+      {
+        "name": "The Standing Object Rule",
+        "body": "Every surface is an object on the table: it carries the Standing Board shadow and rises 3px when it is interactive and hovered. No hard offset shadows, no glows, no glossy highlights.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Lit Faces Rule",
+        "body": "A volume's sides are its own colour darkened in fixed steps. Never gradients, outlines or bevels on volumes.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do place every element on the 12/6/4 column grid and keep the grid visible through hairline rules, ruler ticks or 1px ink gaps.",
-      "Do give each saturated colour exactly one role and pair it with its fixed text colour.",
-      "Do set headings in heavy condensed Archivo and reading text in normal-width Archivo, with tabular figures for every date and count.",
-      "Do animate only with straight wipes or line-up reveals along x or y, using `cubic-bezier(0.16, 1, 0.3, 1)`, and render everything statically under reduced motion.",
-      "Do end every page with the signal-red contact block."
+      "**Do** stand every surface on the table with the Standing Board shadow and lift interactive ones 3px with Lifted Board.",
+      "**Do** bind discipline colour through the category classes so the acrylic and its lettering colour always travel together.",
+      "**Do** keep volume heights and the work scale on the same unit: 0.55 units per piece of work.",
+      "**Do** letter names, labels, keys and scales in semi-condensed caps with 0.06em tracking, and keep reading text in regular Barlow.",
+      "**Do** use the exponential ease-out (cubic-bezier(0.16, 1, 0.3, 1)) for extrusion, lift and arrow slides, and remove all motion under reduced motion.",
+      "**Do** check both themes: dark is the same model on a dim table, with the foam base kept lighter than the table."
     ],
     "donts": [
-      "Don't recolour the poster fields in dark mode, or use `ink` for anything that must stay black in both themes. Use `fixed-black` for that.",
-      "Don't round corners, add shadows, gradients or blur, or use glows behind fields.",
-      "Don't make the system toy-like with bouncy motion, playful shapes or decorative illustration. The user rejected that register.",
-      "Don't lay projects out as a row of equal cards with images. Projects are ruled index rows.",
-      "Don't use emoji or icon-font glyphs. Arrows and markers are drawn SVG strokes or plain squares.",
-      "Don't introduce a second typeface. Width and weight carry the hierarchy."
+      "**Don't** make it toy-like: no bouncy or springy easing, no glossy plastic, no outlines or bevels on volumes, no rounded blocks.",
+      "**Don't** use the discipline acrylics for decoration, backgrounds or section colour.",
+      "**Don't** put more than one vermilion slab on a page besides the closing contact slab.",
+      "**Don't** fall back to a headline over a grid of equal cards; lists are rows on boards, disciplines are volumes.",
+      "**Don't** round corners beyond 3px on boards, plaques or buttons.",
+      "**Don't** use hard offset shadows, glows or glyph icons; draw small marks as inline SVG."
     ]
   }
 }

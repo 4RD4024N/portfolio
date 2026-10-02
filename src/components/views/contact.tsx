@@ -23,14 +23,14 @@ export function ContactView() {
     <>
       <PageHeader title={t(ui.contactTitle)} text={t(ui.contactText)} />
 
-      <Container className="pt-10 sm:pt-14">
-        {/* E-posta: sayfanın tek kırmızı alanı */}
-        <section className="wipe-in @container bg-red text-white" style={{ animationDelay: "200ms" }}>
+      <Container>
+        {/* E-posta: sayfanın tek kırmızı plaketi */}
+        <section className="@container rounded-[3px] bg-vermilion text-white shadow-[var(--shadow-board)]">
           <div className={`${grid} gap-y-6 p-6 sm:p-10 lg:p-12`}>
-            <p className="col-span-4 font-semibold text-white/85 md:col-span-6 lg:col-span-12">{t(ui.email)}</p>
             <a
               href={`mailto:${profile.email}`}
-              className="group display col-span-4 flex items-end justify-between gap-4 text-[min(7.4cqi,5rem)] whitespace-nowrap md:col-span-6 lg:col-span-12"
+              aria-label={`${t(ui.email)}: ${profile.email}`}
+              className="group title col-span-4 flex items-end justify-between gap-4 text-[min(8.2cqi,4.75rem)] whitespace-nowrap md:col-span-6 lg:col-span-12"
             >
               <span>{profile.email}</span>
               <ArrowRight className="mb-[0.1em] size-[0.7em] shrink-0 transition-transform duration-500 ease-out-expo group-hover:translate-x-2" />
@@ -38,7 +38,7 @@ export function ContactView() {
             <div className="col-span-4 md:col-span-6 lg:col-span-12">
               <button
                 onClick={copy}
-                className="bg-white px-4 py-2.5 font-semibold text-red transition-colors hover:bg-[var(--black)] hover:text-white"
+                className="lift rounded-[2px] bg-white px-4 py-2.5 font-semibold text-vermilion shadow-[var(--shadow-board)]"
               >
                 {copied ? t(ui.copied) : t(ui.copy)}
               </button>
@@ -46,7 +46,7 @@ export function ContactView() {
           </div>
         </section>
 
-        <dl className="pt-10">
+        <dl className="board mt-6 px-4 sm:px-6">
           {profile.socials.map((s) => (
             <Row key={s.label} label={s.label}>
               <a href={s.href} target="_blank" rel="noreferrer" className="link inline-flex items-center gap-1.5 break-all">
@@ -63,9 +63,9 @@ export function ContactView() {
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className={`${grid} gap-y-1 border-b border-rule py-4`}>
-      <dt className="col-span-4 font-semibold text-muted md:col-span-2 lg:col-span-3">{label}</dt>
-      <dd className="condensed col-span-4 text-lg font-bold tracking-tight md:col-span-4 lg:col-span-9">{children}</dd>
+    <div className={`${grid} gap-y-1 border-b border-rule py-4 last:border-b-0`}>
+      <dt className="label col-span-4 text-[0.78rem] text-muted md:col-span-2 lg:col-span-3">{label}</dt>
+      <dd className="col-span-4 text-lg font-medium md:col-span-4 lg:col-span-9">{children}</dd>
     </div>
   );
 }
