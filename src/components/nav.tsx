@@ -9,6 +9,7 @@ import { profile, ui } from "@/content";
 const links = [
   { href: "/", label: ui.nav.home },
   { href: "/projects", label: ui.nav.projects },
+  { href: "/experience", label: ui.nav.experience },
   { href: "/about", label: ui.nav.about },
   { href: "/contact", label: ui.nav.contact },
 ];

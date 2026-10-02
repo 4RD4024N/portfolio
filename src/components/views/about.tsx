@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLang } from "@/components/lang";
 import { ArrowRight } from "@/components/icons";
 import { PageHeader } from "@/components/page-header";
-import { education, focus, profile, skills, ui } from "@/content";
+import { education, experience, focus, profile, skills, ui } from "@/content";
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -59,6 +59,26 @@ export function AboutView() {
             </div>
           ))}
         </dl>
+      </Block>
+
+      <Block title={t(ui.experienceTitle)}>
+        <ul className="space-y-4">
+          {experience.map((e) => (
+            <li key={e.org}>
+              <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+                <div>
+                  <p className="font-medium">{e.org}</p>
+                  <p className="text-muted">{t(e.role)}</p>
+                </div>
+                <p className="font-mono text-xs text-muted">{t(e.period)}</p>
+              </div>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{t(e.summary)}</p>
+              <Link href="/experience" className="group mt-3 inline-flex items-center gap-1.5 text-sm hover:text-accent">
+                {t(ui.seeExperience)} <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Block>
 
       <Block title={t(ui.education)}>

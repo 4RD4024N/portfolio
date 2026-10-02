@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useLang } from "@/components/lang";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, GitHub, Lock } from "@/components/icons";
+import { neuHref } from "@/components/neu-project-card";
 import { categories, projects, ui } from "@/content";
 
 export function ProjectDetailView({ slug }: { slug: string }) {
@@ -34,6 +35,16 @@ export function ProjectDetailView({ slug }: { slug: string }) {
               className="flex items-center gap-2 rounded-full bg-fg px-5 py-2.5 text-sm font-medium text-bg transition-opacity hover:opacity-90"
             >
               <GitHub /> {t(ui.sourceCode)}
+            </a>
+          )}
+          {p.org && (
+            <a
+              href={neuHref(p.org.href, lang)}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 rounded-full border border-line-strong px-4 py-2.5 text-sm transition-colors hover:bg-surface-2"
+            >
+              <span className="text-muted">{t(ui.partOf)}</span> {p.org.name} <ArrowUpRight />
             </a>
           )}
           {p.private && (

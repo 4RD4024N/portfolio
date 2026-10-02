@@ -10,6 +10,11 @@ const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter" 
 const mono = JetBrains_Mono({ subsets: ["latin", "latin-ext"], variable: "--font-mono-jb" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000",
+  ),
   title: {
     default: `${profile.name} — ${profile.role.en}`,
     template: `%s — ${profile.name}`,

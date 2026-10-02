@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLang } from "@/components/lang";
 import { ArrowRight, Mail, MapPin, SocialIcon } from "@/components/icons";
 import { ProjectCard } from "@/components/project-card";
-import { focus, profile, projects, skills, ui } from "@/content";
+import { experience, focus, neuvikon, profile, projects, skills, ui } from "@/content";
 
 export function HomeView() {
   const { t } = useLang();
@@ -100,6 +101,48 @@ export function HomeView() {
           >
             {t(ui.allProjects)} ({projects.length}) <ArrowRight className="size-3.5" />
           </Link>
+        </section>
+
+        {/* Deneyim */}
+        <section className="pt-24">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">{t(ui.experienceTitle)}</p>
+          {experience.map((e) => (
+            <Link
+              key={e.org}
+              href="/experience"
+              className="group mt-6 block rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-line-strong hover:bg-surface-2 sm:p-8"
+            >
+              <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
+                <div>
+                  <h2 className="text-2xl font-semibold tracking-tight">{e.org}</h2>
+                  <p className="mt-1 text-fg/80">{t(e.role)}</p>
+                </div>
+                <p className="font-mono text-xs text-muted">{t(e.period)}</p>
+              </div>
+              <p className="mt-4 max-w-2xl leading-relaxed text-muted">{t(e.summary)}</p>
+              <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex -space-x-2">
+                  {neuvikon.projects
+                    .filter((p) => p.image)
+                    .map((p) => (
+                      <Image
+                        key={p.name}
+                        src={p.image!}
+                        alt={p.name}
+                        title={p.name}
+                        width={40}
+                        height={40}
+                        className="size-10 rounded-xl border-2 border-surface"
+                      />
+                    ))}
+                </div>
+                <span className="flex items-center gap-1.5 text-sm text-fg group-hover:text-accent">
+                  {t(ui.studioProjects)} ({neuvikon.projects.length})
+                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
+            </Link>
+          ))}
         </section>
 
         {/* Odak alanları */}

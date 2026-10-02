@@ -17,8 +17,8 @@ export const profile = {
     en: "Computer Engineering graduate from Başkent University. I mostly build backend APIs and full-stack projects, and lately I've been branching out into real-time systems and computer vision.",
   } as T,
   about: {
-    tr: "Backend tarafında .NET ve Spring Boot ile REST API'ler, rol bazlı yetkilendirme ve veritabanı tasarımı üzerine çalışıyorum; frontend'de React kullanıyorum.\n\nBunun dışında kendi kullandığım araçları yapmayı seviyorum: el hareketleriyle medya kontrolü, çalan müziğe göre görsel üreten bir AI visualizer, tarayıcıda P2P sesli görüşme gibi. OpenCV, MediaPipe ve WebRTC şu an en çok vakit geçirdiğim alanlar.",
-    en: "On the backend I work with .NET and Spring Boot — REST APIs, role-based auth and database design — and I use React on the frontend.\n\nI also like building tools I actually use: media control with hand gestures, an AI visualizer that reacts to whatever music is playing, peer-to-peer voice calls in the browser. OpenCV, MediaPipe and WebRTC are where I spend most of my time right now.",
+    tr: "Backend tarafında .NET ve Spring Boot ile REST API'ler, rol bazlı yetkilendirme ve veritabanı tasarımı üzerine çalışıyorum; frontend'de React kullanıyorum.\n\nBunun dışında kendi kullandığım araçları yapmayı seviyorum: el hareketleriyle medya kontrolü, çalan müziğe göre görsel üreten bir AI visualizer, tarayıcıda P2P sesli görüşme gibi. OpenCV, MediaPipe ve WebRTC şu an en çok vakit geçirdiğim alanlar.\n\nŞu anda yazılım, oyun ve robotik üzerine çalışan bağımsız bir teknoloji stüdyosu olan Neuvikon'un ekibinde gönüllü olarak yer alıyorum.",
+    en: "On the backend I work with .NET and Spring Boot — REST APIs, role-based auth and database design — and I use React on the frontend.\n\nI also like building tools I actually use: media control with hand gestures, an AI visualizer that reacts to whatever music is playing, peer-to-peer voice calls in the browser. OpenCV, MediaPipe and WebRTC are where I spend most of my time right now.\n\nI'm currently a volunteer on the team at Neuvikon, an independent technology studio working in software, games and robotics.",
   } as T,
   email: "arda.ozan.dev@gmail.com",
   cv: "", // ör. "/cv.pdf" — dosyayı public/ klasörüne koy
@@ -35,6 +35,196 @@ export const education = [
     period: { tr: "Mezun", en: "Graduated" } as T,
   },
 ];
+
+// Deneyim — Deneyim sayfası, Hakkımda ve ana sayfada görünür
+export const experience = [
+  {
+    org: "Neuvikon",
+    href: "https://neuvikon-labs.github.io",
+    role: { tr: "Gönüllü Geliştirici", en: "Volunteer Developer" } as T,
+    period: { tr: "2026 – Günümüz", en: "2026 – Present" } as T,
+    summary: {
+      tr: "Yazılım, oyun ve robotik üzerine çalışan bağımsız bir teknoloji stüdyosu. 4 kişilik ekibin gönüllü üyesiyim.",
+      en: "An independent technology studio working in software, games and robotics. I'm a volunteer member of its four-person team.",
+    } as T,
+  },
+];
+
+export type NeuStatus = "live" | "dev";
+
+export type NeuProject = {
+  name: string;
+  division: "games" | "tech";
+  tagline: T;
+  description: T;
+  status: NeuStatus;
+  tags: string[];
+  image?: string;
+  href: string; // projenin Neuvikon sitesindeki sayfası
+  links?: { label: string; href: string }[];
+};
+
+// Neuvikon bilgileri ve projeleri — kaynak: neuvikon-labs.github.io
+export const neuvikon = {
+  name: "Neuvikon",
+  site: "https://neuvikon-labs.github.io",
+  tagline: {
+    tr: "Yazılım, oyun ve robotik üzerine çalışan bağımsız bir teknoloji stüdyosu.",
+    en: "An independent technology studio working in software, games and robotics.",
+  } as T,
+  description: {
+    tr: "Neuvikon ürün geliştirme, mobil oyun ve gömülü sistemler alanlarında çalışan bir stüdyo. İşleri tasarımdan yayına kadar uçtan uca ekip içinde üretiyor. 2026'da kuruldu, 4 kişilik bir ekip.",
+    en: "Neuvikon is a studio working across product development, mobile games and embedded systems, taking work from design to release entirely in house. Founded in 2026, with a team of four.",
+  } as T,
+  divisions: [
+    {
+      key: "games",
+      name: "Neuvikon Games",
+      text: {
+        tr: "Kısa oturumlu, çok oyunculu mobil oyunlar — Unity ve React Native.",
+        en: "Short-session, multiplayer mobile games — Unity and React Native.",
+      } as T,
+    },
+    {
+      key: "tech",
+      name: "Neuvikon Tech",
+      text: {
+        tr: "Web ve mobil ürünler, arka uç ve gerçek zamanlı servisler.",
+        en: "Web and mobile products, backends and real-time services.",
+      } as T,
+    },
+    {
+      key: "robotics",
+      name: "Neuvikon Robotics",
+      text: {
+        tr: "Gömülü sistemler, otonom robotlar ve donanım prototipleri.",
+        en: "Embedded systems, autonomous robots and hardware prototypes.",
+      } as T,
+    },
+  ],
+  projects: [
+    {
+      name: "GuessFast",
+      division: "games",
+      status: "live",
+      tagline: { tr: "Sayıyı bul. Hızlı bul.", en: "Find the number. Find it fast." },
+      description: {
+        tr: "Yayındaki sayı tahmin oyunu: önemli olan kaç denemede değil, ne kadar sürede bulduğun.",
+        en: "A released number-guessing game where what counts is how fast you find it, not how many tries.",
+      },
+      tags: ["React Native", "Expo"],
+      image: "/neuvikon/guessfast.png",
+      href: "https://neuvikon-labs.github.io/games/guessfast",
+      links: [
+        { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.scientist001.GuessFast" },
+        { label: "App Store", href: "https://apps.apple.com/ng/app/guessfast/id6758861605" },
+      ],
+    },
+    {
+      name: "Neu-Source",
+      division: "tech",
+      status: "live",
+      tagline: { tr: "Ajan hangi bilette, ne harcadı — tek ekranda.", en: "Which ticket the agent is on, and what it spent." },
+      description: {
+        tr: "Kodlama ajanlarının hangi bilet üzerinde çalıştığını ve ne kadar token harcadığını izleyen iç platform.",
+        en: "An internal platform that tracks which ticket a coding agent is working on and how many tokens it spent.",
+      },
+      tags: ["Next.js", "TypeScript"],
+      href: "https://neuvikon-labs.github.io/tech/neu-source",
+      links: [{ label: "neuvikon.space", href: "https://www.neuvikon.space/" }],
+    },
+    {
+      name: "PushBump",
+      division: "games",
+      status: "dev",
+      tagline: { tr: "Eğ, doldur, bırak.", en: "Tilt, charge, release." },
+      description: {
+        tr: "Telefonu eğerek oynanan çevrimiçi çok oyunculu arena oyunu.",
+        en: "An online multiplayer arena game you play by tilting your phone.",
+      },
+      tags: ["Unity", "Mirror"],
+      image: "/neuvikon/pushbump.png",
+      href: "https://neuvikon-labs.github.io/games/pushbump",
+    },
+    {
+      name: "Neu-Pummel Party",
+      division: "games",
+      status: "dev",
+      tagline: { tr: "2–8 telefon, 30 mini oyun, tek oda.", en: "2–8 phones, 30 minigames, one room." },
+      description: {
+        tr: "Telefonlarla oynanan parti oyunu; tüm görseller ve sesler kodla üretiliyor.",
+        en: "A party game played on phones, with all art and audio generated in code.",
+      },
+      tags: ["Unity 6", "Netcode"],
+      image: "/neuvikon/neuparty.png",
+      href: "https://neuvikon-labs.github.io/games/neu-pummel-party",
+    },
+    {
+      name: "UnderCard",
+      division: "games",
+      status: "dev",
+      tagline: { tr: "Elin en düşükse çağır.", en: "Call it when your hand is lowest." },
+      description: {
+        tr: "Cabo tarzı, gerçek zamanlı çok oyunculu mobil kart oyunu.",
+        en: "A real-time multiplayer mobile card game in the Cabo family.",
+      },
+      tags: ["React Native", "Firebase"],
+      image: "/neuvikon/undercard.png",
+      href: "https://neuvikon-labs.github.io/games/undercard",
+    },
+    {
+      name: "EdgeOut",
+      division: "games",
+      status: "dev",
+      tagline: { tr: "Rakibinin kürelerini tahtadan it.", en: "Push your opponent's marbles off the board." },
+      description: {
+        tr: "Altıgen tahtada, sunucu doğrulamalı rekabetçi çevrimiçi strateji oyunu.",
+        en: "Competitive online strategy on a hexagonal board, with server-validated moves.",
+      },
+      tags: ["TypeScript", "WebSocket"],
+      image: "/neuvikon/edgeout.png",
+      href: "https://neuvikon-labs.github.io/games/edgeout",
+    },
+    {
+      name: "Muavin Sim",
+      division: "games",
+      status: "dev",
+      tagline: { tr: "Direksiyonda değilsin — kapıdasın.", en: "You're not at the wheel — you're at the door." },
+      description: {
+        tr: "Şehirlerarası otobüs muavinliği üzerine simülasyon oyunu.",
+        en: "A simulation game about working as an intercity bus attendant.",
+      },
+      tags: ["Unity", "Blender"],
+      image: "/neuvikon/muavin-sim.png",
+      href: "/projects/muavin-sim",
+    },
+    {
+      name: "Card Wars",
+      division: "games",
+      status: "dev",
+      tagline: { tr: "Hat tabanlı kart savaşı; 1v1 ya da 2v2.", en: "Lane-based card combat, 1v1 or 2v2." },
+      description: {
+        tr: "Takım arkadaşını ayakta tutmanın gerçek bir karar olduğu kart savaşı oyunu.",
+        en: "A card battler where keeping your teammate alive is a real decision.",
+      },
+      tags: ["Unity 6"],
+      href: "https://neuvikon-labs.github.io/games/card-wars",
+    },
+    {
+      name: "Eclosion",
+      division: "tech",
+      status: "dev",
+      tagline: { tr: "Altı alanda kendini geliştir.", en: "Grow in six areas at once." },
+      description: {
+        tr: "Kişisel gelişimin altı alanını ayrı ayrı takip eden alışkanlık uygulaması.",
+        en: "A habit tracker that follows six areas of personal development separately.",
+      },
+      tags: ["React Native", "Expo"],
+      image: "/neuvikon/eclosion.png",
+      href: "https://neuvikon-labs.github.io/tech/eclosion",
+    },
+  ] satisfies NeuProject[],
+};
 
 // Hakkımda sayfasındaki "Odak alanları"
 export const focus: { title: T; text: T }[] = [
@@ -92,6 +282,7 @@ export type Project = {
   demo?: string;
   private?: boolean; // kaynak kodu paylaşılmayan proje
   wip?: boolean; // geliştirme devam ediyor
+  org?: { name: string; href: string }; // bir kuruluş bünyesindeyse
   related?: { label: string; href: string }[];
 };
 
@@ -228,6 +419,7 @@ export const projects: Project[] = [
     title: "Muavin Sim",
     year: "2026",
     category: "game",
+    org: { name: "Neuvikon Games", href: "https://neuvikon-labs.github.io/games/muavin-sim" },
     private: true,
     wip: true,
     summary: {
@@ -519,6 +711,7 @@ export const ui = {
   nav: {
     home: { tr: "Ana Sayfa", en: "Home" },
     projects: { tr: "Projeler", en: "Projects" },
+    experience: { tr: "Deneyim", en: "Experience" },
     about: { tr: "Hakkımda", en: "About" },
     contact: { tr: "İletişim", en: "Contact" },
   },
@@ -551,6 +744,22 @@ export const ui = {
   focus: { tr: "Odak alanları", en: "Focus areas" },
   skills: { tr: "Yetenekler", en: "Skills" },
   education: { tr: "Eğitim", en: "Education" },
+  experienceTitle: { tr: "Deneyim", en: "Experience" },
+  experienceIntro: {
+    tr: "Gönüllü olarak yer aldığım Neuvikon ve stüdyonun üzerinde çalıştığı projeler.",
+    en: "Neuvikon, where I volunteer, and the projects the studio is working on.",
+  },
+  divisions: { tr: "Bölümler", en: "Divisions" },
+  studioProjects: { tr: "Neuvikon projeleri", en: "Neuvikon projects" },
+  studioProjectsNote: {
+    tr: "Stüdyonun yürüttüğü projeler. Ayrıntılar Neuvikon'un sitesinde.",
+    en: "Projects the studio is working on. More details on Neuvikon's site.",
+  },
+  visitSite: { tr: "Neuvikon'un sitesi", en: "Neuvikon's website" },
+  live: { tr: "Yayında", en: "Live" },
+  inDev: { tr: "Geliştirmede", en: "In development" },
+  seeExperience: { tr: "Deneyimi incele", en: "View experience" },
+  partOf: { tr: "Bünyesinde", en: "Part of" },
   contactTitle: { tr: "Birlikte çalışalım", en: "Let's work together" },
   contactText: {
     tr: "Bir iş fırsatı ya da proje hakkında konuşmak için e-posta gönderebilirsin. Genelde bir-iki gün içinde dönüyorum.",

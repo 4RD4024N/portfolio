@@ -31,8 +31,14 @@ export function ProjectCard({ project: p, large = false }: { project: Project; l
           </li>
         ))}
       </ul>
-      {(p.private || p.wip) && (
-        <div className="mt-4 flex gap-2 border-t border-line pt-4 text-xs text-muted">
+      {(p.private || p.wip || p.org) && (
+        <div className="mt-4 flex flex-wrap gap-2 border-t border-line pt-4 text-xs text-muted">
+          {p.org && (
+            <>
+              <span className="text-fg/80">{p.org.name}</span>
+              <span className="text-line-strong">·</span>
+            </>
+          )}
           {p.private && (
             <span className="flex items-center gap-1.5">
               <Lock className="size-3" /> {t(ui.privateRepo)}
