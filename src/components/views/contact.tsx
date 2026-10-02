@@ -61,7 +61,7 @@ export function ContactView() {
           <Reveal key={s.label} delay={80 + i * 60}>
             <Row label={s.label}>
               <a href={s.href} target="_blank" rel="noreferrer" className="link font-medium">
-                {s.href.replace(/^https?:\/\/(www\.)?/, "")} ↗
+                {decodeURIComponent(s.href).replace(/^https?:\/\/(www\.)?/, "")} ↗
               </a>
             </Row>
           </Reveal>

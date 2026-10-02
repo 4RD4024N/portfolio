@@ -4,7 +4,7 @@ import { Container } from "@/components/container";
 import { useLang } from "@/components/lang";
 import { PageHeader, SectionTitle } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
-import { Entry } from "@/components/views/home";
+import { Entry, jobDot } from "@/components/views/home";
 import { education, experience, focus, profile, skills, ui } from "@/content";
 
 const colors = ["cat-web", "cat-vision", "cat-desktop", "cat-game"];
@@ -28,7 +28,7 @@ export function AboutView() {
         <Reveal>
           <SectionTitle dot="bg-violet">{t(ui.focus)}</SectionTitle>
         </Reveal>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2">
           {focus.map((f, i) => (
             <Reveal key={f.title.en} delay={i * 90} className={colors[i % colors.length]}>
               <div className="tile h-full rounded-2xl p-5 transition-transform duration-300 hover:-translate-y-1">
@@ -68,13 +68,46 @@ export function AboutView() {
           <SectionTitle dot="bg-amber">{t(ui.experienceTitle)}</SectionTitle>
         </Reveal>
         <ul>
-          {experience.map((e) => (
-            <Entry key={e.org} title={e.org} href="/experience" sub={t(e.role)} date={t(e.period)} dot="bg-coral" />
-          ))}
-          {education.map((e) => (
-            <Entry key={e.school} title={e.school} sub={t(e.degree)} date={t(e.period)} dot="bg-mint" delay={80} />
+          {experience.map((e, i) => (
+            <Entry
+              key={e.org + e.period.en}
+              title={t(e.role)}
+              href="/experience"
+              sub={e.org}
+              date={t(e.period)}
+              dot={jobDot[e.type]}
+              delay={i * 50}
+            />
           ))}
         </ul>
+      </section>
+
+      <section className="pt-14">
+        <Reveal>
+          <SectionTitle dot="bg-violet">{t(ui.education)}</SectionTitle>
+        </Reveal>
+        <ul>
+          {education.map((e) => (
+            <Entry key={e.school} title={e.school} sub={t(e.degree)} date={t(e.period)} dot="bg-amber" />
+          ))}
+        </ul>
+      </section>
+
+      <section className="pt-14">
+        <Reveal>
+          <SectionTitle dot="bg-mint">{t(ui.spoken)}</SectionTitle>
+        </Reveal>
+        <Reveal className="flex flex-wrap gap-3">
+          {profile.languages.map((l, i) => (
+            <div
+              key={l.name.en}
+              className={`${["cat-desktop", "cat-web"][i % 2]} tile flex items-baseline gap-2 rounded-2xl px-4 py-2.5`}
+            >
+              <span className="font-semibold">{t(l.name)}</span>
+              <span className="text-sm opacity-80">{t(l.level)}</span>
+            </div>
+          ))}
+        </Reveal>
       </section>
 
       {profile.cv && (

@@ -8,23 +8,27 @@ export const profile = {
   name: "Arda Özan",
   role: { tr: "Bilgisayar Mühendisi", en: "Computer Engineer" } as T,
   headline: {
-    tr: "Backend API'ler, full-stack uygulamalar ve gerçek zamanlı sistemler geliştiriyorum.",
-    en: "I build backend APIs, full-stack applications and real-time systems.",
+    tr: "Web, bulut ve etkileşimli uygulamalar geliştiriyorum.",
+    en: "I build web, cloud and interactive applications.",
   } as T,
   location: { tr: "Ankara, Türkiye", en: "Ankara, Turkey" } as T,
   intro: {
-    tr: "Başkent Üniversitesi Bilgisayar Mühendisliği mezunuyum. Çoğunlukla backend API'ler ve full-stack projeler geliştiriyorum; son zamanlarda gerçek zamanlı sistemler ve bilgisayarlı görüyle uğraşıyorum.",
-    en: "Computer Engineering graduate from Başkent University. I mostly build backend APIs and full-stack projects, and lately I've been branching out into real-time systems and computer vision.",
+    tr: "Başkent Üniversitesi Bilgisayar Mühendisliği mezunuyum. Web, bulut ve etkileşimli uygulamalar geliştiriyorum; React, JavaScript, Python ve Spring Boot ile full-stack sistemler kuruyorum.",
+    en: "Computer Engineering graduate from Başkent University. I build web, cloud and interactive applications, and full-stack systems with React, JavaScript, Python and Spring Boot.",
   } as T,
   about: {
-    tr: "Backend tarafında .NET ve Spring Boot ile REST API'ler, rol bazlı yetkilendirme ve veritabanı tasarımı üzerine çalışıyorum; frontend'de React kullanıyorum.\n\nBunun dışında kendi kullandığım araçları yapmayı seviyorum: el hareketleriyle medya kontrolü, çalan müziğe göre görsel üreten bir AI visualizer, tarayıcıda P2P sesli görüşme gibi. OpenCV, MediaPipe ve WebRTC şu an en çok vakit geçirdiğim alanlar.\n\nŞu anda yazılım, oyun ve robotik üzerine çalışan bağımsız bir teknoloji stüdyosu olan Neuvikon'un ekibinde gönüllü olarak yer alıyorum.",
-    en: "On the backend I work with .NET and Spring Boot: REST APIs, role-based auth and database design. On the frontend I use React.\n\nI also like building tools I actually use: media control with hand gestures, an AI visualizer that reacts to whatever music is playing, peer-to-peer voice calls in the browser. OpenCV, MediaPipe and WebRTC are where I spend most of my time right now.\n\nI'm currently a volunteer on the team at Neuvikon, an independent technology studio working in software, games and robotics.",
+    tr: "Pratik problem çözmeye, kullanıcı odaklı tasarıma ve temiz, bakımı kolay koda önem veriyorum. Farklı ekiplerle birlikte çalışıp gerçek kullanımda işe yarayan çözümler üretmeyi seviyorum.\n\nGünlük hayatımda fark ettiğim boşlukları doldurmaktan, kendi işlerimi hızlandıran küçük otomasyonlar kurmaktan ve yeni şeyler denemekten keyif alıyorum. El hareketleriyle medya kontrolü, çalan müziğe göre görsel üreten bir AI visualizer ve tarayıcıda şifreli sesli görüşme uygulaması bu merakın ürünleri.\n\nŞu anda SEGG International'da proje asistanı olarak çalışıyorum. Ayrıca üç arkadaşımla birlikte kurduğumuz Neuvikon'da gönüllü olarak projeler geliştiriyoruz.",
+    en: "I care about practical problem-solving, user-centered design and clean, maintainable code. I enjoy working across teams to deliver solutions that hold up in real use.\n\nI like filling in the gaps I notice in daily life, setting up small automations to speed up my own work, and trying new things. Media control with hand gestures, an AI visualizer that reacts to whatever is playing, and an encrypted voice chat in the browser all came out of that.\n\nI currently work as a Project Assistant at SEGG International. I also build projects at Neuvikon, a studio I co-founded with three friends.",
   } as T,
   email: "arda.ozan.dev@gmail.com",
   cv: "", // ör. "/cv.pdf", dosyayı public/ klasörüne koy
   socials: [
     { label: "GitHub", href: "https://github.com/4RD4024N" },
-    // { label: "LinkedIn", href: "https://linkedin.com/in/kullaniciadi" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/arda-%C3%B6zan-67329b227" },
+  ],
+  languages: [
+    { name: { tr: "Türkçe", en: "Turkish" } as T, level: { tr: "Ana dil", en: "Native" } as T },
+    { name: { tr: "İngilizce", en: "English" } as T, level: { tr: "B2", en: "B2" } as T },
   ],
 };
 
@@ -32,21 +36,106 @@ export const education = [
   {
     school: "Başkent Üniversitesi",
     degree: { tr: "Bilgisayar Mühendisliği, Lisans", en: "B.Sc. Computer Engineering" } as T,
-    period: { tr: "Mezun", en: "Graduated" } as T,
+    period: { tr: "2021 – 2026", en: "2021 – 2026" } as T,
   },
 ];
 
-// Deneyim: Deneyim sayfası, Hakkımda ve ana sayfada görünür
-export const experience = [
+export type Job = {
+  org: string;
+  href?: string;
+  role: T;
+  period: T;
+  location?: T;
+  type: "work" | "intern" | "volunteer";
+  points: Record<Lang, string[]>;
+};
+
+// Deneyim: yeniden eskiye. Deneyim sayfası, Hakkımda ve ana sayfada görünür.
+export const experience: Job[] = [
+  {
+    org: "SEGG International",
+    role: { tr: "Proje Asistanı", en: "Project Assistant" },
+    period: { tr: "Ağu 2026 – Günümüz", en: "Aug 2026 – Present" },
+    type: "work",
+    points: {
+      tr: [
+        "Kapsamlı raporlar hazırlıyor, paydaş toplantılarına aktif olarak katılıyorum",
+        "Farklı ekipler arasındaki entegrasyon ve iletişimi kolaylaştırıyorum",
+        "IFC tarafından finanse edilen projelerde yer alıyorum",
+        "KAYEP programı kapsamındaki fizibilite çalışmalarına teknik katkı sağlıyorum",
+      ],
+      en: [
+        "Prepare comprehensive reports and take an active part in stakeholder meetings",
+        "Facilitate integration and communication across cross-functional teams",
+        "Contribute to projects financed by the IFC",
+        "Provide technical input to feasibility studies under the KAYEP program",
+      ],
+    },
+  },
   {
     org: "Neuvikon",
     href: "https://neuvikon-labs.github.io",
-    role: { tr: "Gönüllü Geliştirici", en: "Volunteer Developer" } as T,
-    period: { tr: "2026 – Günümüz", en: "2026 – Present" } as T,
-    summary: {
-      tr: "Yazılım, oyun ve robotik üzerine çalışan bağımsız bir teknoloji stüdyosu. 4 kişilik ekibin gönüllü üyesiyim.",
-      en: "An independent technology studio working in software, games and robotics. I'm a volunteer member of its four-person team.",
-    } as T,
+    role: { tr: "Kurucu Ortak", en: "Co-founder" },
+    period: { tr: "2026 – Günümüz", en: "2026 – Present" },
+    location: { tr: "Türkiye", en: "Turkey" },
+    type: "volunteer",
+    points: {
+      tr: [
+        "Üç arkadaşımla birlikte kurduğumuz yazılım, oyun ve robotik stüdyosu",
+        "Bazıları kendi iç operasyonlarımızda kullanılan projeler yürütüyoruz",
+        "Android ve iOS için geliştirilen birkaç uygulamamız var; ikisi test aşamasında",
+      ],
+      en: [
+        "A software, games and robotics studio I co-founded with three friends",
+        "We run several projects in parallel, some of them used in our own internal operations",
+        "Several apps in development for Android and iOS, two of them in testing",
+      ],
+    },
+  },
+  {
+    org: "SEGG International",
+    role: { tr: "Mühendis Stajyer", en: "Engineer Intern" },
+    period: { tr: "Haz 2025 – Haz 2026", en: "Jun 2025 – Jun 2026" },
+    location: { tr: "Lviv, Ukrayna", en: "Lviv, Ukraine" },
+    type: "intern",
+    points: {
+      tr: ["Lviv'de iletişim kuleleri, anten karıştırıcı (jammer) sistemleri ile rüzgâr ve güneş enerjisi projelerinde çalıştım"],
+      en: ["Worked on communication towers, antenna jammer systems, and wind and solar energy projects in Lviv"],
+    },
+  },
+  {
+    org: "Ave Bilişim A.Ş.",
+    role: { tr: "Frontend Geliştirici Stajyer", en: "Frontend Developer Intern" },
+    period: { tr: "Tem 2024", en: "Jul 2024" },
+    location: { tr: "Ankara", en: "Ankara" },
+    type: "intern",
+    points: {
+      tr: [
+        "Agile bir ekip içinde farklı frontend projelerinde birlikte çalıştım",
+        "HTML, CSS, JavaScript ve React ile responsive web arayüzleri geliştirdim",
+      ],
+      en: [
+        "Collaborated on a range of frontend projects in an agile team",
+        "Built responsive web interfaces with HTML, CSS, JavaScript and React",
+      ],
+    },
+  },
+  {
+    org: "LimonCloud",
+    role: { tr: "Bulut Mühendisi Stajyer", en: "Cloud Engineer Intern" },
+    period: { tr: "Ağu 2023", en: "Aug 2023" },
+    location: { tr: "İstanbul", en: "Istanbul" },
+    type: "intern",
+    points: {
+      tr: [
+        "AWS, Azure ve Google Cloud üzerinde pratik deneyim kazandım",
+        "Bulut altyapısının performans ve maliyet açısından iyileştirilmesine destek oldum",
+      ],
+      en: [
+        "Gained hands-on experience across AWS, Azure and Google Cloud",
+        "Helped optimize cloud infrastructure for performance and cost",
+      ],
+    },
   },
 ];
 
@@ -226,20 +315,27 @@ export const neuvikon = {
   ] satisfies NeuProject[],
 };
 
-// Hakkımda sayfasındaki "Odak alanları"
+// Hakkımda sayfasındaki "Üzerinde çalıştıklarım"
 export const focus: { title: T; text: T }[] = [
-  {
-    title: { tr: "Backend & API", en: "Backend & APIs" },
-    text: {
-      tr: ".NET ve Spring Boot ile katmanlı mimari, JWT ile rol bazlı yetkilendirme, EF Core / JPA ile veritabanı tasarımı.",
-      en: "Layered architecture with .NET and Spring Boot, role-based auth with JWT, database design with EF Core / JPA.",
-    },
-  },
   {
     title: { tr: "Full-stack Web", en: "Full-stack Web" },
     text: {
-      tr: "React ve TypeScript ile rol bazlı arayüzler, state yönetimi ve API entegrasyonu.",
-      en: "Role-based interfaces, state management and API integration with React and TypeScript.",
+      tr: "React ve Tailwind ile responsive arayüzler; Node.js, Express ve Spring Boot ile API'ler.",
+      en: "Responsive interfaces with React and Tailwind; APIs with Node.js, Express and Spring Boot.",
+    },
+  },
+  {
+    title: { tr: "Backend & Veritabanı", en: "Backend & Data" },
+    text: {
+      tr: ".NET ve Spring Boot ile katmanlı mimari, JWT ile rol bazlı yetkilendirme, PostgreSQL ve SQL Server.",
+      en: "Layered architecture with .NET and Spring Boot, role-based auth with JWT, PostgreSQL and SQL Server.",
+    },
+  },
+  {
+    title: { tr: "Bulut", en: "Cloud" },
+    text: {
+      tr: "AWS, Azure ve Google Cloud üzerinde altyapı; performans ve maliyet iyileştirmesi.",
+      en: "Infrastructure on AWS, Azure and Google Cloud, tuned for performance and cost.",
     },
   },
   {
@@ -252,11 +348,12 @@ export const focus: { title: T; text: T }[] = [
 ];
 
 export const skills: { group: T; items: string[] }[] = [
-  { group: { tr: "Diller", en: "Languages" }, items: ["C#", "Python", "Java", "JavaScript", "TypeScript", "SQL"] },
-  { group: { tr: "Backend", en: "Backend" }, items: [".NET 8", "ASP.NET Core", "Entity Framework Core", "Spring Boot", "Node.js", "Socket.IO"] },
-  { group: { tr: "Frontend", en: "Frontend" }, items: ["React", "Redux Toolkit", "Vite", "WPF", "Java Swing"] },
+  { group: { tr: "Diller", en: "Languages" }, items: ["JavaScript", "TypeScript", "Python", "C#", "Java", "C", "C++", "SQL"] },
+  { group: { tr: "Frontend", en: "Frontend" }, items: ["React", "Tailwind CSS", "HTML / CSS", "Redux Toolkit", "Vite", "WPF"] },
+  { group: { tr: "Backend & API", en: "Backend & APIs" }, items: ["Node.js", "Express.js", "Spring Boot", ".NET / ASP.NET Core", "Entity Framework Core", "Socket.IO", "WebRTC"] },
+  { group: { tr: "Bulut & Veritabanı", en: "Cloud & Data" }, items: ["AWS", "Google Cloud", "Azure", "PostgreSQL", "SQL Server"] },
   { group: { tr: "Görüntü İşleme & AI", en: "Computer Vision & AI" }, items: ["OpenCV", "MediaPipe", "NumPy", "Tesseract OCR", "LM Studio"] },
-  { group: { tr: "Veritabanı & Araçlar", en: "Data & Tools" }, items: ["SQL Server", "Git", "Docker", "Maven", "REST APIs", "WebRTC"] },
+  { group: { tr: "Araçlar", en: "Tools" }, items: ["Git", "GitHub", "Docker", "Postman", "VS Code", "Maven"] },
 ];
 
 export const categories = {
@@ -380,7 +477,7 @@ export const projects: Project[] = [
         "Secrets managed through .env",
       ],
     },
-    stack: ["Python", "OpenCV", "MediaPipe", "Spotify API", "Pycaw"],
+    stack: ["Python", "OpenCV", "MediaPipe", "Pycaw", "PyAutoGUI", "Spotipy", "SpeechRecognition"],
     github: "https://github.com/4RD4024N/hand_gesture_media_controller",
   },
   {
@@ -390,8 +487,8 @@ export const projects: Project[] = [
     category: "web",
     featured: true,
     summary: {
-      tr: "Tarayıcıda oda tabanlı, eşten eşe (P2P) sesli görüşme. WebRTC, Socket.IO signaling ve gürültü bastırma.",
-      en: "Room-based peer-to-peer voice calls in the browser, with WebRTC, Socket.IO signaling and noise suppression.",
+      tr: "Gizliliğe ve uçtan uca şifrelemeye odaklanan, tarayıcıda çalışan gerçek zamanlı sesli görüşme uygulaması.",
+      en: "A real-time voice chat app in the browser, built around privacy and end-to-end encryption.",
     },
     overview: {
       tr: "Kullanıcıların bir odaya katılıp doğrudan birbirleriyle sesli görüştüğü tarayıcı uygulaması. Ses akışı WebRTC ile eşler arasında doğrudan gidiyor; Node.js + Socket.IO sunucusu yalnızca bağlantı kurulumunu (signaling) yapıyor. Mikrofon sesi RNNoise (WebAssembly) ile gürültüden arındırılıyor.",
@@ -399,19 +496,19 @@ export const projects: Project[] = [
     },
     highlights: {
       tr: [
-        "Oda tabanlı bağlantı yönetimi",
+        "Uçtan uca şifreli, oda tabanlı sesli görüşme",
         "Sunucudan geçmeyen P2P ses akışı (STUN ile NAT geçişi)",
         "RNNoise WASM ile gerçek zamanlı gürültü bastırma",
         "Sessize alma kontrolleri, ngrok ile dışarıya açılabilir",
       ],
       en: [
-        "Room-based connection management",
+        "End-to-end encrypted, room-based voice calls",
         "P2P audio that never passes through the server (NAT traversal via STUN)",
         "Real-time noise suppression with RNNoise WASM",
         "Mute controls; can be exposed publicly via ngrok",
       ],
     },
-    stack: ["WebRTC", "Node.js", "Socket.IO", "WebAssembly", "JavaScript"],
+    stack: ["JavaScript", "Node.js", "Express", "Socket.IO", "WebRTC (SimplePeer)", "RNNoise WASM"],
     github: "https://github.com/4RD4024N/secure-voice-app",
   },
   {
@@ -714,8 +811,11 @@ export const ui = {
     about: { tr: "Hakkımda", en: "About" },
     contact: { tr: "İletişim", en: "Contact" },
   },
-  nowPrefix: { tr: "Şu anda ", en: "I currently volunteer at " },
-  nowSuffix: { tr: "'da gönüllü olarak çalışıyorum.", en: "." },
+  nowPrefix: {
+    tr: "Şu anda SEGG International'da proje asistanı olarak çalışıyorum. Ayrıca üç arkadaşımla kurduğumuz ",
+    en: "I currently work as a Project Assistant at SEGG International, and build projects at ",
+  },
+  nowSuffix: { tr: "'da gönüllü olarak projeler geliştiriyorum.", en: ", a studio I co-founded with three friends." },
   available: { tr: "Yeni iş fırsatlarına açığım.", en: "I'm open to new opportunities." },
   email: { tr: "E-posta", en: "Email" },
   cv: { tr: "CV (PDF)", en: "CV (PDF)" },
@@ -741,9 +841,13 @@ export const ui = {
   education: { tr: "Eğitim", en: "Education" },
   experienceTitle: { tr: "Deneyim", en: "Experience" },
   experienceIntro: {
-    tr: "Şu anda Neuvikon'da gönüllü olarak çalışıyorum. Aşağıda stüdyo ve yürüttüğü projeler hakkında kısa bilgi var.",
-    en: "I currently volunteer at Neuvikon. Below is a short overview of the studio and the projects it's working on.",
+    tr: "İş ve staj deneyimlerim, ayrıca kurucuları arasında olduğum Neuvikon ve projeleri.",
+    en: "My work and internship experience, plus Neuvikon, the studio I co-founded, and its projects.",
   },
+  intern: { tr: "Staj", en: "Internship" },
+  volunteer: { tr: "Gönüllü", en: "Volunteer" },
+  spoken: { tr: "Konuştuğum diller", en: "Languages" },
+  aboutNeuvikon: { tr: "Neuvikon hakkında", en: "About Neuvikon" },
   divisions: { tr: "Bölümler", en: "Divisions" },
   studioProjects: { tr: "Neuvikon projeleri", en: "Neuvikon projects" },
   studioProjectsNote: {

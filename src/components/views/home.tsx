@@ -6,7 +6,7 @@ import { useLang } from "@/components/lang";
 import { SectionTitle } from "@/components/page-header";
 import { ProjectList } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
-import { education, experience, neuvikon, profile, projects, skills, ui } from "@/content";
+import { education, experience, neuvikon, profile, projects, skills, ui, type Job } from "@/content";
 
 export function HomeView() {
   const { lang, t } = useLang();
@@ -114,11 +114,19 @@ export function HomeView() {
             <SectionTitle dot="bg-coral">{t(ui.experienceTitle)}</SectionTitle>
           </Reveal>
           <ul>
-            {experience.map((e) => (
-              <Entry key={e.org} title={e.org} href="/experience" sub={t(e.role)} date={t(e.period)} dot="bg-coral" />
+            {experience.map((e, i) => (
+              <Entry
+                key={e.org + e.period.en}
+                title={t(e.role)}
+                href="/experience"
+                sub={e.org}
+                date={t(e.period)}
+                dot={jobDot[e.type]}
+                delay={i * 50}
+              />
             ))}
             {education.map((e) => (
-              <Entry key={e.school} title={e.school} sub={t(e.degree)} date={t(e.period)} dot="bg-mint" delay={80} />
+              <Entry key={e.school} title={e.school} sub={t(e.degree)} date={t(e.period)} dot="bg-amber" delay={250} />
             ))}
           </ul>
         </section>
@@ -145,6 +153,9 @@ export function HomeView() {
     </>
   );
 }
+
+// İş türüne göre nokta rengi: iş mor, gönüllü mercan, staj mint
+export const jobDot: Record<Job["type"], string> = { work: "bg-violet", volunteer: "bg-coral", intern: "bg-mint" };
 
 // Deneyim ve eğitim satırı
 export function Entry({
