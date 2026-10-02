@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Container } from "@/components/container";
 import { useLang } from "@/components/lang";
 import { profile, ui } from "@/content";
 
 const links = [
-  { href: "/", label: ui.nav.home },
   { href: "/projects", label: ui.nav.projects },
   { href: "/experience", label: ui.nav.experience },
   { href: "/about", label: ui.nav.about },
@@ -17,92 +16,46 @@ const links = [
 export function Nav() {
   const { lang, setLang, t } = useLang();
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => setOpen(false), [pathname]);
-
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-  const initials = profile.name
-    .split(" ")
-    .map((w) => w[0])
-    .join("");
-
-  const langToggle = (
-    <div className="flex rounded-full border border-line p-0.5 font-mono text-[11px]">
-      {(["tr", "en"] as const).map((l) => (
-        <button
-          key={l}
-          onClick={() => setLang(l)}
-          aria-pressed={lang === l}
-          className={`rounded-full px-2.5 py-1 uppercase transition-colors ${
-            lang === l ? "bg-fg text-bg" : "text-muted hover:text-fg"
-          }`}
-        >
-          {l}
-        </button>
-      ))}
-    </div>
-  );
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line/70 bg-bg/75 backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span className="grid size-8 place-items-center rounded-lg border border-line bg-surface font-mono text-xs font-semibold transition-colors group-hover:border-accent/60">
-            {initials}
-          </span>
-          <span className="text-sm font-medium">{profile.name}</span>
+    <header className="pt-8 pb-4 sm:pt-12">
+      {/* Mobilde: 1. satır isim + dil, 2. satır linkler. Geniş ekranda hepsi tek satır. */}
+      <Container className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
+        <Link href="/" className="order-1 font-medium hover:text-accent">
+          {profile.name}
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`rounded-full px-3.5 py-1.5 text-sm transition-colors ${
-                isActive(l.href) ? "bg-surface-2 text-fg" : "text-muted hover:text-fg"
-              }`}
-            >
-              {t(l.label)}
-            </Link>
+        <span className="order-2 font-mono text-[13px] text-muted sm:order-3">
+          {(["tr", "en"] as const).map((l, i) => (
+            <span key={l}>
+              {i > 0 && <span className="px-1">/</span>}
+              <button
+                onClick={() => setLang(l)}
+                aria-pressed={lang === l}
+                className={`uppercase ${lang === l ? "text-fg" : "hover:text-fg"}`}
+              >
+                {l}
+              </button>
+            </span>
           ))}
-          <div className="ml-3">{langToggle}</div>
-        </div>
+        </span>
 
-        <div className="flex items-center gap-3 md:hidden">
-          {langToggle}
-          <button
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Menu"
-            aria-expanded={open}
-            className="grid size-9 place-items-center rounded-lg border border-line"
-          >
-            <svg viewBox="0 0 16 16" className="size-4" fill="none" aria-hidden>
-              {open ? (
-                <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              ) : (
-                <path d="M2.5 5h11M2.5 11h11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              )}
-            </svg>
-          </button>
-        </div>
-      </nav>
-
-      {open && (
-        <div className="border-t border-line md:hidden">
-          <div className="mx-auto flex max-w-5xl flex-col px-4 py-3">
-            {links.map((l) => (
+        <nav className="order-3 flex w-full flex-wrap items-baseline gap-x-4 gap-y-2 text-sm sm:order-2 sm:ml-auto sm:w-auto sm:gap-x-5 sm:text-[15px]">
+          {links.map((l) => {
+            const active = pathname.startsWith(l.href);
+            return (
               <Link
                 key={l.href}
                 href={l.href}
-                className={`rounded-lg px-3 py-2.5 text-sm ${isActive(l.href) ? "bg-surface-2 text-fg" : "text-muted"}`}
+                aria-current={active ? "page" : undefined}
+                className={active ? "text-fg underline decoration-1 underline-offset-[6px]" : "text-muted hover:text-fg"}
               >
                 {t(l.label)}
               </Link>
-            ))}
-          </div>
-        </div>
-      )}
+            );
+          })}
+        </nav>
+      </Container>
     </header>
   );
 }

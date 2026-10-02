@@ -1,9 +1,9 @@
 "use client";
 
+import { Container } from "@/components/container";
 import { useLang } from "@/components/lang";
-import { ArrowUpRight } from "@/components/icons";
-import { NeuProjectCard } from "@/components/neu-project-card";
-import { PageHeader } from "@/components/page-header";
+import { NeuProjectRow } from "@/components/neu-project-card";
+import { PageHeader, SectionTitle } from "@/components/page-header";
 import { experience, neuvikon, ui } from "@/content";
 
 export function ExperienceView() {
@@ -14,64 +14,50 @@ export function ExperienceView() {
     .filter((d) => d.projects.length > 0);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6">
-      <PageHeader eyebrow={t(ui.nav.experience)} title={t(ui.experienceTitle)} text={t(ui.experienceIntro)} />
+    <Container>
+      <PageHeader title={t(ui.experienceTitle)} text={t(ui.experienceIntro)} />
 
-      {/* Deneyim kartları */}
-      <div className="space-y-4">
-        {experience.map((e) => (
-          <article key={e.org} className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
-            <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight">{e.org}</h2>
-                <p className="mt-1 text-fg/80">{t(e.role)}</p>
+      {experience.map((e) => (
+        <section key={e.org}>
+          <div className="flex flex-col gap-x-6 sm:flex-row sm:items-baseline sm:justify-between">
+            <h2 className="text-xl font-medium">
+              <a href={neuSite} target="_blank" rel="noreferrer" className="link">
+                {e.org}
+              </a>
+            </h2>
+            <span className="font-mono text-sm text-muted">{t(e.period)}</span>
+          </div>
+          <p className="text-muted">{t(e.role)}</p>
+          <p className="mt-5">{t(neuvikon.description)}</p>
+
+          <dl className="mt-8">
+            {neuvikon.divisions.map((d) => (
+              <div
+                key={d.key}
+                className="grid gap-x-6 border-t border-line py-3 first:border-t-0 sm:grid-cols-[11rem_1fr]"
+              >
+                <dt className="font-medium">{d.name}</dt>
+                <dd className="text-muted">{t(d.text)}</dd>
               </div>
-              <p className="font-mono text-xs text-muted">{t(e.period)}</p>
-            </div>
-            <p className="mt-5 max-w-3xl leading-relaxed text-muted">{t(neuvikon.description)}</p>
+            ))}
+          </dl>
+        </section>
+      ))}
 
-            <h3 className="mt-8 text-xs text-muted">{t(ui.divisions)}</h3>
-            <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              {neuvikon.divisions.map((d) => (
-                <div key={d.key} className="rounded-xl border border-line p-4">
-                  <p className="text-sm font-medium">{d.name}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{t(d.text)}</p>
-                </div>
-              ))}
-            </div>
-
-            <a
-              href={neuSite}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-line-strong px-5 py-2.5 text-sm font-medium hover:bg-surface-2"
-            >
-              {t(ui.visitSite)} <ArrowUpRight />
-            </a>
-          </article>
-        ))}
-      </div>
-
-      {/* Neuvikon projeleri */}
-      <section className="pt-20">
-        <p lang="en" className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Neuvikon</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight">{t(ui.studioProjects)}</h2>
-        <p className="mt-3 max-w-2xl text-muted">{t(ui.studioProjectsNote)}</p>
-
+      <section className="pt-16">
+        <SectionTitle>{t(ui.studioProjects)}</SectionTitle>
+        <p className="-mt-3 mb-4 text-muted">{t(ui.studioProjectsNote)}</p>
         {groups.map((g) => (
-          <div key={g.key} className="mt-10">
-            <h3 className="mb-4 flex items-center gap-3 text-sm font-medium">
-              {g.name}
-              <span className="font-mono text-xs text-muted">{g.projects.length}</span>
-            </h3>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div key={g.key} className="mt-8">
+            <h3 className="border-b border-line pb-2 text-sm text-muted">{g.name}</h3>
+            <ul>
               {g.projects.map((p) => (
-                <NeuProjectCard key={p.name} project={p} />
+                <NeuProjectRow key={p.name} project={p} />
               ))}
-            </div>
+            </ul>
           </div>
         ))}
       </section>
-    </div>
+    </Container>
   );
 }

@@ -1,59 +1,69 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bg: #09090b;
-  --color-surface: #111114;
-  --color-surface-2: #17171b;
-  --color-line: #222228;
-  --color-line-strong: #34343c;
-  --color-fg: #ededef;
-  --color-muted: #8e8e98;
-  --color-accent: #7dd3fc;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+/* Renkler: açık tema varsayılan, sistem koyu moddaysa koyu tema */
+:root {
+  --bg: #faf9f6;
+  --fg: #1c1b19;
+  --muted: #6d6a63;
+  --line: #e4e1da;
+  --accent: #b5482a;
+  color-scheme: light;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161514;
+    --fg: #e9e6e0;
+    --muted: #9b978f;
+    --line: #2d2b28;
+    --accent: #e98a68;
+    color-scheme: dark;
+  }
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+/* Büyük ekranlarda yazı biraz büyüsün */
 html {
-  color-scheme: dark;
+  font-size: 16px;
+}
+@media (min-width: 1536px) {
+  html {
+    font-size: 17px;
+  }
+}
+@media (min-width: 2200px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-fg);
+  background: var(--bg);
+  color: var(--fg);
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+  background: color-mix(in oklab, var(--accent) 25%, transparent);
 }
 
-/* Kategori renkleri */
-.cat-web { background: #7dd3fc; }
-.cat-vision { background: #c4b5fd; }
-.cat-desktop { background: #86efac; }
-.cat-game { background: #fdba74; }
-
-/* Hero arka planındaki ızgara */
-.hero-grid {
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--color-line) 60%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 60%, transparent) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 75%);
+/* Metin içi linkler */
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.15s, color 0.15s;
 }
-
-.hero-glow {
-  background: radial-gradient(ellipse 50% 40% at 50% 0%, color-mix(in oklab, var(--color-accent) 14%, transparent), transparent 70%);
-}
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: none; }
-}
-
-.fade-up {
-  animation: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-up { animation: none; }
+.link:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
 }

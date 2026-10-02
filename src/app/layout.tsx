@@ -1,13 +1,21 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { LangProvider } from "@/components/lang";
 import { Nav } from "@/components/nav";
 import { profile } from "@/content";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter" });
-const mono = JetBrains_Mono({ subsets: ["latin", "latin-ext"], variable: "--font-mono-jb" });
+const plex = IBM_Plex_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-plex",
+});
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400"],
+  variable: "--font-plex-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -16,8 +24,8 @@ export const metadata: Metadata = {
       : "http://localhost:3000",
   ),
   title: {
-    default: `${profile.name} — ${profile.role.en}`,
-    template: `%s — ${profile.name}`,
+    default: `${profile.name} · ${profile.role.en}`,
+    template: `%s · ${profile.name}`,
   },
   description: profile.intro.en,
   openGraph: {
@@ -27,10 +35,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf9f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#161514" },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={`${inter.variable} ${mono.variable}`}>
-      <body className="flex min-h-svh flex-col font-sans antialiased">
+    <html lang="tr" className={`${plex.variable} ${plexMono.variable}`}>
+      <body className="flex min-h-svh flex-col font-sans leading-relaxed antialiased">
         <LangProvider>
           <Nav />
           <main className="flex-1">{children}</main>

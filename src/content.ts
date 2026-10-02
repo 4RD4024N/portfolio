@@ -18,10 +18,10 @@ export const profile = {
   } as T,
   about: {
     tr: "Backend tarafında .NET ve Spring Boot ile REST API'ler, rol bazlı yetkilendirme ve veritabanı tasarımı üzerine çalışıyorum; frontend'de React kullanıyorum.\n\nBunun dışında kendi kullandığım araçları yapmayı seviyorum: el hareketleriyle medya kontrolü, çalan müziğe göre görsel üreten bir AI visualizer, tarayıcıda P2P sesli görüşme gibi. OpenCV, MediaPipe ve WebRTC şu an en çok vakit geçirdiğim alanlar.\n\nŞu anda yazılım, oyun ve robotik üzerine çalışan bağımsız bir teknoloji stüdyosu olan Neuvikon'un ekibinde gönüllü olarak yer alıyorum.",
-    en: "On the backend I work with .NET and Spring Boot — REST APIs, role-based auth and database design — and I use React on the frontend.\n\nI also like building tools I actually use: media control with hand gestures, an AI visualizer that reacts to whatever music is playing, peer-to-peer voice calls in the browser. OpenCV, MediaPipe and WebRTC are where I spend most of my time right now.\n\nI'm currently a volunteer on the team at Neuvikon, an independent technology studio working in software, games and robotics.",
+    en: "On the backend I work with .NET and Spring Boot: REST APIs, role-based auth and database design. On the frontend I use React.\n\nI also like building tools I actually use: media control with hand gestures, an AI visualizer that reacts to whatever music is playing, peer-to-peer voice calls in the browser. OpenCV, MediaPipe and WebRTC are where I spend most of my time right now.\n\nI'm currently a volunteer on the team at Neuvikon, an independent technology studio working in software, games and robotics.",
   } as T,
   email: "arda.ozan.dev@gmail.com",
-  cv: "", // ör. "/cv.pdf" — dosyayı public/ klasörüne koy
+  cv: "", // ör. "/cv.pdf", dosyayı public/ klasörüne koy
   socials: [
     { label: "GitHub", href: "https://github.com/4RD4024N" },
     // { label: "LinkedIn", href: "https://linkedin.com/in/kullaniciadi" },
@@ -36,7 +36,7 @@ export const education = [
   },
 ];
 
-// Deneyim — Deneyim sayfası, Hakkımda ve ana sayfada görünür
+// Deneyim: Deneyim sayfası, Hakkımda ve ana sayfada görünür
 export const experience = [
   {
     org: "Neuvikon",
@@ -64,7 +64,7 @@ export type NeuProject = {
   links?: { label: string; href: string }[];
 };
 
-// Neuvikon bilgileri ve projeleri — kaynak: neuvikon-labs.github.io
+// Neuvikon bilgileri ve projeleri, kaynak: neuvikon-labs.github.io
 export const neuvikon = {
   name: "Neuvikon",
   site: "https://neuvikon-labs.github.io",
@@ -81,8 +81,8 @@ export const neuvikon = {
       key: "games",
       name: "Neuvikon Games",
       text: {
-        tr: "Kısa oturumlu, çok oyunculu mobil oyunlar — Unity ve React Native.",
-        en: "Short-session, multiplayer mobile games — Unity and React Native.",
+        tr: "Kısa oturumlu, çok oyunculu mobil oyunlar. Unity ve React Native.",
+        en: "Short-session, multiplayer mobile games in Unity and React Native.",
       } as T,
     },
     {
@@ -339,13 +339,13 @@ export const projects: Project[] = [
       tr: [
         "WASAPI loopback ile sistem sesi yakalama, otomatik cihaz seçimi (VB-Cable → Stereo Mix → mikrofon)",
         "8 bantlı FFT analizi",
-        "Yerel LLM'den gerçek zamanlı palet ve parametre üretimi — bulut yok",
+        "Palet ve parametreler yerel bir LLM'den geliyor, bulut kullanılmıyor",
         "pyglet / OpenGL ile 60 FPS render",
       ],
       en: [
         "System audio capture via WASAPI loopback with automatic device selection (VB-Cable → Stereo Mix → mic)",
         "8-band FFT analysis",
-        "Real-time palette and parameter generation from a local LLM — no cloud",
+        "Palettes and parameters come from a local LLM, no cloud involved",
         "60 FPS rendering with pyglet / OpenGL",
       ],
     },
@@ -432,7 +432,7 @@ export const projects: Project[] = [
     },
     highlights: {
       tr: ["Hazır asset kullanılmadan, Blender'da sıfırdan modellenen araçlar, bagajlar ve çevre", "Unity ve yeni Input System", "Yeni güzergâhlar ve oynanış özellikleri üzerinde çalışılıyor"],
-      en: ["Vehicles, luggage and environments modeled from scratch in Blender — no store assets", "Unity with the new Input System", "More routes and gameplay features in the works"],
+      en: ["Vehicles, luggage and environments modeled from scratch in Blender, no store assets", "Unity with the new Input System", "More routes and gameplay features in the works"],
     },
     stack: ["Unity", "C#", "Blender"],
   },
@@ -538,7 +538,7 @@ export const projects: Project[] = [
     },
     overview: {
       tr: "Windows 10'dan 11'e geçince sol üstteki küçük medya bildirimi kayboldu; bu uygulama onu geri getiriyor. İlk sürüm Spotify pencere başlığını okuyordu, ikinci sürüm OAuth ile Spotify Web API'ye bağlanıp şarkı, albüm kapağı ve ilerleme bilgisini animasyonlu bir overlay'de gösteriyor.",
-      en: "Upgrading from Windows 10 to 11 removed the small media flyout in the top-left corner — this app brings it back. The first version read the Spotify window title; the second connects to the Spotify Web API via OAuth and shows the track, album art and progress in an animated overlay.",
+      en: "Upgrading from Windows 10 to 11 removed the small media flyout in the top-left corner. This app brings it back. The first version read the Spotify window title; the second connects to the Spotify Web API via OAuth and shows the track, album art and progress in an animated overlay.",
     },
     highlights: {
       tr: [
@@ -709,45 +709,40 @@ export const projects: Project[] = [
 // Arayüz yazıları
 export const ui = {
   nav: {
-    home: { tr: "Ana Sayfa", en: "Home" },
     projects: { tr: "Projeler", en: "Projects" },
     experience: { tr: "Deneyim", en: "Experience" },
     about: { tr: "Hakkımda", en: "About" },
     contact: { tr: "İletişim", en: "Contact" },
   },
-  available: { tr: "Yeni iş fırsatlarına açığım", en: "Open to new opportunities" },
-  seeProjects: { tr: "Projeleri incele", en: "View projects" },
-  getInTouch: { tr: "İletişime geç", en: "Get in touch" },
-  downloadCv: { tr: "CV indir", en: "Download CV" },
-  featured: { tr: "Öne çıkan projeler", en: "Featured projects" },
+  nowPrefix: { tr: "Şu anda ", en: "I currently volunteer at " },
+  nowSuffix: { tr: "'da gönüllü olarak çalışıyorum.", en: "." },
+  available: { tr: "Yeni iş fırsatlarına açığım.", en: "I'm open to new opportunities." },
+  email: { tr: "E-posta", en: "Email" },
+  cv: { tr: "CV (PDF)", en: "CV (PDF)" },
+  selected: { tr: "Seçili projeler", en: "Selected projects" },
   allProjects: { tr: "Tüm projeler", en: "All projects" },
   projectsIntro: {
-    tr: "Okul projelerinden kendi kullandığım araçlara kadar geliştirdiğim projeler. Çoğunun kaynak kodu GitHub'da, bazıları özel.",
-    en: "Things I've built, from university projects to tools I use myself. Most are open source on GitHub; a few are private.",
+    tr: "Okul projelerinden kendi kullandığım araçlara kadar yaptığım işler. Çoğunun kaynak kodu GitHub'da, birkaçı özel.",
+    en: "Things I've built, from university projects to tools I use myself. Most are on GitHub, a few are private.",
   },
   all: { tr: "Tümü", en: "All" },
-  details: { tr: "Detaylar", en: "Details" },
   overview: { tr: "Genel bakış", en: "Overview" },
-  highlights: { tr: "Öne çıkanlar", en: "Highlights" },
-  stack: { tr: "Teknolojiler", en: "Tech stack" },
-  year: { tr: "Yıl", en: "Year" },
-  category: { tr: "Kategori", en: "Category" },
-  links: { tr: "Bağlantılar", en: "Links" },
+  highlights: { tr: "Özellikler", en: "Features" },
+  stack: { tr: "Teknolojiler", en: "Built with" },
   sourceCode: { tr: "Kaynak kod", en: "Source code" },
-  privateRepo: { tr: "Özel", en: "Private" },
-  privateNote: { tr: "Bu projenin kaynak kodu özel.", en: "The source code for this project is private." },
+  privateRepo: { tr: "Özel repo", en: "Private repo" },
   wip: { tr: "Geliştiriliyor", en: "In progress" },
   liveDemo: { tr: "Canlı demo", en: "Live demo" },
-  back: { tr: "Tüm projeler", en: "All projects" },
-  next: { tr: "Sonraki proje", en: "Next project" },
-  aboutTitle: { tr: "Hakkımda", en: "About me" },
-  focus: { tr: "Odak alanları", en: "Focus areas" },
-  skills: { tr: "Yetenekler", en: "Skills" },
+  prev: { tr: "Önceki", en: "Previous" },
+  next: { tr: "Sonraki", en: "Next" },
+  aboutTitle: { tr: "Hakkımda", en: "About" },
+  focus: { tr: "Üzerinde çalıştıklarım", en: "What I work on" },
+  skills: { tr: "Kullandığım araçlar", en: "Tools I use" },
   education: { tr: "Eğitim", en: "Education" },
   experienceTitle: { tr: "Deneyim", en: "Experience" },
   experienceIntro: {
-    tr: "Gönüllü olarak yer aldığım Neuvikon ve stüdyonun üzerinde çalıştığı projeler.",
-    en: "Neuvikon, where I volunteer, and the projects the studio is working on.",
+    tr: "Şu anda Neuvikon'da gönüllü olarak çalışıyorum. Aşağıda stüdyo ve yürüttüğü projeler hakkında kısa bilgi var.",
+    en: "I currently volunteer at Neuvikon. Below is a short overview of the studio and the projects it's working on.",
   },
   divisions: { tr: "Bölümler", en: "Divisions" },
   studioProjects: { tr: "Neuvikon projeleri", en: "Neuvikon projects" },
@@ -755,25 +750,17 @@ export const ui = {
     tr: "Stüdyonun yürüttüğü projeler. Ayrıntılar Neuvikon'un sitesinde.",
     en: "Projects the studio is working on. More details on Neuvikon's site.",
   },
-  visitSite: { tr: "Neuvikon'un sitesi", en: "Neuvikon's website" },
-  live: { tr: "Yayında", en: "Live" },
-  inDev: { tr: "Geliştirmede", en: "In development" },
-  seeExperience: { tr: "Deneyimi incele", en: "View experience" },
-  partOf: { tr: "Bünyesinde", en: "Part of" },
-  contactTitle: { tr: "Birlikte çalışalım", en: "Let's work together" },
+  live: { tr: "Yayında", en: "Released" },
+  inDev: { tr: "Geliştiriliyor", en: "In development" },
+  contactTitle: { tr: "İletişim", en: "Contact" },
   contactText: {
-    tr: "Bir iş fırsatı ya da proje hakkında konuşmak için e-posta gönderebilirsin. Genelde bir-iki gün içinde dönüyorum.",
-    en: "Reach out about a job opportunity or a project. I usually reply within a day or two.",
+    tr: "Bir iş fırsatı ya da proje hakkında konuşmak istersen e-posta gönderebilirsin. Genelde bir-iki gün içinde dönüyorum.",
+    en: "If you'd like to talk about a job or a project, send me an email. I usually reply within a day or two.",
   },
-  ctaTitle: { tr: "Bir fikrin mi var?", en: "Have something in mind?" },
-  ctaText: {
-    tr: "Yeni iş fırsatlarına açığım. Konuşmak istersen bir e-posta yeterli.",
-    en: "I'm open to new opportunities. An email is all it takes.",
-  },
-  email: { tr: "E-posta", en: "Email" },
   copy: { tr: "Kopyala", en: "Copy" },
   copied: { tr: "Kopyalandı", en: "Copied" },
-  elsewhere: { tr: "Diğer hesaplar", en: "Elsewhere" },
-  notFound: { tr: "Aradığın sayfa bulunamadı.", en: "The page you're looking for doesn't exist." },
+  elsewhere: { tr: "Diğer", en: "Elsewhere" },
+  location: { tr: "Konum", en: "Location" },
+  notFound: { tr: "Aradığın sayfa bulunamadı.", en: "This page doesn't exist." },
   goHome: { tr: "Ana sayfaya dön", en: "Back to home" },
 } satisfies Record<string, T | Record<string, T>>;
