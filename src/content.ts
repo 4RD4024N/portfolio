@@ -56,6 +56,7 @@ export const experience: Job[] = [
     org: "SEGG International",
     role: { tr: "Proje Asistanı", en: "Project Assistant" },
     period: { tr: "Ağu 2026 – Günümüz", en: "Aug 2026 – Present" },
+    location: { tr: "Ankara · Uzaktan", en: "Ankara · Remote" },
     type: "work",
     points: {
       tr: [
@@ -96,11 +97,11 @@ export const experience: Job[] = [
     org: "SEGG International",
     role: { tr: "Mühendis Stajyer", en: "Engineer Intern" },
     period: { tr: "Haz 2025 – Haz 2026", en: "Jun 2025 – Jun 2026" },
-    location: { tr: "Lviv, Ukrayna", en: "Lviv, Ukraine" },
+    location: { tr: "Ankara · Uzaktan", en: "Ankara · Remote" },
     type: "intern",
     points: {
-      tr: ["Lviv'de iletişim kuleleri, anten karıştırıcı (jammer) sistemleri ile rüzgâr ve güneş enerjisi projelerinde çalıştım"],
-      en: ["Worked on communication towers, antenna jammer systems, and wind and solar energy projects in Lviv"],
+      tr: ["Ukrayna'nın Lviv şehrindeki iletişim kulesi, anten karıştırıcı (jammer) sistemi ile rüzgâr ve güneş enerjisi projelerinde uzaktan çalıştım"],
+      en: ["Worked remotely on communication tower, antenna jammer system, and wind and solar energy projects in Lviv, Ukraine"],
     },
   },
   {
