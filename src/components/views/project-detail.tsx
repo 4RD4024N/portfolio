@@ -71,7 +71,7 @@ export function ProjectDetailView({ slug }: { slug: string }) {
                   target="_blank"
                   rel="noreferrer"
                   className={`group inline-flex items-center gap-2 px-4 py-3 font-semibold whitespace-nowrap transition-colors ${
-                    k === 0 ? "bg-ink text-paper hover:bg-red" : "bg-field hover:bg-ink hover:text-paper"
+                    k === 0 ? "bg-ink text-paper hover:bg-red hover:text-white" : "bg-field hover:bg-ink hover:text-paper"
                   }`}
                 >
                   {l.label}

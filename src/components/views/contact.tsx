@@ -38,7 +38,7 @@ export function ContactView() {
             <div className="col-span-4 md:col-span-6 lg:col-span-12">
               <button
                 onClick={copy}
-                className="bg-white px-4 py-2.5 font-semibold text-red transition-colors hover:bg-ink hover:text-white"
+                className="bg-white px-4 py-2.5 font-semibold text-red transition-colors hover:bg-[var(--black)] hover:text-white"
               >
                 {copied ? t(ui.copied) : t(ui.copy)}
               </button>

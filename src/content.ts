@@ -857,6 +857,8 @@ export const ui = {
   gamesSub: { tr: "Muavin Sim · Neuvikon Games oyunları", en: "Muavin Sim · Neuvikon Games titles" },
   details: { tr: "Ayrıntılar", en: "Details" },
   menu: { tr: "Menü", en: "Menu" },
+  toDark: { tr: "Koyu temaya geç", en: "Switch to dark theme" },
+  toLight: { tr: "Açık temaya geç", en: "Switch to light theme" },
   year: { tr: "Yıl", en: "Year" },
   category: { tr: "Kategori", en: "Category" },
   source: { tr: "Kaynak", en: "Source" },

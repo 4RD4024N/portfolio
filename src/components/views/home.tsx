@@ -45,7 +45,7 @@ export function HomeView() {
                   </span>
                 </span>
                 <span className="block overflow-hidden pb-[0.04em]">
-                  <span className="line-up text-red" style={{ animationDelay: "160ms" }}>
+                  <span className="line-up text-red-ink" style={{ animationDelay: "160ms" }}>
                     {rest.join(" ")}
                   </span>
                 </span>
@@ -67,7 +67,7 @@ export function HomeView() {
               <div className="flex flex-col gap-3">
                 <a
                   href={`mailto:${profile.email}`}
-                  className="group flex items-center justify-between gap-4 bg-red px-4 py-3.5 font-semibold text-white transition-colors hover:bg-ink"
+                  className="group flex items-center justify-between gap-4 bg-red px-4 py-3.5 font-semibold text-white transition-colors hover:bg-[#a51f12]"
                 >
                   <span className="truncate">{profile.email}</span>
                   <ArrowRight className="size-5 shrink-0 transition-transform duration-500 ease-out-expo group-hover:translate-x-1" />

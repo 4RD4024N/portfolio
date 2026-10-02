@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container, grid } from "@/components/container";
 import { useLang } from "@/components/lang";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { profile, ui } from "@/content";
 
 const links = [
@@ -20,13 +21,14 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-30 border-b border-ink bg-paper">
       <Container className={`${grid} items-center gap-y-2 py-3 sm:py-4`}>
-        <Link href="/" className="group col-span-3 flex items-center gap-2.5 font-bold md:col-span-2 lg:col-span-4">
+        <Link href="/" className="group col-span-2 flex items-center gap-2.5 font-bold md:col-span-2 lg:col-span-3">
           <span className="size-3 bg-red transition-transform duration-300 ease-out-expo group-hover:rotate-45" />
           <span className="condensed text-lg tracking-tight">{profile.name}</span>
         </Link>
 
         {/* Dil seçimi: telefonda isimle aynı satırda */}
-        <div className="col-span-1 flex justify-end text-sm font-semibold md:order-3 md:col-span-1 lg:col-span-1">
+        <div className="col-span-2 flex items-center justify-end gap-2 text-sm font-semibold md:order-3 md:col-span-1 lg:col-span-2">
+          <ThemeToggle />
           {(["tr", "en"] as const).map((l) => (
             <button
               key={l}

@@ -11,7 +11,32 @@
   --blue: #1f45d6; /* Web & Backend */
   --yellow: #f2b705; /* Görüntü İşleme & AI */
   --green: #0f7a50; /* Masaüstü & Otomasyon */
+  --red-ink: #cf2a1a; /* zemin üstündeki kırmızı yazı */
+  --black: #111111; /* tema değişse de sabit kalan siyah (sarı alan üstündeki yazı) */
   color-scheme: light;
+}
+
+/* Koyu tema: zemin ve mürekkep yer değiştirir, renk alanları aynı kalır.
+   Kullanıcı seçimi data-theme ile; seçim yoksa sistem ayarı geçerli. */
+:root[data-theme="dark"] {
+  --paper: #121212;
+  --ink: #f0f0ec;
+  --muted: #a3a39c;
+  --rule: #34342f;
+  --field: #262624;
+  --red-ink: #f05a43;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121212;
+    --ink: #f0f0ec;
+    --muted: #a3a39c;
+    --rule: #34342f;
+    --field: #262624;
+    --red-ink: #f05a43;
+    color-scheme: dark;
+  }
 }
 
 @theme {
@@ -24,15 +49,16 @@
   --color-blue: var(--blue);
   --color-yellow: var(--yellow);
   --color-green: var(--green);
+  --color-red-ink: var(--red-ink);
   --font-sans: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Kategori rengi: --c alan rengi, --on üzerindeki yazı rengi */
 .cat-web { --c: var(--blue); --on: #ffffff; }
-.cat-vision { --c: var(--yellow); --on: var(--ink); }
+.cat-vision { --c: var(--yellow); --on: var(--black); }
 .cat-desktop { --c: var(--green); --on: #ffffff; }
-.cat-game { --c: var(--ink); --on: #ffffff; }
+.cat-game { --c: var(--ink); --on: var(--paper); }
 .cat-neutral { --c: var(--field); --on: var(--ink); }
 .cat-red { --c: var(--red); --on: #ffffff; }
 
@@ -86,7 +112,7 @@ body {
 
 /* Metin içi link: alt çizgi soldan sağa dolar */
 .link {
-  background-image: linear-gradient(var(--red), var(--red)), linear-gradient(var(--ink), var(--ink));
+  background-image: linear-gradient(var(--red-ink), var(--red-ink)), linear-gradient(var(--ink), var(--ink));
   background-size: 0% 2px, 100% 1px;
   background-position: 0 100%, 0 100%;
   background-repeat: no-repeat;
@@ -94,7 +120,7 @@ body {
   transition: background-size 0.45s var(--ease-out-expo), color 0.2s;
 }
 .link:hover {
-  color: var(--red);
+  color: var(--red-ink);
   background-size: 100% 2px, 100% 1px;
 }
 

@@ -19,7 +19,7 @@ Unresolved: no project screenshots exist yet; fields carry type and counts, not 
 
 THESIS: A Swiss International Style poster that is also the site's index. The modular grid is visible and structural; type and flat colour fields do every job. It refuses the dev-portfolio default of a name over a row of equal project cards, and the blob-and-glow dark theme.
 
-OWN-WORLD: Neutral white ground, near-black ink, hairline grid rules. Archivo, a grotesk with a width axis: condensed heavy for display, normal width for text, tabular figures for dates. Flat fields with no radius, no shadow, no gradient, each colour owned by one role: signal red for Arda and every contact action, ultramarine for web and backend, chrome yellow for vision and AI, green for desktop and automation, ink-black for games, a neutral grey field for areas proven by work experience rather than projects (cloud, project work). Arrows drawn as SVG.
+OWN-WORLD: Neutral white ground with near-black ink, or the same poster on black stock in dark mode (paper and ink swap, poster colours unchanged); hairline grid rules. Archivo, a grotesk with a width axis: condensed heavy for display, normal width for text, tabular figures for dates. Flat fields with no radius, no shadow, no gradient, each colour owned by one role: signal red for Arda and every contact action, ultramarine for web and backend, chrome yellow for vision and AI, green for desktop and automation, ink-black for games, a neutral grey field for areas proven by work experience rather than projects (cloud, project work). Arrows drawn as SVG.
 
 STORY: The visitor sees his name and his range together, believes he is a broad, careful engineer, and either opens a discipline or emails him.
 

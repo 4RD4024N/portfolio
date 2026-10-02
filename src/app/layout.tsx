@@ -3,6 +3,7 @@ import { Archivo } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { LangProvider } from "@/components/lang";
 import { Nav } from "@/components/nav";
+import { themeScript } from "@/components/theme-script";
 import { profile } from "@/content";
 import "./globals.css";
 
@@ -32,12 +33,19 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f7f7",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f7f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr" className={archivo.variable}>
+    <html lang="tr" className={archivo.variable} suppressHydrationWarning>
+      <head>
+        {/* Tema, sayfa çizilmeden önce ayarlanır */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="flex min-h-svh flex-col font-sans text-[1.0625rem] leading-relaxed antialiased">
         <LangProvider>
           <Nav />

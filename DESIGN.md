@@ -12,6 +12,14 @@ colors:
   chrome-yellow: "#f2b705"
   press-green: "#0f7a50"
   on-field-white: "#ffffff"
+  red-ink: "#cf2a1a"
+  fixed-black: "#111111"
+  paper-dark: "#121212"
+  ink-dark: "#f0f0ec"
+  muted-dark: "#a3a39c"
+  rule-dark: "#34342f"
+  field-dark: "#262624"
+  red-ink-dark: "#f05a43"
 typography:
   display:
     fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
@@ -125,9 +133,9 @@ components:
 
 **Creative North Star: "The Poster That Is the Index"**
 
-A Swiss International Typographic Style poster that also works as the site's index. A visible modular grid (12 columns on desktop, 6 on tablet, 4 on phones) organises every page, and its hairline rules show behind the home hero and as ruler ticks under page headers. Type and flat colour fields do all the work: one grotesk (Archivo) at two widths, near-black ink on a light neutral ground, and a small set of saturated fields, each owning exactly one meaning.
+A Swiss International Typographic Style poster that also works as the site's index. A visible modular grid (12 columns on desktop, 6 on tablet, 4 on phones) organises every page, and its hairline rules show behind the home hero and as ruler ticks under page headers. Type and flat colour fields do all the work: one grotesk (Archivo) at two widths, ink on a neutral ground (light by default, dark on request), and a small set of saturated fields, each owning exactly one meaning.
 
-The tone is calm, exact and adult. The user turned down results that felt "too toy-like", so the system gets its energy from scale contrast and colour mass, not from playful shapes, rounding or ornament. The site is light-ground only. That was chosen for the use scene: employers reading on desktops and phones in daylight. No dark mode exists and none should be added.
+The tone is calm, exact and adult. The user turned down results that felt "too toy-like", so the system gets its energy from scale contrast and colour mass, not from playful shapes, rounding or ornament. The site ships a light and a dark theme. It follows the visitor's system setting until they pick one with the theme toggle, and the choice is remembered. In dark mode paper and ink swap places; the poster colours stay exactly the same, so the system reads as the same poster printed on black stock.
 
 Motion follows one grammar: straight wipes along the grid axes with an exponential ease-out. Content is visible by default, and nothing animates under reduced motion.
 
@@ -149,19 +157,24 @@ A neutral paper-and-ink ground with four saturated poster colours, each assigned
 - **Ultramarine** (ultramarine): Web & Backend. White text on the field.
 - **Chrome Yellow** (chrome-yellow): Vision & AI. Ink text on the field, never white.
 - **Press Green** (press-green): Desktop & Automation. White text on the field.
-- **Ink as field** (ink): Games. White text on the field.
+- **Ink as field** (ink): Games. Paper-coloured text on the field, so in dark mode the games field turns light with dark text and never disappears into the ground.
 - **Field Grey** (field): areas proven by work experience rather than projects (cloud, project work). Also the resting fill of secondary link buttons and the hover fill of filter cells. Ink text on the field.
 
 ### Neutral
-- **Paper** (paper): the page ground and the browser theme colour.
+Each neutral has a dark-theme value (`*-dark` tokens) applied through `:root[data-theme="dark"]`, or through `prefers-color-scheme: dark` when the visitor has not chosen.
+- **Paper** (paper / paper-dark): the page ground and the browser theme colour.
 - **Ink** (ink): text, heavy 1px structural rules (header, section titles, page-header base), and the 1px gaps between fields in field grids.
 - **Muted** (muted): secondary text such as dates, locations, summaries and inactive nav.
 - **Rule** (rule): hairlines between list rows. At 70% opacity it draws the background column rules.
+- **Red Ink** (red-ink / red-ink-dark): red set as text on the ground (the surname line, the 404 numeral, link hover and underline). It lifts to a lighter red in dark mode to stay legible; signal-red stays the field colour behind white text in both themes.
+- **Fixed Black** (fixed-black): text on chrome yellow, and the hover fill of the copy button on the red block. It does not invert with the theme.
 
 ### Named Rules
 **The One Role Rule.** Each saturated colour means one thing on every page. A category colour shows up only where that category is meant: its range field, its row's hover fill, its square marker, its project poster header.
 
-**The Text-On Pairing Rule.** Each field carries its own text colour as a pair: white on red, ultramarine, green and ink; ink on yellow and grey. Never set white on chrome yellow.
+**The Text-On Pairing Rule.** Each field carries its own text colour as a pair: white on red, ultramarine and green; paper on ink; ink on grey; fixed black on yellow. Never set white or a theme-inverting colour on chrome yellow.
+
+**The Same Poster Rule.** Dark mode swaps only the neutrals (paper, ink, muted, rule, field, red ink). The four poster colours and their text pairings never change between themes.
 
 ## Typography
 
@@ -227,7 +240,7 @@ A tight grid of paper cells with 1px ink gaps inside an ink frame, five across o
 - **Hover / Focus:** the category field wipes in from the left (clip-path, 0.55s ease-out-expo). The text switches to the field's text colour, muted text to 78% of it, and on desktop the arrow slides in.
 
 ### Navigation
-A sticky paper header with an ink base rule. On the left are the red brand square and the condensed name. Nav links are 0.95rem semibold in muted, turning ink on hover. The active link is ink with a 6px red square marker that scales in. The TR/EN toggle is a pair of small uppercase codes, with the active one as an ink tile. On phones the links wrap onto a second row under the name and toggle.
+A sticky paper header with an ink base rule. On the left are the red brand square and the condensed name. Nav links are 0.95rem semibold in muted, turning ink on hover. The active link is ink with a 6px red square marker that scales in. The TR/EN toggle is a pair of small uppercase codes, with the active one as an ink tile. Beside it, the theme toggle is a drawn square half-filled with ink; it turns red-ink on hover and its half-fill rotates. On phones the links wrap onto a second row under the name and toggle.
 
 ### Range Bar (signature)
 A full-width row of colour fields under the home name, one per discipline: web, vision, desktop, games, cloud and project work. Each field shows a condensed label, an arrow and a tabular count, with 1px ink gaps between fields. The fields wipe in one after another (90ms stagger). On desktop, hovering or focusing a field widens it (flex-grow to 2.3, 0.7s ease-out-expo) while its neighbours yield, and reveals its detail line. On phones the fields stack in a grid, the detail is always visible, and every field is a link.
@@ -248,7 +261,7 @@ A signal-red field closes every page, padded 24, 40 or 48px depending on width. 
 - **Do** end every page with the signal-red contact block.
 
 ### Don't:
-- **Don't** add a dark theme. The ground is light neutral paper, by the user's choice.
+- **Don't** recolour the poster fields in dark mode, or use `ink` for anything that must stay black in both themes. Use `fixed-black` for that.
 - **Don't** round corners, add shadows, gradients or blur, or use glows behind fields.
 - **Don't** make the system toy-like with bouncy motion, playful shapes or decorative illustration. The user rejected that register.
 - **Don't** lay projects out as a row of equal cards with images. Projects are ruled index rows.
