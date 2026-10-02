@@ -1,50 +1,63 @@
 @import "tailwindcss";
 
-/* Renkler: açık tema varsayılan, sistem koyu moddaysa koyu tema */
+/* ---------- Renkler ---------- */
 :root {
-  --bg: #faf9f6;
-  --fg: #1c1b19;
-  --muted: #6d6a63;
-  --line: #e4e1da;
-  --accent: #b5482a;
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --fg: #1d1b26;
+  --muted: #6a6778;
+  --line: #ebe7f0;
+  --violet: #6c5ce7;
+  --coral: #f2734f;
+  --mint: #1fa58a;
+  --amber: #e0a21a;
+  --accent: var(--violet);
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #161514;
-    --fg: #e9e6e0;
-    --muted: #9b978f;
-    --line: #2d2b28;
-    --accent: #e98a68;
+    --bg: #121119;
+    --surface: #1a1923;
+    --fg: #ecebf4;
+    --muted: #a19eb0;
+    --line: #2a2836;
+    --violet: #a99dff;
+    --coral: #ff9c7c;
+    --mint: #5fd6bb;
+    --amber: #f3c35a;
     color-scheme: dark;
   }
 }
 
 @theme {
   --color-bg: var(--bg);
+  --color-surface: var(--surface);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-violet: var(--violet);
+  --color-coral: var(--coral);
+  --color-mint: var(--mint);
+  --color-amber: var(--amber);
   --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
-/* Büyük ekranlarda yazı biraz büyüsün */
+/* Kategori renkleri: --c değişkeni */
+.cat-web { --c: var(--violet); }
+.cat-vision { --c: var(--coral); }
+.cat-desktop { --c: var(--mint); }
+.cat-game { --c: var(--amber); }
+
+/* ---------- Temel ---------- */
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
-@media (min-width: 1536px) {
-  html {
-    font-size: 17px;
-  }
-}
-@media (min-width: 2200px) {
-  html {
-    font-size: 18px;
-  }
-}
+@media (min-width: 1536px) { html { font-size: 17px; } }
+@media (min-width: 2200px) { html { font-size: 18px; } }
 
 body {
   background: var(--bg);
@@ -52,18 +65,112 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--accent) 25%, transparent);
+  background: color-mix(in oklab, var(--violet) 25%, transparent);
 }
 
-/* Metin içi linkler */
+/* Altı soldan sağa çizilen link */
 .link {
-  text-decoration: underline;
-  text-decoration-color: var(--line);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  transition: text-decoration-color 0.15s, color 0.15s;
+  background-image: linear-gradient(currentColor, currentColor), linear-gradient(var(--line), var(--line));
+  background-size: 0% 1px, 100% 1px;
+  background-position: 0 100%, 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 1px;
+  transition: background-size 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.2s;
 }
 .link:hover {
   color: var(--accent);
-  text-decoration-color: currentColor;
+  background-size: 100% 1px, 100% 1px;
+}
+
+/* Kategori renginde küçük kutucuk */
+.tile {
+  background: color-mix(in oklab, var(--c) 16%, var(--surface));
+  color: var(--c);
+  border: 1px solid color-mix(in oklab, var(--c) 22%, transparent);
+}
+
+/* ---------- Animasyonlar ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Kaydırınca beliren öğeler (Reveal bileşeni) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sayfa geçişi */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.page-in {
+  animation: page-in 0.45s ease-out both;
+}
+
+/* Hero arkasındaki süzülen renk lekeleri */
+@keyframes drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 30px) scale(1.15); }
+}
+@keyframes drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1.1); }
+  50% { transform: translate(-50px, 40px) scale(0.95); }
+}
+@keyframes drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.2); }
+}
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.35;
+}
+@media (prefers-color-scheme: dark) {
+  .blob { opacity: 0.22; }
+}
+
+/* Kayan teknoloji şeridi */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+.marquee-wrap:hover .marquee {
+  animation-play-state: paused;
+}
+.fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@keyframes soft-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--mint) 45%, transparent); }
+  50% { box-shadow: 0 0 0 5px transparent; }
+}
+.pulse {
+  animation: soft-pulse 2.4s ease-in-out infinite;
+}
+
+/* Hareket istemeyenler için hepsini kapat */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
 }

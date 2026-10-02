@@ -37,8 +37,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf9f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#161514" },
+    { media: "(prefers-color-scheme: light)", color: "#fbfaf8" },
+    { media: "(prefers-color-scheme: dark)", color: "#121119" },
   ],
 };
 
@@ -46,6 +46,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className={`${plex.variable} ${plexMono.variable}`}>
       <body className="flex min-h-svh flex-col font-sans leading-relaxed antialiased">
+        {/* JavaScript yoksa kaydırma animasyonları içeriği gizli bırakmasın */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <LangProvider>
           <Nav />
           <main className="flex-1">{children}</main>
