@@ -17,8 +17,8 @@ export const profile = {
     en: "Computer Engineering graduate from Başkent University. I build web, cloud and interactive applications, and full-stack systems with React, JavaScript, Python and Spring Boot.",
   } as T,
   about: {
-    tr: "Pratik problem çözmeye, kullanıcı odaklı tasarıma ve temiz, bakımı kolay koda önem veriyorum. Farklı ekiplerle birlikte çalışıp gerçek kullanımda işe yarayan çözümler üretmeyi seviyorum.\n\nGünlük hayatımda fark ettiğim boşlukları doldurmaktan, kendi işlerimi hızlandıran küçük otomasyonlar kurmaktan ve yeni şeyler denemekten keyif alıyorum. El hareketleriyle medya kontrolü, çalan müziğe göre görsel üreten bir AI visualizer ve tarayıcıda şifreli sesli görüşme uygulaması bu merakın ürünleri.\n\nŞu anda SEGG International'da proje asistanı olarak çalışıyorum. Ayrıca üç arkadaşımla birlikte kurduğumuz Neuvikon'da gönüllü olarak projeler geliştiriyoruz.",
-    en: "I care about practical problem-solving, user-centered design and clean, maintainable code. I enjoy working across teams to deliver solutions that hold up in real use.\n\nI like filling in the gaps I notice in daily life, setting up small automations to speed up my own work, and trying new things. Media control with hand gestures, an AI visualizer that reacts to whatever is playing, and an encrypted voice chat in the browser all came out of that.\n\nI currently work as a Project Assistant at SEGG International. I also build projects at Neuvikon, a studio I co-founded with three friends.",
+    tr: "Pratik problem çözmeye, kullanıcı odaklı tasarıma ve temiz, bakımı kolay koda önem veriyorum. Farklı ekiplerle birlikte çalışıp gerçek kullanımda işe yarayan çözümler üretmeyi seviyorum.\n\nGünlük hayatımda fark ettiğim boşlukları doldurmaktan, kendi işlerimi hızlandıran küçük otomasyonlar kurmaktan ve yeni şeyler denemekten keyif alıyorum. El hareketleriyle medya kontrolü, çalan müziğe göre görsel üreten bir AI visualizer ve tarayıcıda şifreli sesli görüşme uygulaması bu merakın ürünleri.\n\nŞu anda SEGG International'da proje asistanı olarak çalışıyorum. Ayrıca arkadaşlarımla birlikte kurduğumuz Neuvikon'da gönüllü olarak projeler geliştiriyoruz.",
+    en: "I care about practical problem-solving, user-centered design and clean, maintainable code. I enjoy working across teams to deliver solutions that hold up in real use.\n\nI like filling in the gaps I notice in daily life, setting up small automations to speed up my own work, and trying new things. Media control with hand gestures, an AI visualizer that reacts to whatever is playing, and an encrypted voice chat in the browser all came out of that.\n\nI currently work as a Project Assistant at SEGG International. I also build projects at Neuvikon, a studio I co-founded with friends.",
   } as T,
   email: "arda.ozan.dev@gmail.com",
   cv: "", // ör. "/cv.pdf", dosyayı public/ klasörüne koy
@@ -82,12 +82,12 @@ export const experience: Job[] = [
     type: "volunteer",
     points: {
       tr: [
-        "Üç arkadaşımla birlikte kurduğumuz yazılım, oyun ve robotik stüdyosu",
+        "Arkadaşlarımla birlikte kurduğumuz yazılım, oyun ve robotik stüdyosu",
         "Bazıları kendi iç operasyonlarımızda kullanılan projeler yürütüyoruz",
         "Android ve iOS için geliştirilen birkaç uygulamamız var; ikisi test aşamasında",
       ],
       en: [
-        "A software, games and robotics studio I co-founded with three friends",
+        "A software, games and robotics studio I co-founded with friends",
         "We run several projects in parallel, some of them used in our own internal operations",
         "Several apps in development for Android and iOS, two of them in testing",
       ],
@@ -163,8 +163,8 @@ export const neuvikon = {
     en: "An independent technology studio working in software, games and robotics.",
   } as T,
   description: {
-    tr: "Neuvikon ürün geliştirme, mobil oyun ve gömülü sistemler alanlarında çalışan bir stüdyo. İşleri tasarımdan yayına kadar uçtan uca ekip içinde üretiyor. 2026'da kuruldu, 4 kişilik bir ekip.",
-    en: "Neuvikon is a studio working across product development, mobile games and embedded systems, taking work from design to release entirely in house. Founded in 2026, with a team of four.",
+    tr: "Neuvikon ürün geliştirme, mobil oyun ve gömülü sistemler alanlarında çalışan bir stüdyo. İşleri tasarımdan yayına kadar uçtan uca ekip içinde üretiyor. 2026'da kuruldu.",
+    en: "Neuvikon is a studio working across product development, mobile games and embedded systems, taking work from design to release entirely in house. Founded in 2026.",
   } as T,
   divisions: [
     {
@@ -785,10 +785,10 @@ export const ui = {
     contact: { tr: "İletişim", en: "Contact" },
   },
   nowPrefix: {
-    tr: "Şu anda SEGG International'da proje asistanı olarak çalışıyorum. Ayrıca üç arkadaşımla kurduğumuz ",
+    tr: "Şu anda SEGG International'da proje asistanı olarak çalışıyorum. Ayrıca arkadaşlarımla birlikte kurduğumuz ",
     en: "I currently work as a Project Assistant at SEGG International, and build projects at ",
   },
-  nowSuffix: { tr: "'da gönüllü olarak projeler geliştiriyorum.", en: ", a studio I co-founded with three friends." },
+  nowSuffix: { tr: "'da gönüllü olarak projeler geliştiriyorum.", en: ", a studio I co-founded with friends." },
   available: { tr: "Yeni iş fırsatlarına açığım.", en: "I'm open to new opportunities." },
   email: { tr: "E-posta", en: "Email" },
   cv: { tr: "CV (PDF)", en: "CV (PDF)" },

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Container, useProgress } from "@/components/chrome";
+import { useEffect, useRef, useState, ViewTransition } from "react";
+import { Container, useProgress, useSticky } from "@/components/chrome";
 import { ArrowRight, Check, Copy, Lock } from "@/components/icons";
 import { useLang } from "@/components/lang";
 import { ProjectVisual } from "@/components/visuals";
@@ -68,69 +68,169 @@ export function Statement({ text }: { text: string }) {
   );
 }
 
-// Proje sahnesi: tam ekran, metin ve canlı görsel
+// Proje sahnesi: görsel ekrana yapışır, kaydırdıkça özet ve özellikler tek tek okunur, görsel de o adımı canlandırır
 export function Scene({ project: p, flip }: { project: Project; flip?: boolean }) {
   const { lang, t } = useLang();
-  const { ref, p: pr } = useProgress<HTMLElement>();
-  const enter = Math.min(1, Math.max(0, pr / 0.45));
+  const steps = [t(p.summary), ...p.highlights[lang].slice(0, 3)];
+  const n = steps.length;
+  const { ref, p: pr } = useSticky<HTMLElement>();
+  const pos = pr * n;
+  const step = Math.min(n - 1, Math.floor(pos));
   return (
-    <section ref={ref} className={`${catCls(p.category)} flex min-h-[100svh] items-center py-20`}>
-      <Container className={`grid items-center gap-10 lg:grid-cols-12 lg:gap-16`}>
-        <div className={`lg:col-span-5 ${flip ? "lg:order-2" : ""}`}>
-          <CategoryTag p={p} />
-          <h2 className="display mt-4 text-[clamp(2.6rem,5.4vw,4.75rem)]">{p.title}</h2>
-          <p className="mt-5 max-w-[40ch] text-[1.2rem] leading-relaxed text-muted">{t(p.summary)}</p>
-          <p className="mt-5 text-[0.95rem] text-muted">{p.stack.slice(0, 5).join(" · ")}</p>
-          <ArrowLink href={`/projects/${p.slug}`} className="mt-7">
-            {t(ui.details)}
-          </ArrowLink>
-        </div>
-        <div className={`lg:col-span-7 ${flip ? "lg:order-1" : ""}`}>
-          <div
-            className="overflow-hidden rounded-[2rem] bg-surface p-4 will-change-transform sm:p-8"
-            style={{ transform: `scale(${0.9 + enter * 0.1})`, opacity: 0.35 + enter * 0.65 }}
-          >
-            <ProjectVisual project={p} lang={lang} className="h-auto w-full" />
+    <section ref={ref} data-wash={p.category} className={`${catCls(p.category)} relative`} style={{ height: `${n * 70 + 30}svh` }}>
+      <div className="sticky top-12 flex h-[calc(100svh-3rem)] items-center py-6">
+        <Container className="grid items-center gap-6 lg:grid-cols-12 lg:gap-16">
+          <div className={`lg:col-span-5 ${flip ? "lg:order-2" : ""}`}>
+            <CategoryTag p={p} />
+            <h2 className="display mt-3 text-[clamp(2.2rem,5.2vw,4.75rem)]">{p.title}</h2>
+            {/* Adımlar üst üste durur, yalnız geçerli olan görünür */}
+            <div className="mt-5 grid" aria-hidden>
+              {steps.map((s, i) => (
+                <p
+                  key={i}
+                  data-on={i === step ? "true" : i < step ? "past" : "false"}
+                  className={`step col-start-1 row-start-1 max-w-[40ch] leading-relaxed ${i === 0 ? "text-[clamp(1.05rem,1.6vw,1.25rem)] text-muted" : "text-[clamp(1.2rem,2vw,1.6rem)] font-semibold tracking-[-0.015em]"}`}
+                >
+                  {s}
+                </p>
+              ))}
+            </div>
+            <ul className="sr-only">
+              {steps.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+            <div className="mt-6 flex gap-1.5" aria-hidden>
+              {steps.map((_, i) => (
+                <span key={i} className="h-1 w-10 overflow-hidden rounded-full bg-line">
+                  <span className="block h-full origin-left bg-[var(--c)]" style={{ transform: `scaleX(${Math.min(1, Math.max(0, pos - i))})` }} />
+                </span>
+              ))}
+            </div>
+            <ArrowLink href={`/projects/${p.slug}`} className="mt-6">
+              {t(ui.details)}
+            </ArrowLink>
           </div>
-        </div>
-      </Container>
+          <div className={`lg:col-span-7 ${flip ? "lg:order-1" : ""}`}>
+            <ViewTransition name={`pv-${p.slug}`} share="morph" default="none">
+              <div className="scene-surface overflow-hidden rounded-[2rem] p-3 will-change-transform sm:p-8" style={{ transform: `scale(${0.94 + Math.min(1, pos) * 0.06})` }}>
+                <ProjectVisual project={p} lang={lang} step={step} progress={pr} className="mx-auto h-auto max-h-[30svh] w-full lg:max-h-none" />
+              </div>
+            </ViewTransition>
+          </div>
+        </Container>
+      </div>
     </section>
   );
 }
 
-// Proje satırı: kısa liste
-export function ProjectLine({ project: p }: { project: Project }) {
-  const { t } = useLang();
+// Diğer projeler: geniş ekranda dikey kaydırma şeridi yatay kaydırır; telefonda parmakla kaydırılır
+export function ProjectStrip({ items, title, action }: { items: Project[]; title: string; action: React.ReactNode }) {
+  const { lang, t } = useLang();
+  const { ref, p } = useSticky<HTMLElement>();
+  const track = useRef<HTMLDivElement>(null);
+  const [dist, setDist] = useState(0);
+  useEffect(() => {
+    const measure = () => {
+      const el = track.current;
+      const wide = matchMedia("(min-width: 768px)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+      setDist(el && wide ? Math.max(0, el.scrollWidth - el.clientWidth) : 0);
+    };
+    measure();
+    addEventListener("resize", measure);
+    return () => removeEventListener("resize", measure);
+  }, []);
   return (
-    <li className={`${catCls(p.category)} border-t border-line`}>
-      <Link href={`/projects/${p.slug}`} className="group grid grid-cols-[minmax(0,1fr)_auto] gap-x-6 gap-y-1 py-5">
-        <span className="flex items-center gap-2.5 text-[1.15rem] font-semibold tracking-[-0.015em] transition-colors group-hover:text-accent">
-          <span className="size-2 shrink-0 rounded-full bg-[var(--c)]" aria-hidden />
-          {p.title}
-        </span>
-        <span className="text-[0.95rem] text-muted tnum">{p.year}</span>
-        <span className="col-span-2 pl-[1.125rem] text-[0.98rem] leading-relaxed text-muted">{t(p.summary)}</span>
-        {(p.private || p.wip || p.org) && (
-          <span className="col-span-2 pl-[1.125rem]">
-            <Status p={p} t={t} />
-          </span>
-        )}
-      </Link>
-    </li>
+    <section ref={ref} style={{ height: dist ? `calc(100svh + ${dist}px)` : undefined }}>
+      <div className={dist ? "sticky top-12 flex h-[calc(100svh-3rem)] flex-col justify-center overflow-hidden" : "pt-16 sm:pt-24"}>
+        <Container className="flex flex-wrap items-end justify-between gap-4">
+          <h2 className="display text-[clamp(2.4rem,6vw,4.5rem)]">{title}</h2>
+          {action}
+        </Container>
+        <div
+          ref={track}
+          className={`mt-10 flex gap-5 px-5 sm:px-8 lg:px-[max(3rem,calc((100vw-80rem)/2+3rem))] ${dist ? "" : "snap-x snap-mandatory overflow-x-auto pb-4"}`}
+          style={dist ? { transform: `translateX(${-p * dist}px)` } : undefined}
+        >
+          {items.map((q) => (
+            <Link key={q.slug} href={`/projects/${q.slug}`} className={`${catCls(q.category)} group w-[78vw] max-w-[26rem] shrink-0 snap-start`}>
+              <ViewTransition name={`pv-${q.slug}`} share="morph" default="none">
+                <div className="overflow-hidden rounded-[1.5rem] bg-surface p-3 transition-transform duration-500 ease-out-expo group-hover:scale-[1.02] sm:p-4">
+                  <ProjectVisual project={q} lang={lang} className="h-auto w-full" />
+                </div>
+              </ViewTransition>
+              <span className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1">
+                <CategoryTag p={q} />
+                <span className="text-[0.92rem] text-muted tnum">{q.year}</span>
+              </span>
+              <span className="headline mt-2 block text-[1.5rem] transition-colors group-hover:text-accent">{q.title}</span>
+              <span className="mt-1.5 line-clamp-2 block leading-relaxed text-muted">{t(q.summary)}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
 export const jobTag = (j: Job) => (j.type === "intern" ? ui.intern : j.type === "volunteer" ? ui.volunteer : null);
 
-// Deneyim listesi
+// Kaydırdıkça kendini çizen zaman çizgisi: çizgi ekranın ortasının biraz altına kadar dolar
+function useLine<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [fill, setFill] = useState(0);
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setFill(1);
+      return;
+    }
+    let frame = 0;
+    const read = () => {
+      frame = 0;
+      const el = ref.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setFill(Math.min(1, Math.max(0, (innerHeight * 0.62 - r.top) / r.height)));
+    };
+    const on = () => {
+      if (!frame) frame = requestAnimationFrame(read);
+    };
+    read();
+    addEventListener("scroll", on, { passive: true });
+    addEventListener("resize", on);
+    return () => {
+      removeEventListener("scroll", on);
+      removeEventListener("resize", on);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+  return { ref, fill };
+}
+
+// Deneyim listesi: solda kendini çizen çizgi, sırası gelen görev yanar
 export function JobList({ full = false }: { full?: boolean }) {
   const { lang, t } = useLang();
+  const { ref, fill } = useLine<HTMLOListElement>();
+  const total = experience.length + education.length;
+  const lit = (i: number) => fill >= (i + 0.35) / total;
+  const dot = (on: boolean) => (
+    <span
+      aria-hidden
+      className={`absolute top-[2.35rem] -left-8 size-3 -translate-x-1/2 rounded-full border-2 transition-all duration-500 ease-out-expo sm:-left-10 ${on ? "scale-110 border-accent bg-accent" : "border-line bg-[var(--page)]"}`}
+    />
+  );
+  const row = (on: boolean) => `relative grid gap-x-10 gap-y-2 border-t border-line py-8 transition-opacity duration-700 md:grid-cols-[13rem_minmax(0,1fr)] ${on ? "opacity-100" : "opacity-55"}`;
   return (
-    <ol>
-      {experience.map((j) => {
+    <ol ref={ref} className="relative pl-8 sm:pl-10">
+      <span aria-hidden className="absolute top-[2.7rem] bottom-8 left-0 w-px bg-line">
+        <span className="block h-full w-full origin-top bg-accent" style={{ transform: `scaleY(${fill})` }} />
+      </span>
+      {experience.map((j, i) => {
         const tag = jobTag(j);
+        const on = lit(i);
         return (
-          <li key={j.org + j.period.en} className="grid gap-x-10 gap-y-2 border-t border-line py-8 md:grid-cols-[13rem_minmax(0,1fr)]">
+          <li key={j.org + j.period.en} className={row(on)}>
+            {dot(on)}
             <p className="text-[0.95rem] text-muted tnum">{t(j.period)}</p>
             <div>
               <h3 className="headline text-[clamp(1.5rem,2.6vw,2rem)]">{t(j.role)}</h3>
@@ -160,15 +260,19 @@ export function JobList({ full = false }: { full?: boolean }) {
           </li>
         );
       })}
-      {education.map((e) => (
-        <li key={e.school} className="grid gap-x-10 gap-y-2 border-t border-line py-8 md:grid-cols-[13rem_minmax(0,1fr)]">
-          <p className="text-[0.95rem] text-muted tnum">{t(e.period)}</p>
-          <div>
-            <h3 className="headline text-[clamp(1.5rem,2.6vw,2rem)]">{t(e.degree)}</h3>
-            <p className="mt-1.5 text-[1.05rem]">{e.school}</p>
-          </div>
-        </li>
-      ))}
+      {education.map((e, k) => {
+        const on = lit(experience.length + k);
+        return (
+          <li key={e.school} className={row(on)}>
+            {dot(on)}
+            <p className="text-[0.95rem] text-muted tnum">{t(e.period)}</p>
+            <div>
+              <h3 className="headline text-[clamp(1.5rem,2.6vw,2rem)]">{t(e.degree)}</h3>
+              <p className="mt-1.5 text-[1.05rem]">{e.school}</p>
+            </div>
+          </li>
+        );
+      })}
     </ol>
   );
 }

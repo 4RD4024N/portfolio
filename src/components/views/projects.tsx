@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Container } from "@/components/chrome";
 import { useLang } from "@/components/lang";
@@ -53,9 +54,11 @@ export function ProjectsView() {
           {list.map((p, i) => (
             <li key={p.slug} className={`${catCls(p.category)} rise`} style={{ "--d": `${Math.min(i, 6) * 60}ms` } as React.CSSProperties}>
               <Link href={`/projects/${p.slug}`} className="group block">
-                <div className="overflow-hidden rounded-[1.5rem] bg-surface p-4 transition-transform duration-500 ease-out-expo group-hover:scale-[1.015] sm:p-6">
-                  <ProjectVisual project={p} lang={lang} className="h-auto w-full" />
-                </div>
+                <ViewTransition name={`pv-${p.slug}`} share="morph" default="none">
+                  <div className="overflow-hidden rounded-[1.5rem] bg-surface p-4 transition-transform duration-500 ease-out-expo group-hover:scale-[1.015] sm:p-6">
+                    <ProjectVisual project={p} lang={lang} className="h-auto w-full" />
+                  </div>
+                </ViewTransition>
                 <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1">
                   <CategoryTag p={p} />
                   <span className="text-[0.92rem] text-muted tnum">{p.year}</span>

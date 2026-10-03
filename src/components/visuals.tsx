@@ -38,7 +38,8 @@ const clamp = (x: number) => Math.min(1, Math.max(0, x));
 const ease = (x: number) => 1 - Math.pow(1 - clamp(x), 3);
 const lerp = (a: number, b: number, k: number) => a + (b - a) * k;
 
-type V = { lang: Lang; className?: string; label: string };
+// step: kaydırma hikâyesindeki adım (0 = özet), progress: sahnenin tamamındaki ilerleme (0…1)
+type V = { lang: Lang; className?: string; label: string; step?: number; progress?: number };
 
 function Frame({ svgRef, children, className = "", label }: { svgRef: React.RefObject<SVGSVGElement | null>; children: React.ReactNode; className?: string; label: string }) {
   return (
@@ -49,7 +50,7 @@ function Frame({ svgRef, children, className = "", label }: { svgRef: React.RefO
 }
 
 /* ---------- Advisory System: ders programında çakışma çözülür ---------- */
-export function ScheduleVisual({ lang, className, label }: V) {
+export function ScheduleVisual({ lang, className, label, step, progress }: V) {
   const { ref, t } = useClock(3.4);
   const days = lang === "tr" ? ["Pzt", "Sal", "Çar", "Per", "Cum"] : ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const hours = ["09", "10", "11", "13", "14"];
@@ -62,21 +63,24 @@ export function ScheduleVisual({ lang, className, label }: V) {
     { d: 4, r: 3, l: "CENG 352" },
     { d: 0, r: 3, l: "PHYS 104" },
   ];
-  const c = t % 5;
+  // Hikâyede: çakışma 2. adımda kaydırdıkça çözülür; tek başına: zamanla döngü
+  const story = progress !== undefined;
+  const c = story ? lerp(0.9, 4.2, clamp((progress - 0.45) / 0.3)) : t % 5;
   const move = ease((c - 1.6) / 1.1);
   const resolved = c > 2.7;
+  const activeRole = story && step === 1 ? Math.floor(t * 0.8) % 3 : 0;
   const from = { d: 2, r: 1 }, to = { d: 3, r: 3 };
   const cx = x0 + lerp(from.d, to.d, move) * cw + (1 - move) * 14;
   const cy = y0 + lerp(from.r, to.r, move) * rh + (1 - move) * 12;
-  const fade = c > 4.6 ? 1 - (c - 4.6) / 0.4 : 1;
+  const fade = !story && c > 4.6 ? 1 - (c - 4.6) / 0.4 : 1;
   const roles = lang === "tr" ? ["Öğrenci", "Danışman", "Yönetici"] : ["Student", "Advisor", "Admin"];
 
   return (
     <Frame svgRef={ref} className={className} label={label}>
       {roles.map((r, i) => (
         <g key={r} transform={`translate(${70 + i * 92} 16)`}>
-          <rect width="84" height="26" rx="13" fill={i === 0 ? "var(--web)" : "var(--surface)"} stroke="var(--line)" />
-          <text x="42" y="17.5" textAnchor="middle" fontSize="12" fontWeight="600" fill={i === 0 ? "#fff" : "var(--muted)"}>
+          <rect width="84" height="26" rx="13" fill={i === activeRole ? "var(--web)" : "var(--surface)"} stroke="var(--line)" style={{ transition: "fill .4s" }} />
+          <text x="42" y="17.5" textAnchor="middle" fontSize="12" fontWeight="600" fill={i === activeRole ? "#fff" : "var(--muted)"}>
             {r}
           </text>
         </g>
@@ -127,29 +131,41 @@ const PALETTES = [
   ["#22d3ee", "#3b82f6", "#a855f7", "#ec4899", "#f97316"],
   ["#34d399", "#a3e635", "#facc15", "#fb7185", "#818cf8"],
 ];
-export function SpectrumVisual({ className, label }: V) {
+export function SpectrumVisual({ className, label, step }: V) {
   const { ref, t } = useClock(1.3);
   const n = 44;
   const kick = Math.exp(-((t % 0.5) * 9));
-  const pal = PALETTES[Math.floor(t / 3) % PALETTES.length];
+  // Hikâyede: 2. adımda çubuklar 8 banda toplanır, 3. adımda palet modelden gelir
+  const story = step !== undefined;
+  const banded = story && step >= 2;
+  const pal = story ? PALETTES[step >= 3 ? 1 : 0] : PALETTES[Math.floor(t / 3) % PALETTES.length];
+  const level = (i: number) => {
+    const low = 1 - i / n;
+    return 0.18 + 0.55 * Math.abs(Math.sin(i * 0.43 + t * 2.3)) * (0.5 + 0.5 * Math.sin(t * 0.7 + i * 0.11)) + kick * 0.45 * low * low;
+  };
+  const band = (i: number) => {
+    const b = Math.floor((i / n) * 8);
+    let sum = 0, cnt = 0;
+    for (let j = 0; j < n; j++) if (Math.floor((j / n) * 8) === b) { sum += level(j); cnt++; }
+    return sum / cnt;
+  };
   return (
     <Frame svgRef={ref} className={className} label={label}>
       {Array.from({ length: n }, (_, i) => {
-        const low = 1 - i / n;
-        const v = 0.18 + 0.55 * Math.abs(Math.sin(i * 0.43 + t * 2.3)) * (0.5 + 0.5 * Math.sin(t * 0.7 + i * 0.11)) + kick * 0.45 * low * low;
+        const v = banded ? band(i) : level(i);
         const h = Math.min(130, 18 + v * 110);
-        const x = 30 + i * 9.8;
+        const x = 30 + i * 9.8 + (banded ? Math.floor((i / n) * 8) * 1.2 - 4 : 0);
         const col = pal[Math.min(4, Math.floor((i / n) * 5))];
         return (
           <g key={i}>
-            <rect x={x} y={180 - h} width="6.4" height={h} rx="3.2" fill={col} />
+            <rect x={x} y={180 - h} width="6.4" height={h} rx="3.2" fill={col} style={{ transition: "fill .6s" }} />
             <rect x={x} y={186} width="6.4" height={h * 0.55} rx="3.2" fill={col} opacity="0.28" />
           </g>
         );
       })}
       <g transform="translate(150 300)">
         {pal.map((c, i) => (
-          <rect key={c + i} x={i * 38} width="30" height="30" rx="8" fill={c} />
+          <rect key={i} x={i * 38} width="30" height="30" rx="8" fill={c} style={{ transition: "fill .6s" }} />
         ))}
       </g>
       <text x="240" y="352" textAnchor="middle" fontSize="12" fill="var(--muted)" className="tnum">
@@ -170,9 +186,11 @@ const PINCH: [number, number][] = [
 ];
 const BONES = [[0, 1], [1, 2], [2, 3], [3, 4], [0, 5], [5, 6], [6, 7], [7, 8], [5, 9], [9, 10], [10, 11], [11, 12], [9, 13], [13, 14], [14, 15], [15, 16], [13, 17], [17, 18], [18, 19], [19, 20], [0, 17]];
 
-export function HandVisual({ lang, className, label }: V) {
+export function HandVisual({ lang, className, label, step, progress }: V) {
   const { ref, t } = useClock(1.9);
-  const k = 0.5 - 0.5 * Math.cos(t * 1.6);
+  // Hikâyede: kaydırdıkça el iki kez kıstırır, ses seviyesi onunla değişir
+  const k = progress !== undefined ? 0.5 - 0.5 * Math.cos(progress * Math.PI * 4) : 0.5 - 0.5 * Math.cos(t * 1.6);
+  const voice = step !== undefined && step >= 2;
   const pts = OPEN.map((p, i) => [lerp(p[0], PINCH[i][0], k), lerp(p[1], PINCH[i][1], k)] as [number, number]);
   const d = Math.hypot(pts[4][0] - pts[8][0], pts[4][1] - pts[8][1]);
   const vol = Math.round(clamp((d - 4) / 92) * 100);
@@ -186,6 +204,15 @@ export function HandVisual({ lang, className, label }: V) {
       {pts.map((p, i) => (
         <circle key={i} cx={p[0]} cy={p[1]} r={i === 4 || i === 8 ? 6 : 4.5} fill={i === 4 || i === 8 ? "var(--desktop)" : "var(--bg)"} stroke="var(--vision)" strokeWidth="2" />
       ))}
+      {voice && (
+        <g transform="translate(118 26)">
+          <rect width={lang === "tr" ? 184 : 140} height="32" rx="16" fill="var(--vision)" />
+          <circle cx="18" cy="16" r={5 + Math.abs(Math.sin(t * 6)) * 3} fill="#fff" opacity="0.9" />
+          <text x="34" y="20.5" fontSize="12.5" fontWeight="600" fill="#fff">
+            {lang === "tr" ? "Sesli komut · Spotify" : "Voice · Spotify"}
+          </text>
+        </g>
+      )}
       <g transform="translate(390 90)">
         <rect width="16" height="210" rx="8" fill="var(--surface)" stroke="var(--line)" />
         <rect y={210 - vol * 2.1} width="16" height={vol * 2.1} rx="8" fill="var(--vision)" />
@@ -201,13 +228,21 @@ export function HandVisual({ lang, className, label }: V) {
 }
 
 /* ---------- Secure Voice App: iki uç arasında şifreli ses paketleri ---------- */
-export function VoiceVisual({ className, label }: V) {
+export function VoiceVisual({ className, label, step }: V) {
   const { ref, t } = useClock(0.8);
   const ends = [
     { x: 78, l: "A" },
     { x: 402, l: "B" },
   ];
-  const lock = (x: number, y: number, key: string) => (
+  // Hikâyede: 1. adımda paketler kilitlenir, 2. adımda sunucu yalnız bağlantıyı kurar, 3. adımda gürültü bastırılır
+  const story = step !== undefined;
+  const locked = !story || step >= 1;
+  const server = story && step >= 2;
+  const clean = !story || step >= 3;
+  const lock = (x: number, y: number, key: string) =>
+    !locked ? (
+      <circle key={key} cx={x} cy={y} r="7" fill="var(--muted)" opacity="0.7" />
+    ) : (
     <g key={key} transform={`translate(${x - 13} ${y - 11})`}>
       <rect width="26" height="22" rx="6" fill="var(--web)" />
       <rect x="8.5" y="9" width="9" height="7" rx="1.5" fill="#fff" />
@@ -233,12 +268,22 @@ export function VoiceVisual({ className, label }: V) {
             {e.l}
           </text>
           {Array.from({ length: 11 }, (_, i) => {
-            const h = 6 + Math.abs(Math.sin(t * (5 + j) + i * 0.9)) * 26 * (j === 0 ? 1 : 0.7);
+            const noise = clean ? 0 : Math.abs(Math.sin(t * 37 + i * 5.1)) * 14;
+            const h = 6 + Math.abs(Math.sin(t * (5 + j) + i * 0.9)) * 26 * (j === 0 ? 1 : 0.7) + noise;
             return <rect key={i} x={e.x - 40 + i * 7.6} y={262 - h / 2} width="4" height={h} rx="2" fill="var(--web)" opacity={0.85} />;
           })}
         </g>
       ))}
-      <text x="240" y="118" textAnchor="middle" fontSize="12.5" fill="var(--muted)">
+      {server && (
+        <g>
+          <path d="M118 150 Q240 60 362 150" stroke="var(--muted)" strokeWidth="1.5" strokeDasharray="4 6" />
+          <rect x="196" y="70" width="88" height="30" rx="8" fill="var(--surface)" stroke="var(--line)" />
+          <text x="240" y="90" textAnchor="middle" fontSize="11.5" fontWeight="600" fill="var(--muted)">
+            signaling
+          </text>
+        </g>
+      )}
+      <text x="240" y={server ? 132 : 118} textAnchor="middle" fontSize="12.5" fill="var(--muted)">
         WebRTC · P2P
       </text>
     </Frame>
@@ -704,7 +749,7 @@ const BY_CAT: Record<Project["category"], (p: V) => React.ReactElement> = {
   game: BusVisual,
 };
 
-export function ProjectVisual({ project, lang, className }: { project: Project; lang: Lang; className?: string }) {
+export function ProjectVisual({ project, lang, className, step, progress }: { project: Project; lang: Lang; className?: string; step?: number; progress?: number }) {
   const C = BY_SLUG[project.slug] ?? BY_CAT[project.category];
-  return <C lang={lang} className={className} label={project.title} />;
+  return <C lang={lang} className={className} label={project.title} step={step} progress={progress} />;
 }

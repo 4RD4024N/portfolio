@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Close, Menu } from "@/components/icons";
 import { useLang } from "@/components/lang";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -51,6 +51,127 @@ export function useProgress<T extends HTMLElement>() {
   return { ref, p };
 }
 
+// Yapışkan bölüm ilerlemesi: bölüm üstten yapışınca 0, yapışma bitince 1
+export function useSticky<T extends HTMLElement>(offset = 48) {
+  const ref = useRef<T>(null);
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    let frame = 0;
+    const read = () => {
+      frame = 0;
+      const el = ref.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const span = r.height - (innerHeight - offset);
+      setP(span > 0 ? Math.min(1, Math.max(0, (offset - r.top) / span)) : 0);
+    };
+    const on = () => {
+      if (!frame) frame = requestAnimationFrame(read);
+    };
+    read();
+    addEventListener("scroll", on, { passive: true });
+    addEventListener("resize", on);
+    return () => {
+      removeEventListener("scroll", on);
+      removeEventListener("resize", on);
+      cancelAnimationFrame(frame);
+    };
+  }, [offset]);
+  return { ref, p };
+}
+
+// Tarayıcının geri / ileri tuşu: React, geri olayının içindeki güncellemeyi acil sayar ve geçişi atlar.
+// Bu yüzden olayı Next.js'e bırakmadan, bir an sonra aynı adrese yönlendiriciyle (geçmişi bozmadan) gidilir;
+// böylece açık olan proje görseli önceki sayfadaki kartına küçülerek döner. Kaydırma konumu da geri yüklenir.
+const scrollKey = () => `scroll:${location.pathname}${location.search}`;
+
+export function HistoryTransitions() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const shown = useRef("");
+  const restore = useRef<number | null>(null);
+
+  // Her sayfanın son kaydırma konumu saklanır
+  useEffect(() => {
+    let frame = 0;
+    const save = () => {
+      frame = 0;
+      try {
+        sessionStorage.setItem(scrollKey(), String(Math.round(scrollY)));
+      } catch {}
+    };
+    const on = () => {
+      if (!frame) frame = requestAnimationFrame(save);
+    };
+    addEventListener("scroll", on, { passive: true });
+    return () => {
+      removeEventListener("scroll", on);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  // Yeni sayfa işlenirken (geçişin yeni karesi çekilmeden önce) kaydırma konumu yerine konur
+  useLayoutEffect(() => {
+    shown.current = location.pathname + location.search;
+    if (restore.current !== null) {
+      scrollTo(0, restore.current);
+      restore.current = null;
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!document.startViewTransition) return;
+    const onPop = (e: PopStateEvent) => {
+      const url = location.pathname + location.search;
+      // Aynı sayfa içi (#bölüm) geçişleri ve Next.js dışı kayıtlar olduğu gibi kalır
+      if (url === shown.current || !e.state?.__NA || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      e.stopImmediatePropagation();
+      let y = 0;
+      try {
+        y = Number(sessionStorage.getItem(scrollKey())) || 0;
+      } catch {}
+      restore.current = y;
+      setTimeout(() => router.replace(url + location.hash, { scroll: false }), 0);
+    };
+    addEventListener("popstate", onPop);
+    return () => removeEventListener("popstate", onPop);
+  }, [router]);
+
+  return null;
+}
+
+// Sahne rengi: ekranın ortasındaki [data-wash] öğesi sayfanın zeminini kendi rengine boyar
+export function WashController() {
+  const pathname = usePathname();
+  useEffect(() => {
+    const root = document.documentElement;
+    let frame = 0;
+    const read = () => {
+      frame = 0;
+      const y = innerHeight / 2;
+      let wash: string | undefined;
+      document.querySelectorAll<HTMLElement>("[data-wash]").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= y && r.bottom >= y) wash = el.dataset.wash;
+      });
+      if (wash) root.dataset.wash = wash;
+      else delete root.dataset.wash;
+    };
+    const on = () => {
+      if (!frame) frame = requestAnimationFrame(read);
+    };
+    read();
+    addEventListener("scroll", on, { passive: true });
+    addEventListener("resize", on);
+    return () => {
+      removeEventListener("scroll", on);
+      removeEventListener("resize", on);
+      cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+  return null;
+}
+
 // Üst çubuk: yarı saydam, tek ayırıcı çizgi
 export function Nav() {
   const { lang, setLang, t } = useLang();
@@ -74,7 +195,7 @@ export function Nav() {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur-xl backdrop-saturate-150">
+    <header className="bar sticky top-0 z-40 border-b border-line backdrop-blur-xl backdrop-saturate-150">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:rounded focus:bg-bg focus:px-3 focus:py-2">
         {t(ui.skip)}
       </a>

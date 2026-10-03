@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { Container } from "@/components/chrome";
 import { ArrowRight } from "@/components/icons";
-import { ArrowLink, Closing, JobList, ProjectLine, Scene, Statement } from "@/components/parts";
+import { ArrowLink, Closing, JobList, ProjectStrip, Scene, Statement } from "@/components/parts";
 import { useLang } from "@/components/lang";
 import { profile, projects, ui } from "@/content";
 
 export function HomeView() {
   const { t } = useLang();
   const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured).slice(0, 6);
+  const rest = projects.filter((p) => !p.featured);
   const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
   return (
@@ -52,18 +52,12 @@ export function HomeView() {
         ))}
       </div>
 
-      {/* Diğer projeler */}
-      <Container className="pt-16 sm:pt-24">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="display text-[clamp(2.4rem,6vw,4.5rem)]">{t(ui.moreProjects)}</h2>
-          <ArrowLink href="/projects">{`${t(ui.allProjects)} (${projects.length})`}</ArrowLink>
-        </div>
-        <ul className="mt-10 grid gap-x-12 lg:grid-cols-2">
-          {rest.map((p) => (
-            <ProjectLine key={p.slug} project={p} />
-          ))}
-        </ul>
-      </Container>
+      {/* Diğer projeler: yatay şerit */}
+      <ProjectStrip
+        items={rest}
+        title={t(ui.moreProjects)}
+        action={<ArrowLink href="/projects">{`${t(ui.allProjects)} (${projects.length})`}</ArrowLink>}
+      />
 
       {/* Deneyim */}
       <Container className="pt-28 sm:pt-40">

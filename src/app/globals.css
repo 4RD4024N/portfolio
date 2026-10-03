@@ -74,10 +74,30 @@ html {
 @media (min-width: 1800px) { html { font-size: 17px; } }
 @media (min-width: 2300px) { html { font-size: 18px; } }
 
+/* ---------- Sahne rengi: ekrandaki proje sayfayı kendi rengine boyar ---------- */
+@property --page { syntax: "<color>"; inherits: true; initial-value: #fbfbfd; }
+html {
+  --wash: 14%;
+  --page: var(--bg);
+  transition: --page 0.9s var(--ease-out-expo);
+}
+:root[data-theme="dark"] { --wash: 26%; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --wash: 26%; } }
+html[data-wash="web"] { --page: color-mix(in oklab, var(--web) var(--wash), var(--bg)); }
+html[data-wash="vision"] { --page: color-mix(in oklab, var(--vision) var(--wash), var(--bg)); }
+html[data-wash="desktop"] { --page: color-mix(in oklab, var(--desktop) var(--wash), var(--bg)); }
+html[data-wash="game"] { --page: color-mix(in oklab, var(--game) var(--wash), var(--bg)); }
+
 body {
   color: var(--ink);
-  background: var(--bg);
+  background: var(--page);
 }
+
+/* Sahnedeki yüzey: zeminden bir ton açık, aynı renkte */
+.scene-surface { background: color-mix(in oklab, var(--c, var(--surface)) 12%, var(--surface)); }
+
+/* Üst çubuk zeminle birlikte renk alır */
+.bar { background: color-mix(in srgb, var(--page) 80%, transparent); }
 
 ::selection { background: color-mix(in srgb, var(--accent) 25%, transparent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -107,7 +127,22 @@ body {
 @keyframes rise { from { opacity: 0; transform: translateY(1.25rem); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
 .rise { animation: rise 1.1s var(--ease-out-expo) both; animation-delay: var(--d, 0ms); }
 
+/* Kaydırma hikâyesi: adım yazıları yer değiştirirken bulanıktan netleşir */
+.step { transition: opacity 0.6s var(--ease-out-expo), transform 0.8s var(--ease-out-expo), filter 0.6s var(--ease-out-expo); }
+.step[data-on="false"] { opacity: 0; transform: translateY(1.5rem); filter: blur(6px); pointer-events: none; }
+.step[data-on="past"] { opacity: 0; transform: translateY(-1.5rem); filter: blur(6px); pointer-events: none; }
+
+/* Sayfa geçişi: proje görseli bir sayfadan ötekine taşınır */
+::view-transition-group(.morph) { animation-duration: 550ms; animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+::view-transition-image-pair(.morph) { animation-name: via-blur; }
+@keyframes via-blur { 35% { filter: blur(4px); } }
+::view-transition-old(root) { animation: 220ms ease-out both vt-out; }
+::view-transition-new(root) { animation: 380ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both vt-in; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(12px); } }
+
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
   *, *::before, *::after {
     animation: none !important;
     transition: none !important;

@@ -16,7 +16,7 @@ A personal portfolio at ardaozan.dev that presents Arda as a well-rounded comput
 
 ## Positioning
 
-A broad engineer rather than a single-lane specialist. No one identity dominates: full-stack web work (Advisory System, React, Spring Boot, .NET), curious tool-building (computer vision, real-time audio, automation), cloud experience, a project-assistant role on IFC-financed work, and co-founding Neuvikon, a four-person software / games / robotics studio. The combination itself is the claim.
+A broad engineer rather than a single-lane specialist. No one identity dominates: full-stack web work (Advisory System, React, Spring Boot, .NET), curious tool-building (computer vision, real-time audio, automation), cloud experience, a project-assistant role on IFC-financed work, and co-founding Neuvikon with friends, a software / games / robotics studio (never state the team size). The combination itself is the claim.
 
 ## Operating Context
 

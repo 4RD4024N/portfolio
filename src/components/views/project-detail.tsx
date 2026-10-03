@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { Container } from "@/components/chrome";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "@/components/icons";
 import { useLang } from "@/components/lang";
@@ -24,7 +25,7 @@ export function ProjectDetailView({ slug }: { slug: string }) {
   ].filter(Boolean) as { label: string; href: string }[];
 
   return (
-    <article className={catCls(p.category)}>
+    <article data-wash={p.category} className={catCls(p.category)}>
       <Container className="pt-12 text-center sm:pt-20">
         <Link href="/projects" className="group inline-flex items-center gap-1.5 text-[0.95rem] font-medium text-muted hover:text-ink">
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" /> {t(ui.nav.projects)}
@@ -59,9 +60,11 @@ export function ProjectDetailView({ slug }: { slug: string }) {
       </Container>
 
       <Container className="mt-14 sm:mt-20">
-        <div className="rise mx-auto max-w-[60rem] overflow-hidden rounded-[2rem] bg-surface p-5 sm:p-10" style={{ "--d": "300ms" } as React.CSSProperties}>
-          <ProjectVisual project={p} lang={lang} className="h-auto w-full" />
-        </div>
+        <ViewTransition name={`pv-${p.slug}`} share="morph" default="none">
+          <div className="scene-surface mx-auto max-w-[60rem] overflow-hidden rounded-[2rem] p-5 sm:p-10">
+            <ProjectVisual project={p} lang={lang} className="h-auto w-full" />
+          </div>
+        </ViewTransition>
       </Container>
 
       <Container className="mt-20 sm:mt-28">
