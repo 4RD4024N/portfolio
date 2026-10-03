@@ -178,6 +178,9 @@ export function Closing({ heading = "h2" }: { heading?: "h1" | "h2" }) {
   const { t } = useLang();
   const [copied, setCopied] = useState(false);
   const H = heading;
+  // Sayfa başlığı olarak kullanıldığında diğer sayfalardaki gibi kademeli belirir
+  const rise = heading === "h1" ? "rise" : "";
+  const d = (ms: number) => (heading === "h1" ? ({ "--d": `${ms}ms` } as React.CSSProperties) : undefined);
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(profile.email);
@@ -188,12 +191,14 @@ export function Closing({ heading = "h2" }: { heading?: "h1" | "h2" }) {
   return (
     <section className="py-28 sm:py-40">
       <Container className="text-center">
-        <H className="display text-[clamp(3rem,9vw,6rem)]">{t(ui.contactTitle)}</H>
-        <p className="mx-auto mt-6 max-w-[44ch] text-[1.2rem] leading-relaxed text-muted">{t(ui.contactText)}</p>
-        <a href={`mailto:${profile.email}`} className="mt-10 inline-block text-[clamp(1.25rem,4.4vw,2.25rem)] font-semibold tracking-[-0.03em] break-all text-accent hover:underline">
+        <H className={`display ${rise} text-[clamp(3rem,9vw,6rem)]`}>{t(ui.contactTitle)}</H>
+        <p className={`${rise} mx-auto mt-6 max-w-[44ch] text-[1.2rem] leading-relaxed text-muted`} style={d(120)}>
+          {t(ui.contactText)}
+        </p>
+        <a href={`mailto:${profile.email}`} style={d(200)} className={`${rise} mt-10 inline-block text-[clamp(1.25rem,4.4vw,2.25rem)] font-semibold tracking-[-0.03em] break-all text-accent hover:underline`}>
           {profile.email}
         </a>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className={`${rise} mt-8 flex flex-wrap justify-center gap-3`} style={d(280)}>
           <a href={`mailto:${profile.email}`} className="rounded-full bg-accent px-6 py-3 font-medium text-on-accent transition-opacity hover:opacity-90">
             {t(ui.sendEmail)}
           </a>
