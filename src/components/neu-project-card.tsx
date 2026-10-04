@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@/components/icons";
 import { useLang } from "@/components/lang";
-import { neuvikon, ui, type Lang, type NeuProject } from "@/content";
+import { ui, type Lang, type NeuProject } from "@/content";
 
-// Neuvikon sitesindeki İngilizce sayfalar /en altında
-export function neuHref(href: string, lang: Lang) {
-  return lang === "en" && href.startsWith(neuvikon.site) ? href.replace(neuvikon.site, `${neuvikon.site}/en`) : href;
+// Neuvikon sitesi tek sayfa ve ayrı bir İngilizce sürümü yok; bağlantı olduğu gibi kalır
+export function neuHref(href: string, _lang: Lang) {
+  return href;
 }
 
 export function NeuProjectRow({ project: p }: { project: NeuProject }) {

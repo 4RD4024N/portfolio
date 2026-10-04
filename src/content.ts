@@ -75,7 +75,7 @@ export const experience: Job[] = [
   },
   {
     org: "Neuvikon",
-    href: "https://neuvikon-labs.github.io",
+    href: "https://neuvikon.com",
     role: { tr: "Kurucu Ortak", en: "Co-founder" },
     period: { tr: "2026 – Günümüz", en: "2026 – Present" },
     location: { tr: "Türkiye", en: "Turkey" },
@@ -154,10 +154,10 @@ export type NeuProject = {
   links?: { label: string; href: string }[];
 };
 
-// Neuvikon bilgileri ve projeleri, kaynak: neuvikon-labs.github.io
+// Neuvikon bilgileri ve projeleri, kaynak: neuvikon.com
 export const neuvikon = {
   name: "Neuvikon",
-  site: "https://neuvikon-labs.github.io",
+  site: "https://neuvikon.com",
   tagline: {
     tr: "Yazılım, oyun ve robotik üzerine çalışan bağımsız bir teknoloji stüdyosu.",
     en: "An independent technology studio working in software, games and robotics.",
@@ -204,7 +204,7 @@ export const neuvikon = {
       },
       tags: ["React Native", "Expo"],
       image: "/neuvikon/guessfast.png",
-      href: "https://neuvikon-labs.github.io/games/guessfast",
+      href: "https://neuvikon.com/#games",
       links: [
         { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.scientist001.GuessFast" },
         { label: "App Store", href: "https://apps.apple.com/ng/app/guessfast/id6758861605" },
@@ -220,7 +220,7 @@ export const neuvikon = {
         en: "An internal platform that tracks which ticket a coding agent is working on and how many tokens it spent.",
       },
       tags: ["Next.js", "TypeScript"],
-      href: "https://neuvikon-labs.github.io/tech/neu-source",
+      href: "https://neuvikon.com/#tech",
       links: [{ label: "neuvikon.space", href: "https://www.neuvikon.space/" }],
     },
     {
@@ -234,7 +234,7 @@ export const neuvikon = {
       },
       tags: ["Unity", "Mirror"],
       image: "/neuvikon/pushbump.png",
-      href: "https://neuvikon-labs.github.io/games/pushbump",
+      href: "https://neuvikon.com/#games",
     },
     {
       name: "Neu-Pummel Party",
@@ -247,7 +247,7 @@ export const neuvikon = {
       },
       tags: ["Unity 6", "Netcode"],
       image: "/neuvikon/neuparty.png",
-      href: "https://neuvikon-labs.github.io/games/neu-pummel-party",
+      href: "https://neuvikon.com/#games",
     },
     {
       name: "UnderCard",
@@ -260,7 +260,7 @@ export const neuvikon = {
       },
       tags: ["React Native", "Firebase"],
       image: "/neuvikon/undercard.png",
-      href: "https://neuvikon-labs.github.io/games/undercard",
+      href: "https://neuvikon.com/#games",
     },
     {
       name: "EdgeOut",
@@ -273,7 +273,7 @@ export const neuvikon = {
       },
       tags: ["TypeScript", "WebSocket"],
       image: "/neuvikon/edgeout.png",
-      href: "https://neuvikon-labs.github.io/games/edgeout",
+      href: "https://neuvikon.com/#games",
     },
     {
       name: "Muavin Sim",
@@ -298,7 +298,7 @@ export const neuvikon = {
         en: "A card battler where keeping your teammate alive is a real decision.",
       },
       tags: ["Unity 6"],
-      href: "https://neuvikon-labs.github.io/games/card-wars",
+      href: "https://neuvikon.com/#games",
     },
     {
       name: "Eclosion",
@@ -311,7 +311,7 @@ export const neuvikon = {
       },
       tags: ["React Native", "Expo"],
       image: "/neuvikon/eclosion.png",
-      href: "https://neuvikon-labs.github.io/tech/eclosion",
+      href: "https://neuvikon.com/#tech",
     },
   ] satisfies NeuProject[],
 };
@@ -517,7 +517,7 @@ export const projects: Project[] = [
     title: "Muavin Sim",
     year: "2026",
     category: "game",
-    org: { name: "Neuvikon Games", href: "https://neuvikon-labs.github.io/games/muavin-sim" },
+    org: { name: "Neuvikon Games", href: "https://neuvikon.com/#games" },
     private: true,
     wip: true,
     summary: {

@@ -11,8 +11,8 @@ import { neuvikon, ui } from "@/content";
 const divisionCls: Record<string, string> = { games: "cat-game", tech: "cat-web", robotics: "cat-desktop" };
 
 export function ExperienceView() {
-  const { lang, t } = useLang();
-  const neuSite = lang === "en" ? `${neuvikon.site}/en` : neuvikon.site;
+  const { t } = useLang();
+  const neuSite = neuvikon.site;
 
   return (
     <>
@@ -44,7 +44,7 @@ export function ExperienceView() {
                   ))}
               </div>
               <a href={neuSite} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-medium text-accent hover:underline">
-                neuvikon-labs.github.io <ArrowUpRight />
+                neuvikon.com <ArrowUpRight />
               </a>
             </div>
           </div>
