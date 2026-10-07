@@ -51,11 +51,16 @@ export function Statement({ text }: { text: string }) {
   const words = text.split(" ");
   // Bölüm ekrandan geçerken 0.25…0.6 aralığında tüm sözcükler yanar
   const k = Math.min(1, Math.max(0, (p - 0.22) / 0.4)) * words.length;
+  // Yapışık kaldığı sürede metin kaydırmayla birlikte yavaşça süzülür, donmuş görünmez
+  const h = ref.current?.offsetHeight ?? 0;
+  const vh = typeof window === "undefined" ? 0 : innerHeight;
+  const a = vh / (vh + h || 1);
+  const s = h > vh ? Math.min(1, Math.max(0, (p - a) / (1 - 2 * a))) : 0.5;
   return (
     <section ref={ref} className="h-[170svh] sm:h-[200svh]">
       <div className="sticky top-12 flex h-[calc(100svh-3rem)] items-center">
         <Container>
-          <p className="headline max-w-[26ch] text-[clamp(2rem,5vw,4.25rem)]">
+          <p className="headline max-w-[26ch] text-[clamp(2rem,5vw,4.25rem)] will-change-transform" style={{ transform: `translateY(${(0.5 - s) * 16}svh)` }}>
             {words.map((w, i) => (
               <span key={i} className="transition-opacity duration-300" style={{ opacity: Math.max(0.16, Math.min(1, k - i + 0.6)) }}>
                 {w}{" "}
