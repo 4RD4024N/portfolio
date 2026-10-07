@@ -60,7 +60,7 @@ export function Statement({ text }: { text: string }) {
     <section ref={ref} className="h-[170svh] sm:h-[200svh]">
       <div className="sticky top-12 flex h-[calc(100svh-3rem)] items-center">
         <Container>
-          <p className="headline max-w-[26ch] text-[clamp(2rem,5vw,4.25rem)] will-change-transform" style={{ transform: `translateY(${(0.5 - s) * 16}svh)` }}>
+          <p className="headline max-w-[26ch] text-[clamp(2rem,5vw,4.25rem)] will-change-transform" style={{ transform: `translateY(${(0.5 - s) * 20}svh)` }}>
             {words.map((w, i) => (
               <span key={i} className="transition-opacity duration-300" style={{ opacity: Math.max(0.16, Math.min(1, k - i + 0.6)) }}>
                 {w}{" "}
