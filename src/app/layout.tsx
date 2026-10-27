@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Footer, HistoryTransitions, Nav, WashController } from "@/components/chrome";
 import { LangProvider } from "@/components/lang";
 import { themeScript } from "@/components/theme-script";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <WashController />
           <HistoryTransitions />
         </LangProvider>
+        <Analytics />
       </body>
     </html>
   );
